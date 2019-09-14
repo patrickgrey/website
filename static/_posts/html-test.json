@@ -1,0 +1,6 @@
+{
+  "layout": "blog",
+  "title": "HTML Test",
+  "date": "2019-09-14T16:09:50.056Z",
+  "body": "**This is some funky HTML.**\n\n_How do I add an image?_\n\n![Ruth flies](/uploads/ruth-flies.jpg \"Ruth flies\")"
+}
