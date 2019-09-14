@@ -1,2 +1,2 @@
-# website-v3
+# website
 Personal website
