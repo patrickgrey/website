@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload(page) {
-    const htmlPostsCount = 5;
+    const htmlPostsCount = 3;
 
     const pages = this.fetch(
       `http://localhost:2368/ghost/api/v2/content/pages/?key=8f61b29cf34abca369566ed9a6`
@@ -9,8 +9,9 @@
     });
 
     const htmlPosts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&fields=id,title,url,html&limit=${htmlPostsCount}`
+      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&fields=id,title,url,excerpt&formats=plaintext&limit=${htmlPostsCount}`
     ).then(response => {
+      console.log(response);
       return response.json();
     });
 
@@ -25,13 +26,22 @@
       return pagesObject.pages.filter(i => pagename.includes(i.slug));
     }
 
-    let combinedData = { page: {}, htmlPosts: {}, posts: {} };
+    let combinedData = { page: {}, htmlPostsData: {}, postsData: {} };
     // let pagedata;
 
     return Promise.all([pages, htmlPosts, posts]).then(function(values) {
       combinedData["page"] = filterPage(values[0])[0];
-      combinedData["htmlPosts"] = values[1];
-      combinedData["posts"] = values[2];
+      combinedData["htmlPostsData"] = values[1];
+      combinedData["postsData"] = values[2];
+      combinedData["htmlPostsCount"] = htmlPostsCount;
+      // .posts.splice(
+      //   htmlPostsCount,
+      //   values[2].posts.length
+      // );
+      // console.log(
+      //   values[2].posts.splice(htmlPostsCount, values[2].posts.length)
+      // );
+
       // pagedata = combinedData["page"];
       // console.log(combinedData["page"]);
       // console.log(
@@ -48,8 +58,11 @@
 
 <script>
   export let page;
-  export let htmlPosts;
-  export let posts;
+  export let htmlPostsData;
+  export let postsData;
+  export let htmlPostsCount;
+  const noHtmlPosts = postsData.posts.slice(htmlPostsCount);
+  console.log(htmlPostsData);
 </script>
 
 <style>
@@ -75,7 +88,7 @@
 </style>
 
 <svelte:head>
-  <title>Hi</title>
+  <title>{page.title}</title>
 </svelte:head>
 
 <h1>{page.title}</h1>
@@ -83,3 +96,22 @@
 <div class="pg-container">
   {@html page.html}
 </div>
+
+<ul>
+
+  {#each htmlPostsData.posts as htmlpost}
+    <li>
+      <p>{htmlpost.title}</p>
+      <p>
+        {@html htmlpost.excerpt}
+        ...
+      </p>
+    </li>
+  {/each}
+
+  {#each noHtmlPosts as post}
+    <li>
+      <p>{post.title}</p>
+    </li>
+  {/each}
+</ul>
