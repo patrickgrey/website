@@ -4,5 +4,11 @@ front-end/src/node_modules/@sapper/
 front-end/yarn-error.log
 front-end/cypress/screenshots/
 front-end/__sapper__/
-back-end
+!back-end/
+back-end/*
+!back-end/content/
+back-end/content/themes
+back-end/content/logs
+#!back-end/content/data/
+#!back-end/content/images/
 .vscode
