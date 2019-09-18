@@ -1,3 +1,20 @@
+<script context="module">
+  export async function preload(page) {
+    return this.fetch(
+      `http://localhost:2368/ghost/api/v2/content/pages/?key=8f61b29cf34abca369566ed9a6`
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      });
+  }
+</script>
+
+<script>
+
+</script>
 
 <style>
   h1,
@@ -37,9 +54,6 @@
 
 <svelte:head>
   <title>Sapper project template</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js">
-
-  </script>
 </svelte:head>
 
 <h1>Great success!</h1>
