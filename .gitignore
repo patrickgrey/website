@@ -4,4 +4,5 @@ front-end/src/node_modules/@sapper/
 front-endyarn-error.log
 front-end/cypress/screenshots/
 front-end/__sapper__/
-back-end/
+back-end
+.vscode
