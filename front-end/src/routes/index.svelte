@@ -11,7 +11,6 @@
     const htmlPosts = this.fetch(
       `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&fields=id,title,url,excerpt&formats=plaintext&limit=${htmlPostsCount}`
     ).then(response => {
-      console.log(response);
       return response.json();
     });
 
@@ -26,31 +25,13 @@
       return pagesObject.pages.filter(i => pagename.includes(i.slug));
     }
 
-    let combinedData = { page: {}, htmlPostsData: {}, postsData: {} };
-    // let pagedata;
+    let combinedData = {};
 
     return Promise.all([pages, htmlPosts, posts]).then(function(values) {
       combinedData["page"] = filterPage(values[0])[0];
       combinedData["htmlPostsData"] = values[1];
       combinedData["postsData"] = values[2];
       combinedData["htmlPostsCount"] = htmlPostsCount;
-      // .posts.splice(
-      //   htmlPostsCount,
-      //   values[2].posts.length
-      // );
-      // console.log(
-      //   values[2].posts.splice(htmlPostsCount, values[2].posts.length)
-      // );
-
-      // pagedata = combinedData["page"];
-      // console.log(combinedData["page"]);
-      // console.log(
-      //   combinedData["posts"].posts.splice(
-      //     htmlPostsCount,
-      //     combinedData["posts"].posts.length
-      //   )
-      // );
-      // console.log(combinedData["posts"].posts);
       return combinedData;
     });
   }
@@ -62,7 +43,6 @@
   export let postsData;
   export let htmlPostsCount;
   const noHtmlPosts = postsData.posts.slice(htmlPostsCount);
-  console.log(htmlPostsData);
 </script>
 
 <style>
