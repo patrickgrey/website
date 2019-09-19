@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Lora";
+  src: url("fonts/Lora-Regular.ttf") format("truetype");
+}
+
+h1 {
+  font-family: "Lora";
+  font-weight: 300;
+}

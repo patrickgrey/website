@@ -1,5 +1,5 @@
 <script>
-  // import Nav from '../components/Nav.svelte';
+  import HeaderContent from "../components/HeaderContent.svelte";
 
   // export let segment;
 </script>
@@ -15,10 +15,11 @@
 
   .pg-layout {
     display: flex;
-    flex: 1;
+    flex: 1 0 0;
   }
 
   header {
+    position: relative;
     /* 12em is the width of the column */
     flex: 0 0 20%;
     min-width: 50px;
@@ -34,7 +35,7 @@
     background: white;
     /* border-left: 10px solid #999; */
     border-bottom-left-radius: 5px;
-    background: red;
+    /* background: red; */
   }
 
   footer {
@@ -69,14 +70,7 @@ header {
   <div class="pg-layout">
 
     <header>
-      <h1>The Grey line</h1>
-      <!-- <button>About</button>
-      <div class="pg-about">
-        <p>
-          I'm Patrick Grey. I develop websites, applications and motion graphic
-          videos.
-        </p>
-      </div> -->
+      <HeaderContent />
     </header>
 
     <main>
