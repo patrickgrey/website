@@ -28,6 +28,7 @@
     color: white;
     border-bottom-right-radius: 5px;
     margin-right: 10px;
+    transition: flex 0.3s;
   }
 
   @media (min-width: 768px) {
