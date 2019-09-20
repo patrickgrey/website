@@ -69,6 +69,10 @@
 
 <svelte:head>
   <title>{page.title}</title>
+  <meta
+    name="Description"
+    content="Patrick Grey: web and video developer, international man of
+    mystery!" />
 </svelte:head>
 
 <h1>{page.title}</h1>

@@ -21,13 +21,19 @@
   header {
     position: relative;
     /* 12em is the width of the column */
-    flex: 0 0 20%;
-    min-width: 50px;
+    flex: 0 0 13%;
+    min-width: 44px;
     /* order: -1; */
     background: black;
     color: white;
     border-bottom-right-radius: 5px;
     margin-right: 10px;
+  }
+
+  @media (min-width: 768px) {
+    header {
+      flex: 0 0 20%;
+    }
   }
 
   main {

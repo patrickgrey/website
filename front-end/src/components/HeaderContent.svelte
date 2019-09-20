@@ -7,10 +7,16 @@
     padding: 0;
     margin: 0;
     text-align: right;
-    font-size: 7vh;
+    font-size: 4vh;
     transform-origin: bottom right;
     transform: rotate(-90deg);
     color: #999;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 7vh;
+    }
   }
 </style>
 
