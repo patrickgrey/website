@@ -21,14 +21,15 @@
       rgba(153, 153, 153, 0) 57%,
       rgba(153, 153, 153, 0) 100%
     );
-    background-position: bottom -0.3vh right -57vh;
+    background-position: bottom 0.1vh right -75.5vh;
     background-repeat: no-repeat;
-    transition: font-size 0.3s;
+    transition: font-size 0.3s, background-position 0.3s;
   }
 
   @media (min-width: 768px) {
     h1 {
       font-size: 7vh;
+      background-position: bottom -0.3vh right -57vh;
     }
   }
 </style>
