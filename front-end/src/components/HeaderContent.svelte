@@ -34,7 +34,8 @@
   }
 </style>
 
-<h1>The Grey line</h1>
+<!-- <h1>The Grey line</h1> -->
+<h1>Patrick Grey</h1>
 <!-- <button>About</button>
       <div class="pg-about">
         <p>
