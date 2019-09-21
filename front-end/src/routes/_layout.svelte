@@ -104,7 +104,28 @@
   .path {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
+  }
+
+  #bg-top-path-1 {
     animation: dash 2s ease-in-out forwards;
+  }
+  #bg-top-path-2 {
+    animation: dash 2s ease-in-out 0.2s forwards;
+  }
+  #bg-top-path-3 {
+    animation: dash 2s ease-in-out 0.4s forwards;
+  }
+  #bg-top-path-4 {
+    animation: dash 2s ease-in-out 0.5s forwards;
+  }
+  #bg-top-path-5 {
+    animation: dash 2s ease-in-out 0.8s forwards;
+  }
+  #bg-top-path-6 {
+    animation: dash 2s ease-in-out 1s forwards;
+  }
+  #bg-top-path-7 {
+    animation: dash 2s ease-in-out 1.2s forwards;
   }
 
   @keyframes dash {
