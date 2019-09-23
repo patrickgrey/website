@@ -74,6 +74,7 @@
   }
 
   footer {
+    min-height: 20em;
   }
 
   #bg-top {
@@ -83,8 +84,9 @@
 
   #bg-top-container {
     width: 100%;
+    /* opacity: 0.8; */
     /* min-width: 841px; */
-    margin-left: -1.05em;
+    margin-left: calc(-1em - 10px);
     overflow-x: hidden;
     /* position: absolute;
     top: 0;
@@ -102,8 +104,8 @@
   }
 
   .path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+    /* stroke-dasharray: 1000;
+    stroke-dashoffset: 1000; */
   }
 
   #bg-top-path-1 {
@@ -123,9 +125,6 @@
   }
   #bg-top-path-6 {
     animation: dash 2s ease-in-out 1s forwards;
-  }
-  #bg-top-path-7 {
-    animation: dash 2s ease-in-out 1.2s forwards;
   }
 
   @keyframes dash {
@@ -160,10 +159,10 @@
               gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#999" />
               <stop offset="0.06" stop-color="#999" />
-              <stop offset="0.15" stop-color="rgba(255, 0, 0, 1)" />
-              <stop offset="0.60" stop-color="rgba(255, 0, 0, 1)" />
-              <stop offset="0.92" stop-color="rgba(255, 0, 0, 0)" />
-              <stop offset="1" stop-color="rgba(255, 0, 0, 0)" />
+              <stop offset="0.15" stop-color="rgba(255, 80, 60, 1)" />
+              <stop offset="0.60" stop-color="rgba(255, 80, 60, 1)" />
+              <stop offset="0.92" stop-color="rgba(255, 80, 60, 0)" />
+              <stop offset="1" stop-color="rgba(255, 80, 60, 0)" />
             </linearGradient>
             <linearGradient
               id="linear-orange"
@@ -174,10 +173,10 @@
               gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#999" />
               <stop offset="0.06" stop-color="#999" />
-              <stop offset="0.15" stop-color="rgba(255, 127, 0, 1)" />
-              <stop offset="0.60" stop-color="rgba(255, 127, 0, 1)" />
-              <stop offset="0.92" stop-color="rgba(255, 127, 0, 0)" />
-              <stop offset="1" stop-color="rgba(255, 127, 0, 0)" />
+              <stop offset="0.15" stop-color="rgba(255, 153, 0, 1)" />
+              <stop offset="0.60" stop-color="rgba(255, 153, 0, 1)" />
+              <stop offset="0.92" stop-color="rgba(255, 153, 0, 0)" />
+              <stop offset="1" stop-color="rgba(255, 153, 0, 0)" />
             </linearGradient>
             <linearGradient
               id="linear-yellow"
@@ -188,10 +187,10 @@
               gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#999" />
               <stop offset="0.06" stop-color="#999" />
-              <stop offset="0.15" stop-color="rgba(255, 255, 0, 1)" />
-              <stop offset="0.60" stop-color="rgba(255, 255, 0, 1)" />
-              <stop offset="0.92" stop-color="rgba(255, 255, 0, 0)" />
-              <stop offset="1" stop-color="rgba(255, 255, 0, 0)" />
+              <stop offset="0.15" stop-color="rgba(239, 250, 0, 1)" />
+              <stop offset="0.60" stop-color="rgba(239, 250, 0, 1)" />
+              <stop offset="0.92" stop-color="rgba(239, 250, 0, 0)" />
+              <stop offset="1" stop-color="rgba(239, 250, 0, 0)" />
             </linearGradient>
             <linearGradient
               id="linear-green"
@@ -202,10 +201,10 @@
               gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#999" />
               <stop offset="0.06" stop-color="#999" />
-              <stop offset="0.15" stop-color="rgba(0, 255, 0, 1)" />
-              <stop offset="0.60" stop-color="rgba(0, 255, 0, 1)" />
-              <stop offset="0.92" stop-color="rgba(0, 255, 0, 0)" />
-              <stop offset="1" stop-color="rgba(0, 255, 0, 0)" />
+              <stop offset="0.15" stop-color="rgba(51, 190, 0, 1)" />
+              <stop offset="0.60" stop-color="rgba(51, 190, 0, 1)" />
+              <stop offset="0.92" stop-color="rgba(51, 190, 0, 0)" />
+              <stop offset="1" stop-color="rgba(51, 190, 0, 0)" />
             </linearGradient>
             <linearGradient
               id="linear-blue"
@@ -216,10 +215,10 @@
               gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#999" />
               <stop offset="0.06" stop-color="#999" />
-              <stop offset="0.15" stop-color="rgba(0, 0, 255, 1)" />
-              <stop offset="0.60" stop-color="rgba(0, 0, 255, 1)" />
-              <stop offset="0.92" stop-color="rgba(0, 0, 255, 0)" />
-              <stop offset="1" stop-color="rgba(0, 0, 255, 0)" />
+              <stop offset="0.15" stop-color="rgba(112, 220, 255, 1)" />
+              <stop offset="0.60" stop-color="rgba(112, 220, 255, 1)" />
+              <stop offset="0.92" stop-color="rgba(112, 220, 255, 0)" />
+              <stop offset="1" stop-color="rgba(112, 220, 255, 0)" />
             </linearGradient>
             <linearGradient
               id="linear-indigo"
@@ -230,10 +229,10 @@
               gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#999" />
               <stop offset="0.06" stop-color="#999" />
-              <stop offset="0.15" stop-color="rgba( 75, 0, 130, 1)" />
-              <stop offset="0.60" stop-color="rgba( 75, 0, 130, 1)" />
-              <stop offset="0.92" stop-color="rgba( 75, 0, 130, 0)" />
-              <stop offset="1" stop-color="rgba( 75, 0, 130, 0)" />
+              <stop offset="0.15" stop-color="rgba( 255, 151, 252, 1)" />
+              <stop offset="0.60" stop-color="rgba( 255, 151, 252, 1)" />
+              <stop offset="0.92" stop-color="rgba( 255, 151, 252, 0)" />
+              <stop offset="1" stop-color="rgba( 255, 151, 252, 0)" />
             </linearGradient>
             <linearGradient
               id="linear-violet"
@@ -251,7 +250,8 @@
             </linearGradient>
           </defs>
           <title>Top decoration animation</title>
-          <path
+
+          <!-- <path
             class="path"
             id="bg-top-path-1"
             stroke="url(#linear-violet)"
@@ -307,6 +307,57 @@
             fill="none"
             stroke-linecap="round"
             d="M-37,36.18c12.18-.56,12.18,24.9,25.48,25.47,14.58.62,14.58-27.3,30.65-28,17.79-.81,17.79,30.1,37.6,31,22.18.94,22.18-33.68,47.19-34.83,28.42-1.3,28.42,38.05,61,39.44,37.71,1.6,37.71-43.95,81.89-46,52.46-2.4,52.46,51.69,115.76,54.39,77.91,3.32,77.91-63.25,176.12-67.74C666.34,4,666.34,90.53,839,97.88" />
+             -->
+          <path
+            class="path"
+            id="bg-top-path-1"
+            stroke="url(#linear-green)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            d="M5,64V17A12,12,0,0,1,17,5H838" />
+          <path
+            class="path"
+            id="bg-top-path-2"
+            stroke="url(#linear-blue)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            d="M5,74V27A12,12,0,0,1,17,15H838" />
+          <path
+            class="path"
+            id="bg-top-path-3"
+            stroke="url(#linear-indigo)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            d="M5,84V37A12,12,0,0,1,17,25H838" />
+          <path
+            class="path"
+            id="bg-top-path-4"
+            stroke="url(#linear-red)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            d="M5,94V47A12,12,0,0,1,17,35H838" />
+          <path
+            class="path"
+            id="bg-top-path-5"
+            stroke="url(#linear-orange)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            d="M5,104V57A12,12,0,0,1,17,45H838" />
+
+          <path
+            class="path"
+            id="bg-top-path-6"
+            stroke="url(#linear-yellow)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            d="M5,114V67A12,12,0,0,1,17,55H838" />
+
         </svg>
       </div>
       <slot />
