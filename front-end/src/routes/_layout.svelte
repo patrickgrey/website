@@ -19,14 +19,22 @@
     background: black;
   }
 
+  @media (min-width: 600px) {
+    .pg-container {
+      padding-top: 20px;
+    }
+  }
+
   .pg-content {
     background: white;
     border-top: solid 10px transparent;
     border-left: solid 10px transparent;
+    border-bottom: solid 10px transparent;
     border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     background-image: linear-gradient(white, white),
       linear-gradient(
-        90deg,
+        85deg,
         rgba(153, 153, 153, 1) 0%,
         rgba(153, 153, 153, 1) 60%,
         rgba(239, 250, 0, 1) 65%,
@@ -57,6 +65,13 @@
     padding: 1em 1em 4em 1em;
   }
 
+  @media (min-width: 600px) {
+    .pg-content {
+      /* padding-top: 10px; */
+      margin-left: 15vw;
+    }
+  }
+
   header {
     padding: 0.45em 0;
     text-align: center;
@@ -64,28 +79,16 @@
 
   @media (min-width: 600px) {
     header {
-      position: relative;
-      /* 12em is the width of the column */
-      flex: 0 0 13%;
-      min-width: 44px;
-      /* order: -1; */
-      background: black;
-      color: white;
-      border-bottom-right-radius: 5px;
-      margin-right: 10px;
-      transition: flex 0.3s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15vw;
     }
   }
 
   main {
     font-size: 1.3rem;
     max-width: 800px;
-  }
-
-  @media (min-width: 768px) {
-    main {
-      font-size: 1.6rem;
-    }
   }
 
   @media (min-width: 1024px) {
@@ -95,9 +98,10 @@
   }
 
   footer {
-    border-top: solid 12px #999;
+    /* border-top: solid 12px #999;
     border-left: solid 10px #999;
-    background: #eee;
+    background: #eee; */
+    color: white;
     min-height: 20em;
   }
 </style>

@@ -63,7 +63,7 @@
 <style>
   .pg-page-container {
     /* border: 1px solid #eee; */
-    margin: 0 0 3em 0;
+    margin: 0 0 4em 0;
     padding: 1em;
     background: #eee;
     border-radius: 5px;
@@ -73,10 +73,17 @@
   }
 
   .pg-strapline {
-    font-size: 0.8em;
+    margin-top: 0;
+    font-size: 0.7em;
     color: green;
     text-transform: uppercase;
     text-align: center;
+  }
+
+  @media (min-width: 600px) {
+    .pg-strapline {
+      text-align: right;
+    }
   }
 
   .pg-posts {
@@ -91,21 +98,32 @@
     display: inline-block;
     text-decoration: none;
     color: black;
-    margin-bottom: 2.5em;
+    margin-bottom: 3.5em;
   }
 
-  .pg-post-link::before {
-    content: "";
-    position: absolute;
+  .pg-tag {
+    color: white;
     display: block;
-    top: 4px;
-    left: -1rem;
-    height: 1em;
-    width: 0.7rem;
+    text-shadow: 1px 1px 0px black;
+    padding: 0 0.5rem;
+    /* position: absolute;
+    display: block;
+    top: -2.5rem; */
+    margin-left: -1rem;
+    /* height: 1em; */
+    /* width: 0.7rem; */
     background: rgba(255, 80, 60, 1);
+    /* background: rgba(255, 80, 60, 1); */
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    width: max-content;
   }
+  /* .pg-tag::after {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 10px;
+  } */
 
   h2 {
     margin: 0;
@@ -160,6 +178,7 @@
   {#each htmlPostsData.posts as htmlpost}
     <li>
       <a class="pg-post-link" href={htmlpost.url}>
+        <p class="pg-tag">Tag here {htmlpost.title}</p>
         <h2>{htmlpost.title}</h2>
         <DatePublished
           dateStringPublished={htmlpost.published_at}
