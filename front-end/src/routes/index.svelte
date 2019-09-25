@@ -102,7 +102,7 @@
     left: -1rem;
     height: 1em;
     width: 0.7rem;
-    background: red;
+    background: rgba(255, 80, 60, 1);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }

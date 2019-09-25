@@ -21,9 +21,39 @@
 
   .pg-content {
     background: white;
-    border-top: 10px solid #999;
-    border-left: 10px solid #999;
+    border-top: solid 10px transparent;
+    border-left: solid 10px transparent;
     border-top-left-radius: 20px;
+    background-image: linear-gradient(white, white),
+      linear-gradient(
+        90deg,
+        rgba(153, 153, 153, 1) 0%,
+        rgba(153, 153, 153, 1) 60%,
+        rgba(239, 250, 0, 1) 65%,
+        rgba(255, 153, 0, 1) 75%,
+        rgba(255, 80, 60, 1) 80%,
+        rgba(255, 151, 252, 1) 85%,
+        rgba(112, 220, 255, 1) 90%,
+        rgba(51, 190, 0, 1) 95%
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    /* border: 10px solid #999;
+    border-left: 10px solid #999;
+    border-image: linear-gradient(
+        to right,
+        rgba(153, 153, 153, 1) 0%,
+        rgba(153, 153, 153, 1) 25%,
+        rgba(239, 250, 0, 1) 35%,
+        rgba(255, 153, 0, 1) 45%,
+        rgba(255, 80, 60, 1) 55%,
+        rgba(255, 151, 252, 1) 65%,
+        rgba(112, 220, 255, 1) 75%,
+        rgba(51, 190, 0, 1) 85%,
+        rgba(153, 153, 153, 1) 95%
+      )
+      1 1;
+    border-top-left-radius: 20px; */
     padding: 1em 1em 4em 1em;
   }
 
