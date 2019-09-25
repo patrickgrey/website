@@ -38,6 +38,8 @@
 </script>
 
 <script>
+  import DatePublished from "./../components/DatePublished.svelte";
+
   export let page;
   export let htmlPostsData;
   export let postsData;
@@ -59,29 +61,11 @@
 </script>
 
 <style>
-  h2 {
-    color: #666666;
-    display: inline-block;
-    /* box-shadow: inset 0 -15px 0 10px #eee; */
-    background: linear-gradient(
-      179deg,
-      rgba(153, 153, 153, 0) 0%,
-      rgba(153, 153, 153, 0) 42%,
-      rgba(153, 153, 153, 0.2) 43%,
-      rgba(153, 153, 153, 0.2) 57%,
-      rgba(153, 153, 153, 0) 58%,
-      rgba(153, 153, 153, 0) 100%
-    );
-    background-position: bottom -0.1em right 0;
-    background-repeat: no-repeat;
-    margin-bottom: 0.5em;
-    line-height: 0.9em;
-  }
-
   .pg-page-container {
-    background: #eee;
     /* border: 1px solid #eee; */
+    margin: 0 0 3em 0;
     padding: 1em;
+    background: #eee;
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
       0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
@@ -95,9 +79,45 @@
     padding: 0;
   }
 
-  .pg-dates {
-    font-size: 0.7em;
-    color: #999;
+  .pg-post-link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 2.5em;
+  }
+
+  .pg-post-link::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 4px;
+    left: calc(-1em + 12px - 0.6em);
+    height: 1em;
+    width: 0.7em;
+    background: red;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  h2 {
+    margin: 0;
+    margin-bottom: 1em;
+    color: #666666;
+    display: inline-block;
+    /* box-shadow: inset 0 -15px 0 10px #eee; */
+    background: linear-gradient(
+      179deg,
+      rgba(153, 153, 153, 0) 0%,
+      rgba(153, 153, 153, 0) 40%,
+      rgba(153, 153, 153, 0.2) 41%,
+      rgba(153, 153, 153, 0.2) 59%,
+      rgba(153, 153, 153, 0) 60%,
+      rgba(153, 153, 153, 0) 100%
+    );
+    background-position: bottom -0.1em right -0.1em;
+    background-repeat: no-repeat;
+    line-height: 0.9em;
   }
 
   .pg-post-excerpt-long::after {
@@ -132,33 +152,26 @@
 
   {#each htmlPostsData.posts as htmlpost}
     <li>
-      <h2>{htmlpost.title}</h2>
-      <div class="pg-dates">
-        {#if new Date(htmlpost.updated_at) > new Date(htmlpost.published_at)}
-          <p>
-            Published: 📅 {formatDate(htmlpost.published_at)} ⌚ {formatTime(htmlpost.published_at)}
-          </p>
-          <p>
-            (Updated: {formatDate(htmlpost.updated_at)} {formatTime(htmlpost.updated_at)})
-          </p>
-        {:else}
-          <p>
-            Published: 📅 {formatDate(htmlpost.published_at)} ⌚ {formatTime(htmlpost.published_at)}
-          </p>
-        {/if}
-      </div>
-      <p
-        class="pg-post-excerpt {htmlpost.excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
-        {@html htmlpost.excerpt.substring(0, 200)}
-      </p>
+      <a class="pg-post-link" href={htmlpost.url}>
+        <h2>{htmlpost.title}</h2>
+        <DatePublished
+          dateStringPublished={htmlpost.published_at}
+          dateStringUpdated={htmlpost.updated_at} />
+
+        <p
+          class="pg-post-excerpt {htmlpost.excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
+          {@html htmlpost.excerpt.substring(0, 200)}
+        </p>
+      </a>
     </li>
   {/each}
 
   {#each noHtmlPosts as post}
     <li>
       <h2>{post.title}</h2>
-      <p>{new Date(post.published_at)}</p>
-      <p>{new Date(post.updated_at)}</p>
+      <DatePublished
+        dateStringPublished={post.published_at}
+        dateStringUpdated={post.updated_at} />
     </li>
   {/each}
 </ul>

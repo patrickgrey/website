@@ -2,8 +2,8 @@
   h1 {
     width: 100vh;
     position: absolute;
-    right: 0;
-    top: -0.5em;
+    right: 0.2em;
+    top: -1em;
     padding: 0;
     margin: 0;
     text-align: right;

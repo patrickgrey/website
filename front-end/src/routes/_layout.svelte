@@ -52,7 +52,7 @@
     /* border-left: 10px solid #999; */
     border-bottom-left-radius: 5px;
     /* background: red; */
-    padding: 1.9em 1em 6em 1em;
+    padding: 1em 1em 6em 1em;
     /* margin-right: 0.5em; */
     /* max-width: 700px; */
     /* Could I instead use padding right and calc for this?  */
