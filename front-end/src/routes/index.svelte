@@ -72,6 +72,13 @@
       0 16px 16px rgba(0, 0, 0, 0.12);
   }
 
+  .pg-strapline {
+    font-size: 0.8em;
+    color: green;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
   .pg-posts {
     list-style: none;
     margin: 0;
@@ -92,9 +99,9 @@
     position: absolute;
     display: block;
     top: 4px;
-    left: calc(-1em + 12px - 0.6em);
+    left: -1rem;
     height: 1em;
-    width: 0.7em;
+    width: 0.7rem;
     background: red;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -142,7 +149,7 @@
     content="The Grey Line: web and video development studio." />
 </svelte:head>
 
-<!-- <h1>{page.title}</h1> -->
+<p class="pg-strapline">{page.title}</p>
 
 <div class="pg-page-container">
   {@html page.html}
@@ -168,10 +175,12 @@
 
   {#each noHtmlPosts as post}
     <li>
-      <h2>{post.title}</h2>
-      <DatePublished
-        dateStringPublished={post.published_at}
-        dateStringUpdated={post.updated_at} />
+      <a class="pg-post-link" href={post.url}>
+        <h2>{post.title}</h2>
+        <DatePublished
+          dateStringPublished={post.published_at}
+          dateStringUpdated={post.updated_at} />
+      </a>
     </li>
   {/each}
 </ul>

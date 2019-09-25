@@ -16,58 +16,40 @@
 <style>
   /* https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/ */
   .pg-container {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background: #999;
+    background: black;
   }
 
-  .pg-layout {
-    display: flex;
-    flex: 1 0 0;
+  .pg-content {
+    background: white;
+    border-top: 10px solid #999;
+    border-left: 10px solid #999;
+    border-top-left-radius: 20px;
+    padding: 1em 1em 4em 1em;
   }
 
   header {
-    position: relative;
-    /* 12em is the width of the column */
-    flex: 0 0 13%;
-    min-width: 44px;
-    /* order: -1; */
-    background: black;
-    color: white;
-    border-bottom-right-radius: 5px;
-    margin-right: 10px;
-    transition: flex 0.3s;
+    padding: 0.45em 0;
+    text-align: center;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 600px) {
     header {
-      flex: 0 0 20%;
+      position: relative;
+      /* 12em is the width of the column */
+      flex: 0 0 13%;
+      min-width: 44px;
+      /* order: -1; */
+      background: black;
+      color: white;
+      border-bottom-right-radius: 5px;
+      margin-right: 10px;
+      transition: flex 0.3s;
     }
   }
 
   main {
-    flex: 1;
-    background: white;
-    /* border-left: 10px solid #999; */
-    border-bottom-left-radius: 5px;
-    /* background: red; */
-    padding: 1em 1em 6em 1em;
-    /* margin-right: 0.5em; */
-    /* max-width: 700px; */
-    /* Could I instead use padding right and calc for this?  */
-    padding-right: calc(83% - 700px);
     font-size: 1.3rem;
-    font-family: Arial, Helvetica, sans-serif;
-
-    /* background-image: url("../images/bg/bg-top-straight-rainbow.svg");
-    background-repeat: no-repeat;
-    background-position: -16px 0;
-    background-size: 841px 173px; */
-  }
-
-  .pg-main-inner {
-    margin-right: 1em;
+    max-width: 800px;
   }
 
   @media (min-width: 768px) {
@@ -79,31 +61,31 @@
   @media (min-width: 1024px) {
     main {
       font-size: 1.8rem;
-      padding-right: calc(83% - 900px);
     }
   }
 
   footer {
+    border-top: solid 12px #999;
+    border-left: solid 10px #999;
+    background: #eee;
     min-height: 20em;
   }
 </style>
 
 <div class="pg-container">
 
-  <div class="pg-layout">
+  <header>
+    <HeaderContent />
+  </header>
 
-    <header>
-      <HeaderContent />
-    </header>
+  <div class="pg-content">
 
     <main>
-      <div class="pg-main-inner">
-        <slot />
-      </div>
+      <slot />
     </main>
 
   </div>
-  <!--pg-layout -->
+  <!--pg-content -->
 
   <footer>
     <p>&copy; Patrick Grey</p>
