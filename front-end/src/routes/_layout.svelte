@@ -21,7 +21,7 @@
 
   @media (min-width: 600px) {
     .pg-container {
-      padding-top: 20px;
+      padding-top: 2em;
     }
   }
 
@@ -72,6 +72,12 @@
     }
   }
 
+  @media (min-width: 1024px) {
+    .pg-content {
+      padding-left: 2.5em;
+    }
+  }
+
   header {
     padding: 0.45em 0;
     text-align: center;
@@ -94,15 +100,31 @@
   @media (min-width: 1024px) {
     main {
       font-size: 1.8rem;
+      margin-top: 1em;
     }
   }
 
   footer {
-    /* border-top: solid 12px #999;
-    border-left: solid 10px #999;
-    background: #eee; */
-    color: white;
+    color: #999;
     min-height: 20em;
+    text-align: center;
+  }
+
+  .pg-strapline {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .pg-strapline {
+      display: block;
+      text-transform: lowercase;
+      position: absolute;
+      top: 0.25em;
+      right: 1em;
+      margin: 0;
+      padding: 0;
+      color: #ccc;
+    }
   }
 </style>
 
@@ -111,6 +133,8 @@
   <header>
     <HeaderContent />
   </header>
+
+  <p class="pg-strapline">Making web stuff and videos since 2001</p>
 
   <div class="pg-content">
 

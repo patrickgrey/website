@@ -29,7 +29,7 @@
       width: 100vh;
       position: absolute;
       right: 0.25em;
-      top: -0.5em;
+      top: -0.4em;
       padding: 0;
       margin: 0;
       text-align: right;
@@ -37,6 +37,14 @@
       transform-origin: bottom right;
       transform: rotate(-90deg);
       background-position: bottom 0.1vh right -74.3vh;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 6vh;
+      top: -0.75em;
+      background-position: bottom 0vh right -61.5vh;
     }
   }
 </style>

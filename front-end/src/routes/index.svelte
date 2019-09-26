@@ -61,29 +61,15 @@
 </script>
 
 <style>
-  .pg-page-container {
+  .pg-search-container {
     /* border: 1px solid #eee; */
-    margin: 0 0 4em 0;
+    margin: 0 0 2.5em 0;
     padding: 1em;
     background: #eee;
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
       0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
       0 16px 16px rgba(0, 0, 0, 0.12);
-  }
-
-  .pg-strapline {
-    margin-top: 0;
-    font-size: 0.7em;
-    color: green;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  @media (min-width: 600px) {
-    .pg-strapline {
-      text-align: right;
-    }
   }
 
   .pg-posts {
@@ -95,20 +81,18 @@
 
   .pg-post-link {
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
+    /* width: 100%; */
     text-decoration: none;
     color: black;
-    margin-bottom: 3.5em;
+    margin-bottom: 0.3em;
   }
 
   .pg-tag {
     color: white;
-    display: block;
+    display: inline-block;
     text-shadow: 1px 1px 0px black;
     padding: 0 0.5rem;
-    /* position: absolute;
-    display: block;
-    top: -2.5rem; */
     margin-left: -1rem;
     /* height: 1em; */
     /* width: 0.7rem; */
@@ -116,14 +100,15 @@
     /* background: rgba(255, 80, 60, 1); */
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    width: max-content;
+    /* width: 10%; */
+    /* width: max-content; */
   }
-  /* .pg-tag::after {
-    content: " ";
-    display: block;
-    width: 100%;
-    height: 10px;
-  } */
+
+  @media (min-width: 1024px) {
+    .pg-tag {
+      margin-left: -2.5rem;
+    }
+  }
 
   h2 {
     margin: 0;
@@ -158,6 +143,14 @@
       rgba(255, 255, 255, 1) 80%
     );
   }
+
+  hr {
+    height: 1px;
+    border: none;
+    color: #ccc;
+    background-color: #ccc;
+    margin-bottom: 2em;
+  }
 </style>
 
 <svelte:head>
@@ -167,9 +160,7 @@
     content="The Grey Line: web and video development studio." />
 </svelte:head>
 
-<p class="pg-strapline">{page.title}</p>
-
-<div class="pg-page-container">
+<div class="pg-search-container">
   {@html page.html}
 </div>
 
@@ -178,28 +169,37 @@
   {#each htmlPostsData.posts as htmlpost}
     <li>
       <a class="pg-post-link" href={htmlpost.url}>
-        <p class="pg-tag">Tag here {htmlpost.title}</p>
+        <!-- <p>
+          <span class="pg-tag">Tag here {htmlpost.title}</span>
+        </p> -->
         <h2>{htmlpost.title}</h2>
         <DatePublished
           dateStringPublished={htmlpost.published_at}
           dateStringUpdated={htmlpost.updated_at} />
+        <p>tags, tags, tags</p>
 
         <p
           class="pg-post-excerpt {htmlpost.excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
           {@html htmlpost.excerpt.substring(0, 200)}
         </p>
       </a>
+      <hr />
     </li>
   {/each}
 
   {#each noHtmlPosts as post}
     <li>
       <a class="pg-post-link" href={post.url}>
+        <!-- <p>
+          <span class="pg-tag">Tag here {post.title}</span>
+        </p> -->
         <h2>{post.title}</h2>
         <DatePublished
           dateStringPublished={post.published_at}
           dateStringUpdated={post.updated_at} />
+        <p>tags, tags, tags</p>
       </a>
+      <hr />
     </li>
   {/each}
 </ul>
