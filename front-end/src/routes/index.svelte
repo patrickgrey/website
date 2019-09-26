@@ -91,11 +91,11 @@
 
   h2 {
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     color: #666666;
     display: inline-block;
     /* box-shadow: inset 0 -15px 0 10px #eee; */
-    background: linear-gradient(
+    /* background: linear-gradient(
       179deg,
       rgba(153, 153, 153, 0) 0%,
       rgba(153, 153, 153, 0) 40%,
@@ -105,8 +105,8 @@
       rgba(153, 153, 153, 0) 100%
     );
     background-position: bottom -0.1em right -0.1em;
-    background-repeat: no-repeat;
-    line-height: 0.9em;
+    background-repeat: no-repeat; */
+    line-height: 1em;
   }
 
   .pg-post-excerpt-long::after {
@@ -133,7 +133,7 @@
   }
 
   .pg-tags {
-    margin: 0.5em 0;
+    margin: 0 0 1.5em 0;
   }
 
   .pg-tag-container {
@@ -157,7 +157,7 @@
   .pg-tag::before {
     content: "";
     position: absolute;
-    top: 15px;
+    top: 12px;
     left: 6px;
     /* float: left; */
     width: 4px;

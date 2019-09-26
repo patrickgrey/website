@@ -101,6 +101,8 @@
     main {
       font-size: 1.8rem;
       margin-top: 1em;
+      padding-right: 20px;
+      border-right: 1px dashed #eee;
     }
   }
 
@@ -127,6 +129,15 @@
     }
   }
 </style>
+
+<svelte:head>
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#000000" />
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#000000" />
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+</svelte:head>
 
 <div class="pg-container">
 
