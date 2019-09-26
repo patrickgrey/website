@@ -9,13 +9,13 @@
     });
 
     const htmlPosts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&fields=id,title,published_at,updated_at,url,excerpt&formats=plaintext&limit=${htmlPostsCount}`
+      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,url,excerpt&formats=plaintext&limit=${htmlPostsCount}`
     ).then(response => {
       return response.json();
     });
 
     const posts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&fields=id,title,published_at,updated_at,url&limit=100`
+      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,url&limit=100`
     ).then(response => {
       return response.json();
     });
@@ -47,7 +47,7 @@
   const noHtmlPosts = postsData.posts.slice(htmlPostsCount);
 
   // Process dates
-  // console.log(htmlPostsData.posts.length);
+  console.log(htmlPostsData.posts[0].tags);
 
   function formatTime(dateString) {
     return new Date(dateString).toLocaleTimeString("en-GB");
@@ -79,35 +79,14 @@
     padding: 0;
   }
 
-  .pg-post-link {
-    position: relative;
-    /* display: inline-block; */
-    /* width: 100%; */
-    text-decoration: none;
-    color: black;
+  .pg-posts li {
     margin-bottom: 0.3em;
   }
 
-  .pg-tag {
-    color: white;
-    display: inline-block;
-    text-shadow: 1px 1px 0px black;
-    padding: 0 0.5rem;
-    margin-left: -1rem;
-    /* height: 1em; */
-    /* width: 0.7rem; */
-    background: rgba(255, 80, 60, 1);
-    /* background: rgba(255, 80, 60, 1); */
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    /* width: 10%; */
-    /* width: max-content; */
-  }
-
-  @media (min-width: 1024px) {
-    .pg-tag {
-      margin-left: -2.5rem;
-    }
+  .pg-post-link {
+    position: relative;
+    text-decoration: none;
+    color: black;
   }
 
   h2 {
@@ -149,7 +128,56 @@
     border: none;
     color: #ccc;
     background-color: #ccc;
-    margin-bottom: 2em;
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+  }
+
+  .pg-tags {
+    margin: 0.5em 0;
+  }
+
+  .pg-tag-container {
+    display: inline-block;
+    margin-top: 2px;
+  }
+
+  .pg-tag {
+    position: relative;
+    padding: 5px 10px 5px 15px;
+    background-color: rgba(255, 80, 60, 1);
+    color: white;
+    margin-right: 27px;
+    text-decoration: none;
+    font-size: 15px;
+    text-transform: lowercase;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .pg-tag::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 6px;
+    /* float: left; */
+    width: 4px;
+    height: 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .pg-tag::after {
+    content: "";
+    position: absolute;
+    right: -14px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 14px solid rgba(255, 80, 60, 1);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
   }
 </style>
 
@@ -169,20 +197,26 @@
   {#each htmlPostsData.posts as htmlpost}
     <li>
       <a class="pg-post-link" href={htmlpost.url}>
-        <!-- <p>
-          <span class="pg-tag">Tag here {htmlpost.title}</span>
-        </p> -->
         <h2>{htmlpost.title}</h2>
         <DatePublished
           dateStringPublished={htmlpost.published_at}
           dateStringUpdated={htmlpost.updated_at} />
-        <p>tags, tags, tags</p>
+      </a>
+      <div class="pg-tags">
+        {#each htmlpost.tags as tag}
+          <div class="pg-tag-container">
+            <a class="pg-tag" href={tag.url}>{tag.name}</a>
+          </div>
+        {/each}
+      </div>
 
-        <p
+      <a class="pg-post-link" href={htmlpost.url}>
+        <div
           class="pg-post-excerpt {htmlpost.excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
           {@html htmlpost.excerpt.substring(0, 200)}
-        </p>
+        </div>
       </a>
+
       <hr />
     </li>
   {/each}
@@ -190,15 +224,19 @@
   {#each noHtmlPosts as post}
     <li>
       <a class="pg-post-link" href={post.url}>
-        <!-- <p>
-          <span class="pg-tag">Tag here {post.title}</span>
-        </p> -->
         <h2>{post.title}</h2>
         <DatePublished
           dateStringPublished={post.published_at}
           dateStringUpdated={post.updated_at} />
-        <p>tags, tags, tags</p>
       </a>
+      <div class="pg-tags">
+        {#each post.tags as tag}
+          <div class="pg-tag-container">
+            <a class="pg-tag" href={tag.url}>{tag.name}</a>
+          </div>
+        {/each}
+      </div>
+
       <hr />
     </li>
   {/each}
