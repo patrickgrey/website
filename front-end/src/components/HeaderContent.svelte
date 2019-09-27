@@ -19,7 +19,7 @@
       rgba(153, 153, 153, 0) 57%,
       rgba(153, 153, 153, 0) 100%
     );
-    background-position: top left;
+    background-position: top 0.1em left;
     background-repeat: no-repeat;
     /* transition: font-size 0.3s, background-position 0.3s; */
   }
@@ -33,18 +33,18 @@
       padding: 0;
       margin: 0;
       text-align: right;
-      font-size: 4vh;
+      font-size: 2.4em;
       transform-origin: bottom right;
       transform: rotate(-90deg);
-      background-position: bottom 0.1vh right -74.3vh;
+      background-position: bottom 0.05em right -18.2em;
     }
   }
 
   @media (min-width: 1024px) {
     h1 {
-      font-size: 6vh;
+      font-size: 3.8em;
       top: -0.75em;
-      background-position: bottom 0vh right -61.5vh;
+      background-position: bottom 0em right -9.2em;
     }
   }
 </style>

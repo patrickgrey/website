@@ -47,7 +47,7 @@
   const noHtmlPosts = postsData.posts.slice(htmlPostsCount);
 
   // Process dates
-  console.log(htmlPostsData.posts[0].tags);
+  // console.log(htmlPostsData.posts[0].tags);
 
   function formatTime(dateString) {
     return new Date(dateString).toLocaleTimeString("en-GB");
@@ -144,9 +144,9 @@
   .pg-tag {
     position: relative;
     padding: 5px 10px 5px 15px;
-    background-color: rgba(255, 80, 60, 1);
+    background-color: #3d77a4;
     color: white;
-    margin-right: 27px;
+    margin-right: 22px;
     text-decoration: none;
     font-size: 15px;
     text-transform: lowercase;
@@ -175,7 +175,7 @@
     bottom: 0;
     width: 0;
     height: 0;
-    border-left: 14px solid rgba(255, 80, 60, 1);
+    border-left: 14px solid #3d77a4;
     border-top: 14px solid transparent;
     border-bottom: 14px solid transparent;
   }
