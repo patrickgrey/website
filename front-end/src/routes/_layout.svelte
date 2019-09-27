@@ -1,6 +1,30 @@
+<script context="module">
+  export async function preload(page) {
+    const pages = this.fetch(
+      `http://localhost:2368/ghost/api/v2/content/pages/?key=8f61b29cf34abca369566ed9a6`
+    ).then(response => {
+      return response.json();
+    });
+
+    function filterAbout(pagesObject) {
+      const pagename = "about";
+      return pagesObject.pages.filter(i => pagename.includes(i.slug));
+    }
+
+    let combinedData = {};
+
+    return Promise.all([pages]).then(function(values) {
+      combinedData["about"] = filterAbout(values[0])[0];
+      return combinedData;
+    });
+  }
+</script>
+
 <script>
   import HeaderContent from "../components/HeaderContent.svelte";
   import { tick } from "svelte";
+
+  export let about;
 
   async function action1() {
     await tick();
@@ -107,9 +131,32 @@
   }
 
   footer {
-    color: #999;
+    padding: 1em 1em 4em 1em;
+    color: #eee;
     min-height: 20em;
     text-align: center;
+    font-size: 1.3rem;
+    max-width: 800px;
+    text-align: left;
+  }
+
+  footer a,
+  footer a:visited,
+  footer a:active {
+    color: #eee;
+  }
+
+  @media (min-width: 600px) {
+    footer {
+      /* padding-top: 10px; */
+      margin-left: 15vw;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    footer {
+      padding-left: 2.5em;
+    }
   }
 
   .pg-strapline {
@@ -157,7 +204,14 @@
   <!--pg-content -->
 
   <footer>
+    <h2>
+      {@html about.title}
+    </h2>
+    <div>
+      {@html about.html}
+    </div>
     <p>&copy; Patrick Grey</p>
+    <a href="about">Hi</a>
   </footer>
 
 </div>

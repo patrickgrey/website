@@ -46,9 +46,6 @@
   export let htmlPostsCount;
   const noHtmlPosts = postsData.posts.slice(htmlPostsCount);
 
-  // Process dates
-  // console.log(htmlPostsData.posts[0].tags);
-
   function formatTime(dateString) {
     return new Date(dateString).toLocaleTimeString("en-GB");
   }
