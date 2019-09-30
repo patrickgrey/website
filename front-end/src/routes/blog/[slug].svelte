@@ -28,7 +28,6 @@
 
 <svelte:head>
   <title>{postData.title}</title>
-  <base href="/blog" />
 </svelte:head>
 
 <Post

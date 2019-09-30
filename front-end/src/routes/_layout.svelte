@@ -170,10 +170,13 @@
     }
   }
 
-  .pg-nav-about {
+  .pg-nav {
     position: absolute;
-    right: 1em;
+    right: 0.9em;
     top: 0em;
+  }
+
+  .pg-nav a {
     text-decoration: none;
     display: inline-block;
     background: #000;
@@ -183,10 +186,14 @@
     border-bottom-right-radius: 5px;
   }
 
+  .pg-nav a:nth-child(1) {
+    margin-right: 0.25em;
+  }
+
   @media (min-width: 965px) {
-    .pg-nav-about {
+    .pg-nav {
       right: auto;
-      left: 725px;
+      left: 655px;
     }
   }
 
@@ -223,9 +230,10 @@
   <p class="pg-strapline">Making web stuff and videos since 2001</p>
 
   <div class="pg-content">
-
-    <a class="pg-nav-about" href="{currentPath}#about">about</a>
-
+    <nav class="pg-nav">
+      <a href="/">home</a>
+      <a href="{currentPath}#about">about</a>
+    </nav>
     <main>
       <slot />
     </main>
