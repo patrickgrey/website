@@ -23,6 +23,12 @@
 <script>
   import HeaderContent from "../components/HeaderContent.svelte";
   import { tick } from "svelte";
+  import { stores } from "@sapper/app";
+
+  const { page } = stores();
+  const { path } = $page;
+  let currentPath = "";
+  $: currentPath = $page.path;
 
   export let about;
 </script>
@@ -218,7 +224,7 @@
 
   <div class="pg-content">
 
-    <a class="pg-nav-about" href="#about">about</a>
+    <a class="pg-nav-about" href="{currentPath}#about">about</a>
 
     <main>
       <slot />
@@ -228,7 +234,7 @@
   <!--pg-content -->
 
   <footer id="about">
-    <a class="pg-nav-top" href="#top">top</a>
+    <a class="pg-nav-top" href="{currentPath}#top">top</a>
     <h2>
       {@html about.title}
     </h2>
