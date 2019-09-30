@@ -20,13 +20,12 @@
   import Tag from "./../../components/Tag.svelte";
   export let postData;
   export let slug;
-  console.log(postData.meta);
 </script>
 
 <style>
   .pg-search-container {
     margin: 0 0 2.5em 0;
-    padding: 0.5em 1em;
+    padding: 0.5em 1em 0.75em 1em;
     background: #eee;
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
@@ -62,11 +61,9 @@
 </svelte:head>
 
 <div class="pg-search-container">
-  <p>
-    {postData.meta.pagination.total} posts with the
-    <Tag class="pg-tag-inline" tagText={slug} />
-    tag
-  </p>
+  <Tag
+    tagText={slug + ' (' + postData.meta.pagination.total + ' posts)'}
+    tagSlug="" />
 </div>
 
 <ul class="pg-posts">
@@ -79,6 +76,7 @@
         published_at={post.published_at}
         updated_at={post.updated_at}
         tags={post.tags}
+        excerpt={post.excerpt}
         hasLinks="true" />
       <hr />
     </li>
