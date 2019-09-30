@@ -40,6 +40,7 @@
 <script>
   import DatePublished from "./../components/DatePublished.svelte";
   import Tag from "./../components/Tag.svelte";
+  import PostListItem from "./../components/PostListItem.svelte";
 
   export let page;
   export let htmlPostsData;
@@ -59,7 +60,7 @@
 </script>
 
 <style>
-  .pg-search-container {
+  /* .pg-search-container {
     margin: 0 0 2.5em 0;
     padding: 1em;
     background: #eee;
@@ -67,58 +68,13 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
       0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
       0 16px 16px rgba(0, 0, 0, 0.12);
-  }
+  } */
 
   .pg-posts {
     list-style: none;
     margin: 0;
     margin-top: 1.5em;
     padding: 0;
-  }
-
-  .pg-posts li {
-    margin-bottom: 0.3em;
-  }
-
-  .pg-post-link {
-    position: relative;
-    text-decoration: none;
-    color: black;
-  }
-
-  h2 {
-    margin: 0;
-    margin-bottom: 0.5em;
-    color: #666666;
-    display: inline-block;
-    line-height: 1em;
-  }
-
-  .pg-post-excerpt-long::after {
-    content: "";
-    display: inline-block;
-    margin-left: -60px;
-    width: 60px;
-    height: 1em;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 1) 80%
-    );
-  }
-
-  hr {
-    height: 1px;
-    border: none;
-    color: #ccc;
-    background-color: #ccc;
-    margin-top: 1.5em;
-    margin-bottom: 2.5em;
-  }
-
-  .pg-tags {
-    margin: 0 0 1.5em 0;
   }
 </style>
 
@@ -136,45 +92,21 @@
 <ul class="pg-posts">
 
   {#each htmlPostsData.posts as htmlpost}
-    <li>
-      <a class="pg-post-link" href={htmlpost.url}>
-        <h2>{htmlpost.title}</h2>
-        <DatePublished
-          dateStringPublished={htmlpost.published_at}
-          dateStringUpdated={htmlpost.updated_at} />
-      </a>
-      <div class="pg-tags">
-        {#each htmlpost.tags as tag}
-          <Tag tagText={tag.name} tagURL={tag.url} />
-        {/each}
-      </div>
-
-      <a class="pg-post-link" href={htmlpost.url}>
-        <div
-          class="pg-post-excerpt {htmlpost.excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
-          {@html htmlpost.excerpt.substring(0, 200)}
-        </div>
-      </a>
-
-      <hr />
-    </li>
+    <PostListItem
+      title={htmlpost.title}
+      url={htmlpost.url}
+      published_at={htmlpost.published_at}
+      updated_at={htmlpost.updated_at}
+      tags={htmlpost.tags}
+      excerpt={htmlpost.excerpt} />
   {/each}
 
   {#each noHtmlPosts as post}
-    <li>
-      <a class="pg-post-link" href={post.url}>
-        <h2>{post.title}</h2>
-        <DatePublished
-          dateStringPublished={post.published_at}
-          dateStringUpdated={post.updated_at} />
-      </a>
-      <div class="pg-tags">
-        {#each post.tags as tag}
-          <Tag tagText={tag.name} tagURL={tag.url} />
-        {/each}
-      </div>
-
-      <hr />
-    </li>
+    <PostListItem
+      title={post.title}
+      url={post.url}
+      published_at={post.published_at}
+      updated_at={post.updated_at}
+      tags={post.tags} />
   {/each}
 </ul>

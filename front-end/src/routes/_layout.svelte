@@ -25,16 +25,6 @@
   import { tick } from "svelte";
 
   export let about;
-
-  async function action1() {
-    await tick();
-
-    // 1010.517822265625
-  }
-
-  action1();
-
-  // export let segment;
 </script>
 
 <style>
