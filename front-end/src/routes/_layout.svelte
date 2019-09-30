@@ -50,6 +50,7 @@
   }
 
   .pg-content {
+    position: relative;
     background: white;
     border-top: solid 10px transparent;
     border-left: solid 10px transparent;
@@ -119,6 +120,7 @@
   main {
     font-size: 1.3rem;
     max-width: 800px;
+    margin-top: 2em;
   }
 
   @media (min-width: 1024px) {
@@ -131,6 +133,7 @@
   }
 
   footer {
+    position: relative;
     padding: 1em 1em 4em 1em;
     color: #eee;
     min-height: 20em;
@@ -138,12 +141,6 @@
     font-size: 1.3rem;
     max-width: 800px;
     text-align: left;
-  }
-
-  footer a,
-  footer a:visited,
-  footer a:active {
-    color: #eee;
   }
 
   @media (min-width: 600px) {
@@ -175,6 +172,33 @@
       color: #ccc;
     }
   }
+
+  .pg-nav-about {
+    position: absolute;
+    right: 1em;
+    top: 0em;
+    text-decoration: none;
+    display: inline-block;
+    background: #000;
+    color: #cecece;
+    padding: 0.25em 0.5em;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .pg-nav-top {
+    position: absolute;
+    right: 1em;
+    top: 0em;
+    font-size: 0.8em;
+    text-decoration: none;
+    display: inline-block;
+    background: #cecece;
+    color: #000;
+    padding: 0.25em 1em;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
 </style>
 
 <svelte:head>
@@ -186,7 +210,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
 </svelte:head>
 
-<div class="pg-container">
+<div class="pg-container" id="top">
 
   <header>
     <HeaderContent />
@@ -196,6 +220,8 @@
 
   <div class="pg-content">
 
+    <a class="pg-nav-about" href="#about">about</a>
+
     <main>
       <slot />
     </main>
@@ -203,15 +229,15 @@
   </div>
   <!--pg-content -->
 
-  <footer>
+  <footer id="about">
+    <a class="pg-nav-top" href="#top">top</a>
     <h2>
       {@html about.title}
     </h2>
     <div>
       {@html about.html}
     </div>
-    <p>&copy; Patrick Grey</p>
-    <a href="about">Hi</a>
+    <p>&copy; The Grey Line</p>
   </footer>
 
 </div>

@@ -22,3 +22,13 @@ h2 {
   font-family: "Lora";
   font-weight: 300;
 }
+
+footer a,
+footer a:visited,
+footer a:active {
+  color: #eee;
+}
+
+footer ul {
+  list-style: none;
+}
