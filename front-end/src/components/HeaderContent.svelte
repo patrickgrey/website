@@ -6,6 +6,7 @@
     margin: 0;
 
     font-size: 2em;
+    font-family: "Lora", Georgia, "Times New Roman", Times, serif;
     /* transform-origin: bottom right;
     transform: rotate(-90deg); */
     color: #999;

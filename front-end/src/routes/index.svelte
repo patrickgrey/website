@@ -139,6 +139,7 @@
   }
 
   .pg-tag {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     position: relative;
     padding: 5px 10px 5px 15px;
     background-color: #3d77a4;
@@ -185,9 +186,9 @@
     content="The Grey Line: web and video development studio." />
 </svelte:head>
 
-<div class="pg-search-container">
+<!-- <div class="pg-search-container">
   {@html page.html}
-</div>
+</div> -->
 
 <ul class="pg-posts">
 

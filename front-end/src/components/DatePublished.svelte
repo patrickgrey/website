@@ -13,6 +13,7 @@
 
 <style>
   .pg-dates {
+    /* font-family: "Roboto", Arial, Helvetica, sans-serif; */
     font-size: 0.7em;
     color: #999;
     text-transform: uppercase;

@@ -88,6 +88,7 @@
       1 1;
     border-top-left-radius: 20px; */
     padding: 1em 1em 4em 1em;
+    margin-left: 10px;
   }
 
   @media (min-width: 600px) {
@@ -174,6 +175,7 @@
   }
 
   .pg-nav-about {
+    /* font-family: "Roboto", Arial, Helvetica, sans-serif; */
     position: absolute;
     right: 1em;
     top: 0em;
@@ -187,10 +189,11 @@
   }
 
   .pg-nav-top {
+    /* font-family: "Roboto", Arial, Helvetica, sans-serif; */
     position: absolute;
     right: 1em;
     top: 0em;
-    font-size: 0.8em;
+    font-size: 0.7em;
     text-decoration: none;
     display: inline-block;
     background: #cecece;
