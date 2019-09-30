@@ -177,10 +177,10 @@
     border-bottom-right-radius: 5px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 965px) {
     .pg-nav-about {
       right: auto;
-      left: 740px;
+      left: 725px;
     }
   }
 

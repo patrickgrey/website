@@ -1,6 +1,6 @@
 <script>
   export let tagText;
-  export let tagURL;
+  export let tagSlug;
 </script>
 
 <style>
@@ -51,5 +51,5 @@
 </style>
 
 <div class="pg-tag-container">
-  <a class="pg-tag" href={tagURL}>{tagText}</a>
+  <a class="pg-tag" href={tagSlug}>{tagText}</a>
 </div>

@@ -3,32 +3,20 @@
   import Tag from "./../components/Tag.svelte";
 
   export let title;
-  export let url;
+  export let slug;
   export let published_at;
   export let updated_at;
   export let tags;
   export let excerpt = "";
-
-  // console.log(excerpt);
+  export let html = "";
+  export let hasLinks = false;
 </script>
 
 <style>
-  li {
-    margin-bottom: 0.3em;
-  }
-
   .pg-post-link {
     position: relative;
     text-decoration: none;
     color: black;
-  }
-
-  h2 {
-    margin: 0;
-    margin-bottom: 0.5em;
-    color: #666666;
-    display: inline-block;
-    line-height: 1em;
   }
 
   .pg-post-excerpt-long::after {
@@ -45,13 +33,12 @@
     );
   }
 
-  hr {
-    height: 1px;
-    border: none;
-    color: #ccc;
-    background-color: #ccc;
-    margin-top: 1.5em;
-    margin-bottom: 2.5em;
+  h2 {
+    margin: 0;
+    margin-bottom: 0.5em;
+    color: #666666;
+    display: inline-block;
+    line-height: 1em;
   }
 
   .pg-tags {
@@ -59,26 +46,34 @@
   }
 </style>
 
-<li>
-  <a class="pg-post-link" href={url}>
+{#if hasLinks}
+  <a class="pg-post-link" href="blog/{slug}">
     <h2>{title}</h2>
     <DatePublished
       dateStringPublished={published_at}
       dateStringUpdated={updated_at} />
   </a>
-  <div class="pg-tags">
-    {#each tags as tag}
-      <Tag tagText={tag.name} tagURL={tag.url} />
-    {/each}
+{:else}
+  <h2>{title}</h2>
+  <DatePublished
+    dateStringPublished={published_at}
+    dateStringUpdated={updated_at} />
+{/if}
+<div class="pg-tags">
+  {#each tags as tag}
+    <Tag tagText={tag.name} tagSlug="tag/{tag.slug}" />
+  {/each}
+</div>
+{#if excerpt && excerpt != ''}
+  <a class="pg-post-link" href="blog/{slug}">
+    <div
+      class="pg-post-excerpt {excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
+      {@html excerpt.substring(0, 200)}
+    </div>
+  </a>
+{/if}
+{#if html && html != ''}
+  <div class="pg-html">
+    {@html html}
   </div>
-  {#if excerpt}
-    <a class="pg-post-link" href={url}>
-      <div
-        class="pg-post-excerpt {excerpt.length > 200 ? 'pg-post-excerpt-long' : ''}">
-        {@html excerpt.substring(0, 200)}
-      </div>
-    </a>
-  {/if}
-
-  <hr />
-</li>
+{/if}

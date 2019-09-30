@@ -9,13 +9,13 @@
     });
 
     const htmlPosts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,url,excerpt&formats=plaintext&limit=${htmlPostsCount}`
+      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,slug,excerpt&formats=plaintext&limit=${htmlPostsCount}`
     ).then(response => {
       return response.json();
     });
 
     const posts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,url&limit=100`
+      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,slug&limit=100`
     ).then(response => {
       return response.json();
     });
@@ -40,7 +40,7 @@
 <script>
   import DatePublished from "./../components/DatePublished.svelte";
   import Tag from "./../components/Tag.svelte";
-  import PostListItem from "./../components/PostListItem.svelte";
+  import Post from "./../components/Post.svelte";
 
   export let page;
   export let htmlPostsData;
@@ -55,8 +55,6 @@
   function formatDate(dateString) {
     return new Date(dateString).toDateString();
   }
-
-  // formatDates();
 </script>
 
 <style>
@@ -76,6 +74,19 @@
     margin-top: 1.5em;
     padding: 0;
   }
+
+  .pg-posts li {
+    margin-bottom: 0.3em;
+  }
+
+  hr {
+    height: 1px;
+    border: none;
+    color: #ccc;
+    background-color: #ccc;
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+  }
 </style>
 
 <svelte:head>
@@ -92,21 +103,29 @@
 <ul class="pg-posts">
 
   {#each htmlPostsData.posts as htmlpost}
-    <PostListItem
-      title={htmlpost.title}
-      url={htmlpost.url}
-      published_at={htmlpost.published_at}
-      updated_at={htmlpost.updated_at}
-      tags={htmlpost.tags}
-      excerpt={htmlpost.excerpt} />
+    <li>
+      <Post
+        title={htmlpost.title}
+        slug={htmlpost.slug}
+        published_at={htmlpost.published_at}
+        updated_at={htmlpost.updated_at}
+        tags={htmlpost.tags}
+        excerpt={htmlpost.excerpt}
+        hasLinks="true" />
+      <hr />
+    </li>
   {/each}
 
   {#each noHtmlPosts as post}
-    <PostListItem
-      title={post.title}
-      url={post.url}
-      published_at={post.published_at}
-      updated_at={post.updated_at}
-      tags={post.tags} />
+    <li>
+      <Post
+        title={post.title}
+        slug={post.slug}
+        published_at={post.published_at}
+        updated_at={post.updated_at}
+        tags={post.tags}
+        hasLinks="true" />
+      <hr />
+    </li>
   {/each}
 </ul>
