@@ -175,7 +175,6 @@
   }
 
   .pg-nav-about {
-    /* font-family: "Roboto", Arial, Helvetica, sans-serif; */
     position: absolute;
     right: 1em;
     top: 0em;
@@ -188,8 +187,14 @@
     border-bottom-right-radius: 5px;
   }
 
+  @media (min-width: 1024px) {
+    .pg-nav-about {
+      right: auto;
+      left: 740px;
+    }
+  }
+
   .pg-nav-top {
-    /* font-family: "Roboto", Arial, Helvetica, sans-serif; */
     position: absolute;
     right: 1em;
     top: 0em;
