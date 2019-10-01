@@ -21,6 +21,7 @@
 </script>
 
 <script>
+  // https://josebrowne.com/tutorial-static-blog-using-headless-ghost-2-0-gatsby-netlify/
   import HeaderContent from "../components/HeaderContent.svelte";
   import { tick } from "svelte";
   import { stores } from "@sapper/app";
@@ -117,13 +118,13 @@
   main {
     font-size: 1.3rem;
     max-width: 800px;
-    margin-top: 2em;
+    margin-top: 2.5em;
   }
 
   @media (min-width: 1024px) {
     main {
       font-size: 1.8rem;
-      margin-top: 1em;
+      margin-top: 3em;
       padding-right: 20px;
       border-right: 1px dashed #eee;
     }
@@ -181,7 +182,7 @@
     display: inline-block;
     background: #000;
     color: #cecece;
-    padding: 0.25em 0.5em;
+    padding: 0.5em 1em;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }

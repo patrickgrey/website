@@ -12,6 +12,7 @@
   .pg-tag {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     position: relative;
+    pointer-events: auto;
     padding: 5px 10px 5px 15px;
     background-color: #3d77a4;
     color: white;

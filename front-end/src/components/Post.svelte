@@ -17,6 +17,7 @@
     position: relative;
     text-decoration: none;
     color: black;
+    pointer-events: auto;
   }
 
   .pg-post-excerpt-long::after {
