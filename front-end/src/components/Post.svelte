@@ -16,7 +16,7 @@
   .pg-post-link {
     position: relative;
     text-decoration: none;
-    color: black;
+    color: #666666;
     pointer-events: auto;
   }
 
@@ -35,8 +35,8 @@
   }
 
   h2 {
-    margin: 0;
-    margin-bottom: 0.5em;
+    margin: 0.5em 0;
+    /* margin-bottom: 0.5em; */
     color: #666666;
     display: inline-block;
     line-height: 1em;
