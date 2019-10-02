@@ -12,3 +12,4 @@ back-end/content/logs
 #!back-end/content/data/
 #!back-end/content/images/
 .vscode
+.env

@@ -3,19 +3,19 @@
     const htmlPostsCount = 3;
 
     const pages = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/pages/?key=8f61b29cf34abca369566ed9a6`
+      `${process.env.SAPPER_APP_API_URL}/ghost/api/v2/content/pages/?key=${process.env.SAPPER_APP_API_KEY}`
     ).then(response => {
       return response.json();
     });
 
     const htmlPosts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,slug,excerpt&formats=plaintext&limit=${htmlPostsCount}`
+      `${process.env.SAPPER_APP_API_URL}/ghost/api/v2/content/posts/?key=${process.env.SAPPER_APP_API_KEY}&include=tags&fields=id,title,published_at,updated_at,slug,excerpt&formats=plaintext&limit=${htmlPostsCount}`
     ).then(response => {
       return response.json();
     });
 
     const posts = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/?key=8f61b29cf34abca369566ed9a6&include=tags&fields=id,title,published_at,updated_at,slug&limit=100`
+      `${process.env.SAPPER_APP_API_URL}/ghost/api/v2/content/posts/?key=${process.env.SAPPER_APP_API_KEY}&include=tags&fields=id,title,published_at,updated_at,slug&limit=100`
     ).then(response => {
       return response.json();
     });

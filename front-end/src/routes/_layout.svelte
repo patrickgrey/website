@@ -1,7 +1,7 @@
 <script context="module">
   export async function preload(page) {
     const pages = this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/pages/?key=8f61b29cf34abca369566ed9a6`
+      `${process.env.SAPPER_APP_API_URL}/ghost/api/v2/content/pages/?key=${process.env.SAPPER_APP_API_KEY}`
     ).then(response => {
       return response.json();
     });
@@ -191,10 +191,10 @@
     margin-right: 0.25em;
   }
 
-  @media (min-width: 965px) {
+  @media (min-width: 983px) {
     .pg-nav {
       right: auto;
-      left: 655px;
+      left: 635px;
     }
   }
 
@@ -202,12 +202,12 @@
     position: absolute;
     right: 1em;
     top: 0em;
-    font-size: 0.7em;
+    font-size: 0.8em;
     text-decoration: none;
     display: inline-block;
     background: #cecece;
     color: #000;
-    padding: 0.25em 1em;
+    padding: 0.5em 1em;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }

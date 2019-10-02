@@ -3,7 +3,7 @@
     // the `slug` parameter is available because
     // this file is called [slug].svelte
     const res = await this.fetch(
-      `http://localhost:2368/ghost/api/v2/content/posts/slug/${params.slug}/?key=8f61b29cf34abca369566ed9a6&include=tags`
+      `${process.env.SAPPER_APP_API_URL}/ghost/api/v2/content/posts/slug/${params.slug}/?key=${process.env.SAPPER_APP_API_KEY}&include=tags`
     );
     const data = await res.json();
 
