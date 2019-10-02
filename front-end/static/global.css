@@ -8,6 +8,12 @@
   src: url("fonts/Roboto-Regular.ttf") format("truetype");
 }
 
+*:focus {
+  outline: 2px solid #09f;
+  /* outline-offset: 1px; */
+  box-shadow: 0 0 3px 4px white;
+}
+
 html,
 body {
   /* font-family: "Arvo", Georgia, "Times New Roman", Times, serif; */

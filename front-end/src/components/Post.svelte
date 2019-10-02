@@ -45,6 +45,10 @@
   .pg-tags {
     margin: 0 0 1.5em 0;
   }
+
+  .pg-html {
+    color: #666;
+  }
 </style>
 
 {#if hasLinks}
