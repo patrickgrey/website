@@ -1,0 +1,17 @@
+name: helloWorld
+
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+    - name: Hello world action step
+      id: hello
+      uses: patrickgrey/github-action-ghost-export@v1
+      with:
+        who-to-greet: 'Tippy Elite Hakkerzz'
+    # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello.outputs.time }}"
