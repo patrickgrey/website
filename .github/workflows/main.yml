@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: patrickgrey/github-action-ghost-export@v1
+      uses: patrickgrey/github-action-ghost-export
       with:
         who-to-greet: 'Tippy Elite Hakkerzz'
     # Use the output from the `hello` step
