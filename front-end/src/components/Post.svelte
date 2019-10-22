@@ -39,7 +39,7 @@
     /* margin-bottom: 0.5em; */
     color: #666666;
     display: inline-block;
-    line-height: 1em;
+    line-height: 1.1em;
   }
 
   .pg-tags {

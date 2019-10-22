@@ -121,10 +121,15 @@
     margin-top: 2.5em;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 600px) {
     main {
       font-size: 1.8rem;
-      margin-top: 3em;
+      margin-top: 0em;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    main {
       padding-right: 20px;
       border-right: 1px dashed #eee;
     }
@@ -211,6 +216,10 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
+  .pg-invisible {
+    visibility: hidden;
+  }
 </style>
 
 <svelte:head>
@@ -232,7 +241,7 @@
 
   <div class="pg-content">
     <nav class="pg-nav">
-      <a href="/">home</a>
+      <a class={currentPath === '/' ? 'pg-invisible' : ''} href="/">home</a>
       <a href="{currentPath}#about">about</a>
     </nav>
     <main>

@@ -75,6 +75,12 @@
     padding: 0;
   }
 
+  @media (min-width: 600px) {
+    .pg-posts {
+      margin-top: 0;
+    }
+  }
+
   .pg-posts li {
     margin-bottom: 0.3em;
   }
@@ -116,10 +122,8 @@
   }
 
   hr {
-    height: 1px;
-    border: none;
-    color: #ccc;
-    background-color: #ccc;
+    border: 0 none;
+    border-top: 1px dashed #ccc;
     margin-top: 1.5em;
     margin-bottom: 2.5em;
   }
