@@ -102,6 +102,7 @@
   }
 
   header {
+    position: relative;
     padding: 0.45em 0;
     text-align: center;
   }
@@ -124,7 +125,7 @@
   @media (min-width: 600px) {
     main {
       font-size: 1.8rem;
-      margin-top: 0em;
+      margin-top: 1.5em;
     }
   }
 
@@ -185,8 +186,9 @@
   .pg-nav a {
     text-decoration: none;
     display: inline-block;
-    background: #000;
-    color: #cecece;
+    background: #ddd;
+    color: #000;
+    /* text-shadow: #000 1px 1px; */
     padding: 0.5em 1em;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

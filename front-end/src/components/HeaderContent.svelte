@@ -1,12 +1,34 @@
 <style>
+  @keyframes spin {
+    0% {
+      transform: rotateZ(0);
+    }
+    100% {
+      transform: rotateZ(720deg);
+    }
+  }
+
   h1 {
     position: relative;
     display: inline-block;
     padding: 0;
     margin: 0;
     font-size: 2em;
-    font-family: "Lora", Georgia, "Times New Roman", Times, serif;
+    font-family: "Header", Georgia, "Times New Roman", Times, serif;
     color: #999;
+  }
+
+  h1::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -0.65em;
+    top: 0;
+    width: 0.5em;
+    height: 0.5em;
+    background: url("../images/logo/tgl-logo-v1.png");
+    background-size: 100%;
+    animation: spin 2s ease-in-out;
   }
 
   @media (min-width: 600px) {
@@ -15,7 +37,7 @@
 
       position: absolute;
       right: 0.25em;
-      top: -0.4em;
+      top: -0em;
       padding: 0;
       margin: 0;
       text-align: right;
@@ -28,7 +50,7 @@
   @media (min-width: 1024px) {
     h1 {
       font-size: 3.8em;
-      top: -0.75em;
+      top: -0.25em;
     }
   }
 
@@ -71,4 +93,7 @@
   }
 </style>
 
-<h1>The Grey Line</h1>
+<h1>
+  <!-- <img src="images/logo/tgl-logo-v1.png" alt="The Grey Line logo" /> -->
+  The Grey Line
+</h1>

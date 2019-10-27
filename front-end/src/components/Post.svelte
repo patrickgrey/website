@@ -35,15 +35,17 @@
   }
 
   h2 {
-    margin: 0.5em 0;
+    font-size: 2em;
+    margin: 0.5em 0 1em 0;
     /* margin-bottom: 0.5em; */
     color: #666666;
     display: inline-block;
     line-height: 1.1em;
+    width: 100%;
   }
 
   .pg-tags {
-    margin: 0 0 1.5em 0;
+    margin: 0 0 2em 0;
   }
 
   .pg-html {

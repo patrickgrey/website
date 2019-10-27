@@ -14,8 +14,8 @@
     position: relative;
     pointer-events: auto;
     padding: 5px 10px 5px 15px;
-    background-color: #3d77a4;
-    color: white;
+    background-color: #ddd;
+    color: #000;
     margin-right: 22px;
     text-decoration: none;
     font-size: 15px;
@@ -45,9 +45,13 @@
     bottom: 0;
     width: 0;
     height: 0;
-    border-left: 14px solid #3d77a4;
+    border-left: 14px solid #ddd;
     border-top: 14px solid transparent;
     border-bottom: 14px solid transparent;
+  }
+
+  .pg-tag:hover {
+    text-decoration: underline;
   }
 </style>
 
