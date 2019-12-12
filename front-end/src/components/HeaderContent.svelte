@@ -18,7 +18,7 @@
     color: #999;
   }
 
-  h1::after {
+  /* h1::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -29,15 +29,15 @@
     background: url("../images/logo/tgl-logo-v1.png");
     background-size: 100%;
     animation: spin 2s ease-in-out;
-  }
+  } */
 
   @media (min-width: 600px) {
     h1 {
       width: 100vh;
 
       position: absolute;
-      right: 0.25em;
-      top: -0em;
+      right: -0.15em;
+      top: 1.8em;
       padding: 0;
       margin: 0;
       text-align: right;
@@ -49,8 +49,8 @@
 
   @media (min-width: 1024px) {
     h1 {
-      font-size: 3.8em;
-      top: -0.25em;
+      font-size: 13.8em;
+      top: -1em;
     }
   }
 

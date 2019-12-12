@@ -130,7 +130,7 @@
 </style>
 
 <svelte:head>
-  <title>{page.title}</title>
+  <title>The Grey Line: {page.title}</title>
   <meta
     name="Description"
     content="The Grey Line: web and video development studio." />

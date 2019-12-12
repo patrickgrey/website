@@ -42,7 +42,7 @@
 
   @media (min-width: 600px) {
     .pg-container {
-      padding-top: 2em;
+      padding-top: 6em;
     }
   }
 
@@ -97,7 +97,7 @@
 
   @media (min-width: 1024px) {
     .pg-content {
-      padding-left: 2.5em;
+      padding-left: 4em;
     }
   }
 
@@ -140,7 +140,7 @@
     position: relative;
     padding: 1em 1em 4em 1em;
     color: #eee;
-    min-height: 20em;
+    min-height: 100vh;
     text-align: center;
     font-size: 1.3rem;
     max-width: 800px;
@@ -166,10 +166,11 @@
 
   @media (min-width: 600px) {
     .pg-strapline {
-      display: block;
+      /* display: block; */
       text-transform: lowercase;
+      /* font-weight: 100; */
       position: absolute;
-      top: 0.25em;
+      top: 1em;
       right: 1em;
       margin: 0;
       padding: 0;
@@ -192,6 +193,11 @@
     padding: 0.5em 1em;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+  }
+
+  .pg-nav a:hover {
+    background: #eee;
+    text-decoration: underline;
   }
 
   .pg-nav a:nth-child(1) {
