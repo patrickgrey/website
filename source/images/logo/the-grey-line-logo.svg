@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 401 400.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #333;
+      }
+
+      .cls-4 {
+        clip-path: url(#clip-path-3);
+      }
+
+      .cls-5 {
+        fill: #666;
+      }
+
+      .cls-6 {
+        clip-path: url(#clip-path-4);
+      }
+
+      .cls-7 {
+        fill: #999;
+      }
+
+      .cls-8 {
+        clip-path: url(#clip-path-5);
+      }
+
+      .cls-9 {
+        fill: #eee;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <polygon class="cls-1" points="10 288 69 204 157 22 243 22 332 207 395 294 395 407 9 407 10 288"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path class="cls-1" d="M383,291.75c-91.25,0-91.25-182.5-182.5-182.5S109.25,291.75,18,291.75L-28,292V-43H429V290Z"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <path class="cls-1" d="M385,285.51c-92.25,0-92.25-214-184.5-214s-92.25,214-184.5,214l-42.5.49V-20h454V286Z"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <path class="cls-1" d="M419,279V-12H-18V279l29.5.24c94.5,0,94.5-249.48,189-249.48s94.5,249.48,189,249.48Z"/>
+    </clipPath>
+  </defs>
+  <title>the-grey-line-logo</title>
+  <g id="bg">
+    <g class="cls-2">
+      <circle class="cls-3" cx="200.5" cy="200.5" r="200"/>
+    </g>
+  </g>
+  <g id="waves">
+    <g class="cls-2">
+      <g id="wave1">
+        <g class="cls-4">
+          <circle class="cls-5" cx="200.5" cy="200.5" r="200"/>
+        </g>
+      </g>
+      <g id="wave2">
+        <g class="cls-6">
+          <circle class="cls-7" cx="200.5" cy="200.5" r="200"/>
+        </g>
+      </g>
+    </g>
+    <g id="wave3">
+      <g class="cls-8">
+        <circle class="cls-9" cx="200.5" cy="200.5" r="200"/>
+      </g>
+    </g>
+  </g>
+</svg>
