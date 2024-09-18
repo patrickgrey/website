@@ -336,7 +336,10 @@ nav>ul>li.is-active>a {}
     min-height: 100vh;
 }
 
-.pg-column-main {}
+.pg-column-main {
+    max-width: 75ch;
+    margin: 0 auto;
+}
 
 
 

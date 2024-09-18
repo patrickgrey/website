@@ -78,7 +78,7 @@ jsFiles: []
 
     <body>
 
-        <div class="rs-skip">
+        <div class="rs-skip pg-column-main">
             <p>
                 <a href="#main">Skip to main content</a> or <a href="#footer">the footer</a>.</p>
         </div>
@@ -87,15 +87,15 @@ jsFiles: []
             
             <header>
 
-                <div class="rs-logo-container">
+                <div class="rs-logo-container  pg-column-main">
                     <a href="/" class="pg-logo">
                         {# <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/rising-sky-logo.svg" %}</a> #}
-                    Logo here
+                    Amazing logo coming here soon. Probably.
                     </a>
                 </div>
 
 
-                <nav>
+                <nav class=" pg-column-main">
                     <ul>
                         {% set navPages = collections.all | eleventyNavigation %}
                         {% set navActiveClass = "is-active" %}
@@ -123,7 +123,7 @@ jsFiles: []
             </header>
 
             
-            <main id="main">
+            <main id="main" class=" pg-column-main">
                 {{ content | safe }}
             </main>
                         
