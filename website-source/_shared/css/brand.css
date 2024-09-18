@@ -1,0 +1,353 @@
+/*
+##     ##    ###    ########   ######
+##     ##   ## ##   ##     ## ##    ##
+##     ##  ##   ##  ##     ## ##
+##     ## ##     ## ########   ######
+ ##   ##  ######### ##   ##         ##
+  ## ##   ##     ## ##    ##  ##    ##
+   ###    ##     ## ##     ##  ######
+*/
+
+:root {
+
+    /* FONT SCALE */
+    /* --font-size--2: clamp(0.7813rem, 0.6356rem + 0.7283vw, 1.2rem);
+    --font-size--1: clamp(0.9375rem, 0.7418rem + 0.9783vw, 1.5rem);
+    --font-size-0: clamp(1.125rem, 0.8641rem + 1.3043vw, 1.875rem);
+    --font-size-1: clamp(1.35rem, 1.0043rem + 1.7283vw, 2.3438rem);
+    --font-size-2: clamp(1.62rem, 1.1643rem + 2.2783vw, 2.93rem);
+    --font-size-3: clamp(1.9438rem, 1.3461rem + 2.988vw, 3.6619rem);
+    --font-size-4: clamp(2.3325rem, 1.5516rem + 3.9043vw, 4.5775rem);
+    --font-size-5: clamp(2.7994rem, 1.7829rem + 5.0826vw, 7.7219rem);
+
+    --font-size--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+    --font-size--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+    --font-size-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+    --font-size-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+    --font-size-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+    --font-size-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
+    --font-size-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
+    --font-size-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem); */
+
+    --font-size--2: clamp(0.7813rem, 0.7302rem + 0.2554vw, 0.96rem);
+    --font-size--1: clamp(0.9375rem, 0.8625rem + 0.375vw, 1.2rem);
+    --font-size-0: clamp(1.125rem, 1.0179rem + 0.5357vw, 1.5rem);
+    --font-size-1: clamp(1.35rem, 1.2rem + 0.75vw, 1.875rem);
+    --font-size-2: clamp(1.62rem, 1.4132rem + 1.0339vw, 2.3438rem);
+    --font-size-3: clamp(1.944rem, 1.6624rem + 1.4081vw, 2.9297rem);
+    --font-size-4: clamp(2.3328rem, 1.953rem + 1.899vw, 3.6621rem);
+    --font-size-5: clamp(2.7994rem, 2.2913rem + 2.5404vw, 4.5776rem);
+
+    /* SPACE SCALE */
+    --space-3xs: clamp(0.3125rem, 0.2473rem + 0.3261vw, 0.5rem);
+    --space-2xs: clamp(0.5625rem, 0.4321rem + 0.6522vw, 0.9375rem);
+    --space-xs: clamp(0.875rem, 0.6793rem + 0.9783vw, 1.4375rem);
+    --space-s: clamp(1.125rem, 0.8641rem + 1.3043vw, 1.875rem);
+    --space-m: clamp(1.6875rem, 1.2962rem + 1.9565vw, 2.8125rem);
+    --space-l: clamp(2.25rem, 1.7283rem + 2.6087vw, 3.75rem);
+    --space-xl: clamp(3.375rem, 2.5924rem + 3.913vw, 5.625rem);
+    --space-2xl: clamp(4.5rem, 3.4565rem + 5.2174vw, 7.5rem);
+    --space-3xl: clamp(6.75rem, 5.1848rem + 7.8261vw, 11.25rem);
+
+    --pg-font-sans: Roboto,
+        'Helvetica Neue',
+        'Arial Nova',
+        'Nimbus Sans',
+        Arial,
+        sans-serif;
+    --pg-font-mono: ui-monospace,
+        'Cascadia Code',
+        'Source Code Pro',
+        Menlo,
+        Consolas,
+        'DejaVu Sans Mono',
+        monospace;
+
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* --rs-colour-ec-dark-blue: white; */
+    }
+}
+
+/*
+########     ###     ######  ########
+##     ##   ## ##   ##    ## ##
+##     ##  ##   ##  ##       ##
+########  ##     ##  ######  ######
+##     ## #########       ## ##
+##     ## ##     ## ##    ## ##
+########  ##     ##  ######  ########
+*/
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--pg-font-sans);
+    font-weight: 300;
+    font-size: var(--font-size-0);
+}
+
+*::selection {}
+
+*:focus-visible {
+    /* outline: var(--rs-outline); */
+    /* outline-offset: 2px; */
+}
+
+p {
+    max-width: 75ch;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 100;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--font-size-5);
+    padding-block-start: var(--space-xs);
+    margin-block-start: var(--space-3xs);
+}
+
+h2 {
+    font-size: var(--font-size-3);
+    margin-block-start: 0;
+    padding-block-start: var(--space-l);
+    padding-block-end: var(--space-s);
+    margin-block-end: var(--space-m);
+}
+
+h3 {
+    font-size: var(--font-size-1);
+    font-weight: 400;
+}
+
+
+h4 {
+    font-size: var(--font-size-1);
+    text-transform: capitalize;
+}
+
+a {}
+
+a:visited {}
+
+a[target="_blank"] {
+    position: relative;
+}
+
+a[target="_blank"]::after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: text-top;
+    background-image: url(/_shared/images/icons/icon-new-window.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-inline-start: 3px;
+    margin-inline-end: 5px;
+}
+
+a[href^="#"] {
+    position: relative;
+}
+
+a[href^="#"]::after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: text-top;
+    background-image: url(/_shared/images/icons/icon-arrow-down.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-inline-start: 3px;
+    margin-inline-end: 5px;
+}
+
+/*
+.##.....##.########.####.##.......####.########.####.########..######.
+.##.....##....##.....##..##........##.....##.....##..##.......##....##
+.##.....##....##.....##..##........##.....##.....##..##.......##......
+.##.....##....##.....##..##........##.....##.....##..######....######.
+.##.....##....##.....##..##........##.....##.....##..##.............##
+.##.....##....##.....##..##........##.....##.....##..##.......##....##
+..#######.....##....####.########.####....##....####.########..######.
+*/
+
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.flow>*+* {
+    margin-block-start: var(--flow-space, 1em);
+}
+
+/* Change this to line height? */
+svg:not([width]):not([height]) {
+    height: 1.5ex;
+    width: auto;
+}
+
+.rs-relative {
+    position: relative;
+}
+
+@media not (scripting: enabled) {
+    .rs-needs-js {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 1200px) and (max-width:1700px) {}
+
+@media (prefers-reduced-motion) {}
+
+.rs-mbs-0 {
+    margin-block-start: 0;
+}
+
+/*
+ ######  ##    ## #### ########
+##    ## ##   ##   ##  ##     ##
+##       ##  ##    ##  ##     ##
+ ######  #####     ##  ########
+      ## ##  ##    ##  ##
+##    ## ##   ##   ##  ##
+ ######  ##    ## #### ##
+*/
+
+.rs-skip {
+    text-align: center;
+    display: grid;
+    position: relative;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease-in-out;
+}
+
+.rs-skip:focus-within {
+    grid-template-rows: 1fr;
+}
+
+.rs-skip>p {
+    overflow: hidden;
+    margin: 0;
+}
+
+.rs-skip>p>a {
+    display: inline-block;
+    padding-block: 1rem;
+}
+
+.rs-skip::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: var(--space-2xs) var(--space-2xs) 0 var(--space-2xs);
+    border-color: white transparent transparent transparent;
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--space-2xs) * -1);
+    transform: translateX(-50%);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.rs-skip:focus-within::after {
+    opacity: 1;
+}
+
+
+/*
+##        #######   ######    #######
+##       ##     ## ##    ##  ##     ##
+##       ##     ## ##        ##     ##
+##       ##     ## ##   #### ##     ##
+##       ##     ## ##    ##  ##     ##
+##       ##     ## ##    ##  ##     ##
+########  #######   ######    #######
+*/
+
+
+
+
+/*
+##    ##    ###    ##     ##
+###   ##   ## ##   ##     ##
+####  ##  ##   ##  ##     ##
+## ## ## ##     ## ##     ##
+##  #### #########  ##   ##
+##   ### ##     ##   ## ##
+##    ## ##     ##    ###
+*/
+nav {}
+
+
+nav>ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-xs);
+    padding: 0;
+    margin: 0;
+}
+
+nav>ul>li>a,
+nav>ul>li>a:visited {}
+
+nav>ul>li.is-active>a {}
+
+/*
+##          ###    ##    ##  #######  ##     ## ########
+##         ## ##    ##  ##  ##     ## ##     ##    ##
+##        ##   ##    ####   ##     ## ##     ##    ##
+##       ##     ##    ##    ##     ## ##     ##    ##
+##       #########    ##    ##     ## ##     ##    ##
+##       ##     ##    ##    ##     ## ##     ##    ##
+######## ##     ##    ##     #######   #######     ##
+*/
+
+.pg-full-height {
+    display: grid;
+    position: relative;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100vh;
+}
+
+.pg-column-main {}
+
+
+
+/*
+########  #######   #######  ######## ######## ########
+##       ##     ## ##     ##    ##    ##       ##     ##
+##       ##     ## ##     ##    ##    ##       ##     ##
+######   ##     ## ##     ##    ##    ######   ########
+##       ##     ## ##     ##    ##    ##       ##   ##
+##       ##     ## ##     ##    ##    ##       ##    ##
+##        #######   #######     ##    ######## ##     ##
+*/
+
+footer {}
