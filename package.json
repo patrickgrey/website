@@ -33,6 +33,7 @@
     "directory-tree": "^3.5.2",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
+    "eleventy-auto-cache-buster": "^0.6.1",
     "esbuild": "^0.23.1",
     "lightningcss": "^1.27.0",
     "luxon": "^3.5.0",
