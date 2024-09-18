@@ -85,45 +85,52 @@ jsFiles: []
 
         <div class="pg-full-height">
             
-            <header>
+            <div class="pg-column-main">
+                <header>
+    
+                    <img src="/_shared/images/header/header-0.jpg" alt="A photo taken from a hill with woodland at bottom and the sea and islands beyond. The furthest island mountains have snow on them. It's a sunny day with blue skies. The view is from above Crinan with the isle of Jura in the background." sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 1920px)) 1920px">
+    
+                    {# <div class="pg-logo-container  pg-column-main"> #}
+                        <a href="/" class="pg-logo">
+                            <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/pg-83.svg" %}</a>
+                        </a>
+                    {# </div> #}
+    
+    
+                    <nav>
+                        <ul>
+                            {% set navPages = collections.all | eleventyNavigation %}
+                            {% set navActiveClass = "is-active" %}
+                            {%- for navItem in navPages %}
+                                {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
+                                {% set urlArray = page
+                                    .url
+                                    .split("/") %}
+    
+                                {% if (navItem.url == "/") %}
+                                    <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
+                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                    </li>
+                                {% elif navItem.url and page.url %}
+                                    <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
+                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                    </li>
+                                {% endif %}
+    
+                            {%- endfor %}
+    
+                        </ul>
+                    </nav>
+    
+                </header>
 
-                <div class="pg-logo-container  pg-column-main">
-                    <a href="/" class="pg-logo">
-                        {# <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/rising-sky-logo.svg" %}</a> #}
-                    Amazing logo coming here soon. Probably.
-                    </a>
+                <div class="pg-header-control">
+                    <p>Control panel</p>
                 </div>
-
-
-                <nav class=" pg-column-main">
-                    <ul>
-                        {% set navPages = collections.all | eleventyNavigation %}
-                        {% set navActiveClass = "is-active" %}
-                        {%- for navItem in navPages %}
-                            {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
-                            {% set urlArray = page
-                                .url
-                                .split("/") %}
-
-                            {% if (navItem.url == "/") %}
-                                <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
-                                    <a href="{{ navItem.url }}">{{ navItem.title }}</a>
-                                </li>
-                            {% elif navItem.url and page.url %}
-                                <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
-                                    <a href="{{ navItem.url }}">{{ navItem.title }}</a>
-                                </li>
-                            {% endif %}
-
-                        {%- endfor %}
-
-                    </ul>
-                </nav>
-
-            </header>
+            </div>
 
             
-            <main id="main" class=" pg-column-main">
+            <main id="main">
                 {{ content | safe }}
             </main>
                         

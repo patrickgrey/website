@@ -49,12 +49,17 @@
     --space-2xl: clamp(4.5rem, 3.4565rem + 5.2174vw, 7.5rem);
     --space-3xl: clamp(6.75rem, 5.1848rem + 7.8261vw, 11.25rem);
 
-    --pg-font-sans: Roboto,
-        'Helvetica Neue',
-        'Arial Nova',
-        'Nimbus Sans',
-        Arial,
-        sans-serif;
+    --pg-font-body: Charter,
+        'Bitstream Charter',
+        'Sitka Text',
+        Cambria,
+        serif;
+    --pg-font-headers: Rockwell,
+        'Rockwell Nova',
+        'Roboto Slab',
+        'DejaVu Serif',
+        'Sitka Small',
+        serif;
     --pg-font-mono: ui-monospace,
         'Cascadia Code',
         'Source Code Pro',
@@ -62,6 +67,8 @@
         Consolas,
         'DejaVu Sans Mono',
         monospace;
+
+    --pg-max-width: 75ch;
 
 
 }
@@ -90,8 +97,8 @@ body {
 }
 
 body {
-    font-family: var(--pg-font-sans);
-    font-weight: 300;
+    font-family: var(--pg-font-body);
+    font-weight: normal;
     font-size: var(--font-size-0);
 }
 
@@ -103,7 +110,7 @@ body {
 }
 
 p {
-    max-width: 75ch;
+    max-width: var(--pg-max-width);
 }
 
 h1,
@@ -112,14 +119,14 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 100;
+    font-weight: 900;
     text-wrap: balance;
 }
 
 h1 {
     font-size: var(--font-size-5);
-    padding-block-start: var(--space-xs);
-    margin-block-start: var(--space-3xs);
+    /* padding-block-start: var(--space-xs); */
+    margin-block-start: var(--space-xl);
 }
 
 h2 {
@@ -279,30 +286,56 @@ svg:not([width]):not([height]) {
     opacity: 1;
 }
 
-
 /*
-##        #######   ######    #######
-##       ##     ## ##    ##  ##     ##
-##       ##     ## ##        ##     ##
-##       ##     ## ##   #### ##     ##
-##       ##     ## ##    ##  ##     ##
-##       ##     ## ##    ##  ##     ##
-########  #######   ######    #######
+##     ## ########    ###    ########
+##     ## ##         ## ##   ##     ##
+##     ## ##        ##   ##  ##     ##
+######### ######   ##     ## ##     ##
+##     ## ##       ######### ##     ##
+##     ## ##       ##     ## ##     ##
+##     ## ######## ##     ## ########
 */
+header {
+    --pg-border-width: var(--space-xs);
+    --pg-header-height: 40vh;
+    display: block;
+    position: relative;
+    background-color: whitesmoke;
+    height: var(--pg-header-height);
+    /* padding: var(--space-xs); */
+    /* height: 100%; */
+    margin-block-start: var(--pg-border-width);
+    border: var(--pg-border-width) solid white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12),
+        0 2px 2px rgba(0, 0, 0, 0.12),
+        0 4px 4px rgba(0, 0, 0, 0.12),
+        0 8px 8px rgba(0, 0, 0, 0.12),
+        0 16px 16px rgba(0, 0, 0, 0.12);
+}
 
+header::before {
+    content: "";
+    display: block;
+    width: calc(100% + (var(--pg-border-width) * 2));
+    height: 1px;
+    background-color: whitesmoke;
+    position: absolute;
+    top: calc(var(--pg-border-width) * -1);
+    left: calc(var(--pg-border-width) * -1);
+}
 
+header>picture>img {
+    object-fit: cover;
+    height: calc(var(--pg-header-height) - (var(--pg-border-width) * 2));
+    width: 100%;
+    /* height: auto; */
+}
 
-
-/*
-##    ##    ###    ##     ##
-###   ##   ## ##   ##     ##
-####  ##  ##   ##  ##     ##
-## ## ## ##     ## ##     ##
-##  #### #########  ##   ##
-##   ### ##     ##   ## ##
-##    ## ##     ##    ###
-*/
-nav {}
+nav {
+    position: absolute;
+    bottom: var(--space-3xs);
+    left: var(--pg-border-width);
+}
 
 
 nav>ul {
@@ -313,10 +346,34 @@ nav>ul {
     margin: 0;
 }
 
+nav>ul>li {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
 nav>ul>li>a,
-nav>ul>li>a:visited {}
+nav>ul>li>a:visited {
+    background-color: white;
+    margin: 0;
+    padding: var(--space-3xs) var(--space-xs) var(--space-3xs) var(--space-xs);
+    text-decoration: none;
+}
 
 nav>ul>li.is-active>a {}
+
+.pg-logo {
+    position: absolute;
+    top: var(--space-2xs);
+    right: var(--space-2xs);
+    line-height: 0;
+}
+
+.pg-logo>svg {
+    width: 100% !important;
+    height: auto !important;
+    max-width: var(--space-l);
+}
 
 /*
 ##          ###    ##    ##  #######  ##     ## ########
@@ -334,11 +391,13 @@ nav>ul>li.is-active>a {}
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
     min-height: 100vh;
+    /* padding-block-start: var(--space-xs); */
 }
 
 .pg-column-main {
-    max-width: 75ch;
+    max-width: var(--pg-max-width);
     margin: 0 auto;
+    padding: 0 var(--space-xs);
     width: 100%;
 }
 
