@@ -70,6 +70,11 @@
 
     --pg-max-width: 75ch;
 
+    --pg-border-width: var(--space-xs);
+    --pg-header-height: 35vh;
+
+    --pg-colour-dark: #333;
+
 
 }
 
@@ -100,6 +105,8 @@ body {
     font-family: var(--pg-font-body);
     font-weight: normal;
     font-size: var(--font-size-0);
+    background-color: whitesmoke;
+    color: var(--pg-colour-dark);
 }
 
 *::selection {}
@@ -126,7 +133,7 @@ h6 {
 h1 {
     font-size: var(--font-size-5);
     /* padding-block-start: var(--space-xs); */
-    margin-block-start: var(--space-xl);
+    margin-block-start: var(--space-2xl);
 }
 
 h2 {
@@ -295,9 +302,36 @@ svg:not([width]):not([height]) {
 ##     ## ##       ##     ## ##     ##
 ##     ## ######## ##     ## ########
 */
+
+.pg-bg-photo {
+    --pg-bg-photo-height: calc(var(--pg-header-height) + (var(--pg-border-width) * 3));
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--pg-bg-photo-height);
+    width: 100%;
+    box-shadow: 0px 10px 0px 0px var(--pg-colour-dark);
+}
+
+.pg-bg-photo img {
+    object-fit: cover;
+    height: var(--pg-bg-photo-height);
+}
+
+.pg-bg-photo::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--pg-bg-photo-height);
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
 header {
-    --pg-border-width: var(--space-xs);
-    --pg-header-height: 35vh;
+
     display: block;
     position: relative;
     background-color: whitesmoke;
@@ -367,6 +401,7 @@ nav>ul>li.is-active>a {}
     top: var(--space-2xs);
     right: var(--space-2xs);
     line-height: 0;
+    color: var(--pg-colour-dark);
 }
 
 .pg-logo>svg {
