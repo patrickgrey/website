@@ -460,4 +460,16 @@ nav>ul>li.is-active>a {}
 ##        #######   #######     ##    ######## ##     ##
 */
 
-footer {}
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--pg-colour-dark);
+    color: whitesmoke;
+    padding: var(--space-xl);
+    margin-block-start: var(--space-xl);
+}
+
+footer a,
+footer a:visited {
+    color: whitesmoke;
+}
