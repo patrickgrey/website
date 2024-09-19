@@ -297,7 +297,7 @@ svg:not([width]):not([height]) {
 */
 header {
     --pg-border-width: var(--space-xs);
-    --pg-header-height: 40vh;
+    --pg-header-height: 35vh;
     display: block;
     position: relative;
     background-color: whitesmoke;
