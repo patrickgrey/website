@@ -1,0 +1,23 @@
+{% if noteLimit %}
+    {% set forLimit = noteLimit %}
+{% else %}
+    {% set forLimit = 5 %}
+{% endif %}
+<ol reversed class="rs-list rs-list-icon">
+    {% for note in notelist | reverse %}
+        {% if loop.index0 < forLimit %}
+            <li class="notelist-item{% if note.url == url %} notelist-item-active{% endif %}">
+                <a href="{{ note.url }}" class="notelist-link">
+                    {% if noteIcon %}
+                        <span>{% include "../../website-source/_shared/images/icons/icon-"+noteIcon+".svg" %}</span>
+                    {% endif %}
+                    {% if note.data.title %}{{ note.data.title | striptags(false) }}
+                    {% else %}
+                        <code>{{ note.url }}</code>
+                    {% endif %}
+                    <time class="notelist-date" datetime="{{ note.date | htmlDateString }}">{{ note.date | readableDate("dd LLLL yyyy") }}</time>
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ol>
