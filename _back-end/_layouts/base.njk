@@ -105,7 +105,10 @@ jsFiles: []
                             {% set navActiveClass = "is-active" %}
                             {%- for navItem in navPages %}
                                 {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
-                                {% set urlArray = page
+                                <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li>
+
+
+                                {# {% set urlArray = page
                                     .url
                                     .split("/") %}
     
@@ -117,7 +120,7 @@ jsFiles: []
                                     <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
                                         <a href="{{ navItem.url }}">{{ navItem.title }}</a>
                                     </li>
-                                {% endif %}
+                                {% endif %} #}
     
                             {%- endfor %}
     

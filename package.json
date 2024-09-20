@@ -6,6 +6,7 @@
   "scripts": {
     "del": "del-cli website-build",
     "serve": "cross-env DEV_ENVIRONMENT=dev npx @11ty/eleventy --serve ",
+    "decap": "npx decap-server",
     "dev": "run-s del serve",
     "build:11ty": "cross-env DEV_ENVIRONMENT=prod npx @11ty/eleventy",
     "build:esbuild": "node _back-end/build.mjs",
@@ -40,5 +41,8 @@
     "npm-run-all": "^4.1.5",
     "terser": "^5.33.0",
     "tiny-glob": "^0.2.9"
+  },
+  "dependencies": {
+    "decap-cms-app": "^3.3.3"
   }
 }

@@ -18,7 +18,7 @@ import { transform } from 'lightningcss';
 export default async function (eleventyConfig) {
 
     eleventyConfig.addPassthroughCopy("website-source/**/*.(css|js|json)");
-    eleventyConfig.addPassthroughCopy("website-source/**/*.{svg,webp,avif,png,jpeg,jpg,ico,webmanifest,txt,ttf}");
+    eleventyConfig.addPassthroughCopy("website-source/**/*.{svg,webp,avif,png,jpeg,jpg,ico,webmanifest,txt,ttf,yml}");
 
 
     // eleventyConfig.addPassthroughCopy({
@@ -35,7 +35,10 @@ export default async function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-        widths: [600, 1000, 1920, "auto"]
+        widths: [600, 1000, 1920, "auto"],
+        defaultAttributes: {
+            sizes: "(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 1920px)) 1920px",
+        },
     });
     eleventyConfig.addPlugin(pluginBundle);
     // Plugins
@@ -124,7 +127,7 @@ export default async function (eleventyConfig) {
         ],
 
         // Pre-process *.md files with: (default: `liquid`)
-        markdownTemplateEngine: "njk",
+        markdownTemplateEngine: "liquid",
 
         // Pre-process *.html files with: (default: `liquid`)
         htmlTemplateEngine: "njk",
