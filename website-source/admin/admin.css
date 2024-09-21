@@ -1,0 +1,19 @@
+article {
+    border-block-start: 10px solid var(--pg-colour-dark);
+}
+
+@media screen and (min-width: 1000px) {
+    h1 {
+        margin-block-start: 0;
+        padding-block-start: var(--space-2xl);
+    }
+}
+
+pre:has(code) {
+    padding: var(--space-s);
+    background-color: var(--pg-colour-dark);
+}
+
+pre>code {
+    color: yellow;
+}

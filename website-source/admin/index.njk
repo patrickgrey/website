@@ -1,0 +1,59 @@
+---
+permalink: "admin/index.html"
+---
+
+<!DOCTYPE html> 
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Content Manager</title> 
+    <!-- 
+    I wanted to allow the use of the local repo while developing the site. To do this I put 
+    local_backend: true
+    at the top of the config.yml file. 
+    However, when publishing, we don't want that setting so below I check
+    the current environment and deliver a different yml file for the 
+    build environment. Duplication is the down side but it works so ho-hum.
+    -->
+    {% set env = devEnvironment.environment %}
+    {% if env != 'dev' %}
+        <link href="./build-config/config.yml" type="text/yaml" rel="cms-config-url">
+    {% endif %}
+</head>
+
+<body>
+    <!-- Include the script that builds the page and powers Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+        // The class to be used to preview notes
+        const NotePreview = createClass({
+            render: function() {
+            const entry = this.props.entry;
+
+            return h('article', {}, //wrap the content in an article and div to get the same layout as the main website.
+                        h('div', {"className": "pg-column-main"},
+                            h('h1', {}, entry.getIn(['data', 'title'])),
+                            // I added in published and update date previews but this would add too much complexity to format like the site so I just removed them as clients can see the dates in the UI.
+                            //h('datetime', {}, new Date(entry.getIn(['data', 'publish'])).toString()),
+                            //h('datetime', {}, new Date(entry.getIn(['data', 'update'])).toString() || "No date"),
+                            h('div', {}, this.props.widgetFor('body'))
+                        )
+                    );
+            }
+        });
+        // Register the above class for use
+        CMS.registerPreviewTemplate("notes", NotePreview);
+        // Inlcude the websites style sheets and boom, it starts to look very similar.
+        CMS.registerPreviewStyle("/_shared/css/reset.css");
+        CMS.registerPreviewStyle("/_shared/css/brand.css");
+        CMS.registerPreviewStyle("/_shared/css/shared.css");
+        // This admin only CSS helps mimic the main site and adds simple syntax highlighting.
+        CMS.registerPreviewStyle("admin.css");
+    </script>
+
+</body>
+
+</html>

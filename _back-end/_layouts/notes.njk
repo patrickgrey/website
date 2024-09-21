@@ -8,6 +8,8 @@ jsFiles: []
     
     <div class="pg-column-main flow">
         <h1>{{title}}</h1>
+        <p>Published: <datetime>{{publish | readableDate}}</datetime></p>
+        {% if update %}<p>Updated: <datetime>{{update | readableDate}}</datetime></p>{% endif%}
         {{ content | safe }}
     </div>
 

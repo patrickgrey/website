@@ -1,0 +1,33 @@
+# when using the default proxy server port
+local_backend: false
+backend:
+  name: github
+  repo: patrickgrey/website
+  branch: main # Branch to update (optional; defaults to master)
+  site_domain: https://patrickgrey.co.uk
+  base_url: https://patrickgrey.co.uk
+  auth_endpoint: /api/auth
+  commit_messages:
+  create: Create {{collection}} "{{slug}}"
+  update: Update {{collection}} "{{slug}}"
+  delete: Delete {{collection}} "{{slug}}"
+  uploadMedia: Upload "{{path}}"
+  deleteMedia: Delete "{{path}}"
+media_folder: "_shared/uploads"
+site_url: "https://patrickgrey.co.uk"
+logo_url: "https://patrickgrey.co.uk/_shared/images/logo/pg-logo-01.svg"
+search: false
+collections:
+  - name: "notes"
+    label: "Notes"
+    folder: "website-source/notes"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Draft?", name: "draft", widget: "boolean", default: false }
+      - { label: "Publish Date", name: "publish", widget: "datetime" }
+      - { label: "Update Date", name: "update", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
