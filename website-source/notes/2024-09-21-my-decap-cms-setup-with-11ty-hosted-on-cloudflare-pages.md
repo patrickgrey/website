@@ -6,6 +6,7 @@ tags:
   - cloudflare
 draft: false
 publish: 2024-09-21T16:16:00.000Z
+update: 2024-09-21T17:17:00.000Z
 ---
 This setup can be viewed at <https://github.com/patrickgrey/website>. 
 
@@ -148,3 +149,5 @@ The image transform feature of 11ty v3 is brilliant. All I need is to add an `im
 In order to create different size images for different screen sizes, 11ty needs a sizes attribute on the image tag. The Decap markdown widget doesn’t allow for that by default. I started looking into customising the widget but this felt wrong. Eventually, I stumbled on another great Cassey Lottman post <https://www.cassey.dev/adding-decap-cms-to-11ty/> which, in turn led me to this post by Martin Gunnarsson: <https://www.martingunnarsson.com/posts/eleventy-automatic-image-pre-processing-part-2/> . This is where I found out about the eleventyImageTransformPlugin defaultAttributes attribute where I added the “sizes” attribute with the values I needed.
 
 I need to re-read these articles now I’m set up as I’m sure there is more I can learn.
+
+I hope this helps someone :-)
