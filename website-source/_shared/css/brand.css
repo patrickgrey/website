@@ -475,7 +475,7 @@ nav>ul>li.is-active>a {}
     display: inline-block;
     width: 1em;
     height: 1em;
-    background-image: url(../images/icons/icon-note.svg);
+    background-image: url(/_shared/images/icons/icon-note.svg);
     background-repeat: no-repeat;
     vertical-align: text-top;
 }

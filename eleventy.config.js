@@ -2,7 +2,7 @@ import { minify } from "terser";
 import { DateTime } from "luxon";
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy"
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
-import eleventyAutoCacheBuster from "eleventy-auto-cache-buster";
+// import eleventyAutoCacheBuster from "eleventy-auto-cache-buster";
 import { pluginDrafts } from "./_back-end/config/eleventy.config.drafts.js";
 import { pluginReading } from "./_back-end/config/eleventy.config.reading.js";
 import { createRequire } from "module";
@@ -44,7 +44,7 @@ export default async function (eleventyConfig) {
     // Plugins
     eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(pluginReading);
-    eleventyConfig.addPlugin(eleventyAutoCacheBuster);
+    // eleventyConfig.addPlugin(eleventyAutoCacheBuster);
 
     // Add bundles
     // eleventyConfig.addBundle("css");
