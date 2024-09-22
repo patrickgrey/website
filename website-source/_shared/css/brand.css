@@ -445,7 +445,66 @@ nav>ul>li.is-active>a {}
     width: 100%;
 }
 
+/*
+##       ####  ######  ########  ######
+##        ##  ##    ##    ##    ##    ##
+##        ##  ##          ##    ##
+##        ##   ######     ##     ######
+##        ##        ##    ##          ##
+##        ##  ##    ##    ##    ##    ##
+######## ####  ######     ##     ######
+*/
 
+.pg-list {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+/*
+##    ##  #######  ######## ########  ######
+###   ## ##     ##    ##    ##       ##    ##
+####  ## ##     ##    ##    ##       ##
+## ## ## ##     ##    ##    ######    ######
+##  #### ##     ##    ##    ##             ##
+##   ### ##     ##    ##    ##       ##    ##
+##    ##  #######     ##    ########  ######
+*/
+
+.pg-list-notes li::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url(../images/icons/icon-note.svg);
+    background-repeat: no-repeat;
+    vertical-align: text-top;
+}
+
+/*
+########    ###     ######    ######
+   ##      ## ##   ##    ##  ##    ##
+   ##     ##   ##  ##        ##
+   ##    ##     ## ##   ####  ######
+   ##    ######### ##    ##        ##
+   ##    ##     ## ##    ##  ##    ##
+   ##    ##     ##  ######    ######
+*/
+
+.pg-tags-container,
+.pg-tags-container ul {
+    display: flex;
+}
+
+.pg-tags-container ul,
+.pg-tags-container p {
+    margin: 0;
+}
+
+.pg-tags-container ul {
+    list-style: none;
+    padding-inline-start: var(--space-2xs);
+    gap: var(--space-2xs);
+}
 
 /*
 ########  #######   #######  ######## ######## ########

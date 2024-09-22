@@ -7,11 +7,13 @@ eleventyNavigation:
   key: notes
   order: 2
 ---
-<div class="pg-column-main">
-  <h1>Notes</h1>
-  <p>These notes will include coding techniques I'm using. You could almost call them PG tips....</p> 
-
-  {% set notelist = collections.note %}
-  {% set noteIcon = "note" %}
-  {% include "note-list.njk" %}
-</div>
+<article>
+  <div class="pg-column-main">
+    <h1>Notes</h1>
+    <p>These notes will include coding techniques I'm using. You could almost call them PG tips....</p> 
+  
+    {% set notelist = collections.note %}
+    {% set noteIcon = "note" %}
+    {% include "note-list.njk" %}
+  </div>
+</article>

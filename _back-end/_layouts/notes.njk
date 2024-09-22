@@ -8,6 +8,16 @@ jsFiles: []
     
     <div class="pg-column-main flow">
         <h1>{{title}}</h1>
+        <div class="pg-tags-container">
+            <p>Tags:</p>
+            <ul>
+                {% for tag in tags %}
+                    <li>
+                        <a href="/tags/{{ tag | slugify }}/">{{tag}}</a>
+                    </li>
+                {% endfor %} 
+            </ul>
+        </div>
         <p>Published: <datetime>{{publish | readableDate}}</datetime></p>
         {% if update %}<p>Updated: <datetime>{{update | readableDate}}</datetime></p>{% endif%}
         {{ content | safe }}

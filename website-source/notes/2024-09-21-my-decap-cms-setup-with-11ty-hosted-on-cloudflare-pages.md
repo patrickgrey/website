@@ -1,5 +1,9 @@
 ---
 title: My Decap CMS setup with 11ty hosted on Cloudflare Pages
+tags:
+  - 11ty
+  - decap
+  - cloudflare
 draft: false
 publish: 2024-09-21T16:16:00.000Z
 ---
