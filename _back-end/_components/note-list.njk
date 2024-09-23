@@ -11,9 +11,7 @@
                     {% if note.data.title %}{{ note.data.title | striptags(false) }}
                     {% else %}
                         <code>{{ note.url }}</code>
-                    {% endif %}
-                    <time class="notelist-date" datetime="{{ note.date | htmlDateString }}">{{ note.date | readableDate("dd LLLL yyyy") }}</time>
-                </a>
+                    {% endif %}</a><time class="notelist-date" datetime="{{ note.date | htmlDateString }}">{{ note.date | readableDate("dd LLLL yyyy") }}</time>
             </li>
         {% endif %}
     {% endfor %}

@@ -74,6 +74,7 @@
     --pg-header-height: 35vh;
 
     --pg-colour-dark: #333;
+    --pg-colour-mid: #666;
 
 
 }
@@ -458,6 +459,11 @@ nav>ul>li.is-active>a {}
 .pg-list {
     list-style: none;
     padding-inline-start: 0;
+}
+
+.pg-list time {
+    color: var(--pg-colour-mid);
+    margin-inline-start: var(--space-2xs);
 }
 
 /*
