@@ -8,9 +8,8 @@
         {% if loop.index0 < forLimit %}
             <li class="notelist-item{% if note.url == url %} notelist-item-active{% endif %}">
                 <a href="{{ note.url }}" class="notelist-link">
-                    {% if note.data.title %}{{ note.data.title | striptags(false) }}
-                    {% else %}
-                        <code>{{ note.url }}</code>
+                    {% if note.data.title %}{{ note.data.title | trim | striptags(false) }}{% else %}
+                        {{ note.url | trim }}
                     {% endif %}</a><time class="notelist-date" datetime="{{ note.date | htmlDateString }}">{{ note.date | readableDate("dd LLLL yyyy") }}</time>
             </li>
         {% endif %}

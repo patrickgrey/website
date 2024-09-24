@@ -12,6 +12,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginBundle = require("@11ty/eleventy-plugin-bundle");
+const safeLinks = require('@sardine/eleventy-plugin-external-links');
 import { transform } from 'lightningcss';
 
 
@@ -45,6 +46,7 @@ export default async function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(pluginReading);
     eleventyConfig.addPlugin(eleventyAutoCacheBuster);
+    eleventyConfig.addPlugin(safeLinks);
 
     // Add bundles
     // eleventyConfig.addBundle("css");
