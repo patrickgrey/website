@@ -74,6 +74,70 @@ jsFiles: []
             <script type="module" defer src="{{file}}"></script>
         {% endfor %}
 
+        {% set imageNumber = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] | random %}
+
+        {% set imageAlt0 = "The beach at Taynload near the ferry to Gigha. An abandoned fishing trawler rests on its side at the top of the beach. The sun is shining and there are blue skies as waves wash up on the beach. The sand is wet and reflective of the sky." %}
+
+        {% set imageAlt1 = "A photo taken from a hill with woodland at bottom and the sea and islands beyond. The furthest island mountains have snow on them. It's a sunny day with blue skies. The view is from above Crinan with the isle of Jura in the background." %}
+
+        {% set imageAlt2 = "The beach at Taynload near the ferry to Gigha. The silhouette of abandoned fishing trawler resting on its side at the top of the beach is created by the sun." %}
+
+        {% set imageAlt3 = "The beach at Taynload near the ferry to Gigha. An up close view of an abandoned fishing trawler resting on its side at the top of the beach. It is rusty but you can still see the paintwork on the wood. The trawler was called the Island Queen. A small boy looks back while walking down the beach." %}
+
+        {% set imageAlt4 = "The view from Crinan pier looking out over a flat calm sea to the islands in the hazy distance. The sky is a smooth gradient from blue at the top to a subtle sunset  orange at the bottom. This is relfected in the water." %}
+
+        {% set imageAlt5 = "The view from Crinan pier looking out over a flat calm sea to a castle over the water. The sky is a smooth gradient from blue at the top to a subtle sunset  orange at the bottom. This is relfected in the water." %}
+
+        {% set imageAlt6 = "A beach on the Mull of Kintyre looking over the sea to the Isle of Jura. A thin layer of clouds skim the top of the hills.  The sky is blue and the water turquoise." %}
+
+        {% set imageAlt7 = "A sunset over the hills across from Lochgilphead. There is the silhouette of a tree in the foreground with a bird perched on a branch." %}
+
+        {% set imageAlt8 = "The beach at Taynload near the ferry to Gigha. A dog swims out to sea under drifting white clouds under a blue sky." %}
+
+        {% set imageAlt9 = "Looking out over a big sea under a big sky to a slither of land on the horizon that is the island of Carra. You can also see the South end of Gigha." %}
+
+        {% set imageAlt10 = "The beach at Crinan Ferry. The tide wraps around a sand spit pointing to the islands on the horizon. At the apex of the spit, a small child squats, playing with the sand." %}
+
+        {% set imageAlt10 = "The beach at Crinan Ferry. The tide wraps around a sand spit pointing to the islands on the horizon. At the apex of the spit, a small child squats, playing with the sand." %}
+
+        {% set imageAlt11 = "Dusk. The last light of the day goes down behind a hill showing the grass in sharp contrast." %}
+
+        {% set imageAlt12 = "A cloudy and misty day on the hill across from Lochgilphead. The sun comes through the clouds and highlights electricity pylon glass insulators. A wispy tail of cloud touches down on the hill like the start of a very gentle tornado." %}
+
+        {% set imageAlt13 = "The beach of Westport on the Mull of Kintyre. A small child in the distance splashes through the shallow waves. A half rainbow covers the sky above the sand dunes." %}
+
+        {% set imageAlt14 = "A bright pink sunset looking out from Lochgilphead to the hills above Cairnbaan." %}
+
+        {% set imageAlt15 = "Looking towards Crinan from Lochgilphead, a bright yellow sunset shows below pink and blue fluffy clouds." %}
+
+        {% set imageAlt16 = "A view from on top a hill looking across a vast strech of water to the Isle of Jura. Multiple small islands are spread across the water as are several sailing boats. There's a nice blue sky." %}
+
+        {% set imageAltArray = [imageAlt0,imageAlt1,imageAlt2,imageAlt3,imageAlt4,imageAlt5,imageAlt6,imageAlt7,imageAlt8,imageAlt9,imageAlt10,imageAlt11,imageAlt12,imageAlt13,imageAlt14,imageAlt15,imageAlt16] %}
+
+        <script>
+            const currentImage = {{imageNumber}};
+            const altDictionary = {
+                0: `{{imageAlt0 | safe}}`,
+                1: `{{imageAlt1 | safe}}`,
+                2: `{{imageAlt2 | safe}}`,
+                3: `{{imageAlt3 | safe}}`,
+                4: `{{imageAlt4 | safe}}`,
+                5: `{{imageAlt5 | safe}}`,
+                6: `{{imageAlt6 | safe}}`,
+                7: `{{imageAlt7 | safe}}`,
+                8: `{{imageAlt8 | safe}}`,
+                9: `{{imageAlt9 | safe}}`,
+                10: `{{imageAlt10 | safe}}`,
+                11: `{{imageAlt11 | safe}}`,
+                12: `{{imageAlt12 | safe}}`,
+                13: `{{imageAlt13 | safe}}`,
+                14: `{{imageAlt14 | safe}}`,
+                15: `{{imageAlt15 | safe}}`,
+                16: `{{imageAlt16 | safe}}`                
+            }
+            const currentAlt = "{{imageAltArray[imageNumber] | safe}}"
+        </script>
+
     </head>
 
     <body>
@@ -84,12 +148,14 @@ jsFiles: []
         </div>
             
         <div class="pg-full-height">
+
+            
             
                 
             <header>
 
                 <div class="pg-img-container">
-                    <img src="/_shared/images/header/header-{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] | random}}.jpg" alt="A photo taken from a hill with woodland at bottom and the sea and islands beyond. The furthest island mountains have snow on them. It's a sunny day with blue skies. The view is from above Crinan with the isle of Jura in the background." sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 2000px)) 2000px">
+                    <img src="/_shared/images/header/header-{{imageNumber}}.jpg" alt="{{imageAltArray[imageNumber] | safe}}" sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 2000px)) 2000px">
     
                     <a href="/" class="pg-logo">
                         <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/pg-logo-01.svg" %}</a>
@@ -99,13 +165,13 @@ jsFiles: []
                     <nav class="pg-column-main">
                         <ul>
                             {% set navPages = collections.all | eleventyNavigation %}
-                            {% set navActiveClass = "is-active" %}
+                            {% set navActiveClass = "pg-is-active" %}
                             {%- for navItem in navPages %}
                                 {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
-                                <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li>
+                                {# <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li> #}
     
     
-                                {# {% set urlArray = page
+                                {% set urlArray = page
                                     .url
                                     .split("/") %}
     
@@ -117,7 +183,7 @@ jsFiles: []
                                     <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
                                         <a href="{{ navItem.url }}">{{ navItem.title }}</a>
                                     </li>
-                                {% endif %} #}
+                                {% endif %}
     
                             {%- endfor %}
     
@@ -127,7 +193,29 @@ jsFiles: []
 
             </header>
 
+            
 
+            <div class="pg-column-main pg-image-control-container">
+                <div class="pg-image-controls" style="display:none;">
+                    <button class="pg-needs-js">Zoom</button>
+                    <div>
+                    <button class="pg-needs-js">Previous image</button>
+                    <p class="pg-needs-js">icon</p>
+                    <button class="pg-needs-js">Next image</button>
+                    </div>
+                </div>
+                <details>
+                    <summary aria-label="Show image information">
+                        {% include "../../website-source/_shared/images/icons/icon-triangle-filled.svg" %}
+                        {% include "../../website-source/_shared/images/icons/icon-info-circle-filled.svg" %}
+                    </summary>
+                    <div class="pg-image-info-content-container">
+                        <div class="pg-image-info-content">
+                            <p class="pg-mbs-0">{{imageAltArray[imageNumber] | safe}}</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
 
             
             <main id="main">

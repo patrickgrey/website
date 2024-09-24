@@ -76,6 +76,8 @@
 
     --pg-colour-dark: #333;
     --pg-colour-mid: #666;
+    --pg-colour-highlight: yellow;
+    --pg-colour-outline: hotpink;
 
 
 }
@@ -120,10 +122,13 @@ body {
     background-position: 0 0, var(--pg-bg-position) var(--pg-bg-position);
 }
 
-*::selection {}
+*::selection {
+    background-color: var(--pg-colour-highlight);
+    color: var(--pg-colour-dark);
+}
 
 *:focus-visible {
-    /* outline: var(--rs-outline); */
+    outline: 2px solid var(--pg-colour-outline);
     /* outline-offset: 2px; */
 }
 
@@ -351,17 +356,10 @@ header picture>img {
 }
 
 nav {
-    /* position: absolute;
-    bottom: var(--space-3xs);
-    left: var(--pg-border-width); */
-    /* position: absolute;
-    bottom: 0;
-    left: 0; */
     margin: 0 auto;
     display: block;
     height: 100%;
     position: relative;
-    /* padding: 0 !important; */
 }
 
 
@@ -379,7 +377,11 @@ nav>ul {
 nav>ul>li {
     padding: 0;
     margin: 0;
-    /* line-height: 1; */
+}
+
+nav>ul>li>a {
+    border-start-start-radius: 5px;
+    border-start-end-radius: 5px;
 }
 
 nav>ul>li>a,
@@ -391,10 +393,17 @@ nav>ul>li>a:visited {
     margin: 0;
     padding: var(--space-2xs) var(--space-xs) var(--space-3xs) var(--space-xs);
     text-decoration: none;
-    /* line-height: 1; */
 }
 
-nav>ul>li.is-active>a {}
+nav>ul>li>a:hover {
+    text-decoration: underline;
+}
+
+nav>ul>li.pg-is-active>a {
+    color: var(--pg-colour-highlight);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
 
 .pg-logo {
     position: absolute;
@@ -411,6 +420,106 @@ nav>ul>li.is-active>a {}
     height: auto !important;
     max-width: var(--space-l);
 }
+
+/*
+ ######   #######  ##    ## ######## ########   #######  ##
+##    ## ##     ## ###   ##    ##    ##     ## ##     ## ##
+##       ##     ## ####  ##    ##    ##     ## ##     ## ##
+##       ##     ## ## ## ##    ##    ########  ##     ## ##
+##       ##     ## ##  ####    ##    ##   ##   ##     ## ##
+##    ## ##     ## ##   ###    ##    ##    ##  ##     ## ##
+ ######   #######  ##    ##    ##    ##     ##  #######  ########
+*/
+
+.pg-image-control-container {
+    position: relative;
+    margin-block-start: var(--space-2xs) !important;
+}
+
+.pg-image-control-container button,
+.pg-image-control-container summary {
+    padding: 0 var(--space-s);
+    font-size: var(--font-size--1);
+    height: 45px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    cursor: pointer;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.pg-image-control-container button:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.pg-image-control-container details>summary {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 12px;
+    display: flex;
+    align-content: center;
+    gap: 5px;
+    width: fit-content;
+    padding: 0 var(--space-2xs);
+}
+
+.pg-image-control-container details>summary>svg {
+    width: 2rem !important;
+    height: auto !important;
+}
+
+.pg-image-control-container details>summary>svg:first-child {
+    width: 1rem !important;
+    transform: rotate(90deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.pg-image-control-container details[open]>summary>svg:first-child {
+    transform: rotate(180deg);
+}
+
+.pg-image-control-container details .pg-image-info-content-container {
+    padding-block-start: 60px;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+}
+
+.pg-image-control-container details[open] .pg-image-info-content-container {
+    grid-template-rows: 1fr;
+}
+
+.pg-image-control-container details .pg-image-info-content {
+    background-color: var(--pg-colour-dark);
+    padding: var(--space-xs);
+    color: whitesmoke;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* .pg-image-control-container>div {
+    margin-inline-end: 100px;
+}
+
+.pg-image-control-container>div,
+.pg-image-control-container>div>div {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.pg-image-control-container>div>div {
+    gap: var(--space-3xs);
+}
+
+.pg-image-control-container details>div {
+    width: 100%;
+
+} */
 
 /*
 ##          ###    ##    ##  #######  ##     ## ########
