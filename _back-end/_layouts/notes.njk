@@ -10,10 +10,10 @@ jsFiles: []
         <h1>{{title}}</h1>
         <div class="pg-tags-container">
             <p>Tags:</p>
-            <ul>
+            <ul class="pg-tags-list">
                 {% for tag in tags %}
                     <li>
-                        <a href="/tags/{{ tag | slugify }}/">{{tag}}</a>
+                        <a class="pg-tag" href="/tags/{{ tag | slugify }}/">{{tag}}</a>
                     </li>
                 {% endfor %} 
             </ul>

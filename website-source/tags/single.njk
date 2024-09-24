@@ -16,7 +16,7 @@ permalink: /tags/{{ tag | slugify }}/
 
 <article>
   <div class="pg-column-main">
-    <h1>Tagged "{{ tag }}"</h1>
+    <h1>Tagged <span class="pg-tag">{{ tag }}</span></h1>
 
     {% set notelist = collections[tag] %}
     {% include "note-list.njk" %}

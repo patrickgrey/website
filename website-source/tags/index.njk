@@ -2,14 +2,14 @@
 permalink: /tags/
 ---
 <article>
-  <div class="pg-column-main">
-    <h1><em>Tags</em></h1>
+  <div class="pg-column-main flow">
+    <h1>Tags</h1>
 
-    <ul>
-        {% for tag in collections.all | getAllTags | filterTagList %}
+    <ul class="pg-tags-list">
+        {% for tag in collections.all | getAllTags %}
             {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
             <li>
-                <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>
+                <a href="{{ tagUrl }}" class="pg-tag">{{ tag }}</a>
             </li>
         {% endfor %}
     </ul>
