@@ -148,7 +148,13 @@ h6 {
 
 h1 {
     font-size: var(--font-size-5);
-    margin-block-start: var(--space-xl);
+    margin-block-start: var(--space-l);
+}
+
+@media not (scripting: enabled) {
+    h1 {
+        margin-block-start: var(--space-xl);
+    }
 }
 
 h2 {
@@ -242,7 +248,7 @@ svg:not([width]):not([height]) {
 
 @media not (scripting: enabled) {
     .pg-needs-js {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -380,6 +386,9 @@ nav>ul>li {
 }
 
 nav>ul>li>a {
+    border-block-start: 1px solid rgba(245, 245, 245, 1);
+    border-inline-start: 1px solid rgba(245, 245, 245, 0.5);
+    border-inline-end: 1px solid rgba(245, 245, 245, 0.5);
     border-start-start-radius: 5px;
     border-start-end-radius: 5px;
 }
@@ -433,7 +442,7 @@ nav>ul>li.pg-is-active>a {
 
 .pg-image-control-container {
     position: relative;
-    margin-block-start: var(--space-2xs) !important;
+    margin-block-start: var(--space-xs) !important;
 }
 
 .pg-image-control-container button,
@@ -454,19 +463,25 @@ nav>ul>li.pg-is-active>a {
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
 
+.pg-image-control-container details>summary,
+.pg-image-controls button {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
 .pg-image-control-container details>summary {
     position: absolute;
     cursor: pointer;
     top: 0;
     right: 12px;
-    display: flex;
-    align-content: center;
     gap: 5px;
     width: fit-content;
     padding: 0 var(--space-2xs);
 }
 
-.pg-image-control-container details>summary>svg {
+.pg-image-control-container details>summary>svg,
+.pg-image-controls button>svg {
     width: 2rem !important;
     height: auto !important;
 }
@@ -488,6 +503,12 @@ nav>ul>li.pg-is-active>a {
     transition: grid-template-rows 0.3s ease-out;
 }
 
+@media (scripting: enabled) {
+    .pg-image-control-container details .pg-image-info-content-container {
+        padding-block-start: var(--space-xs);
+    }
+}
+
 .pg-image-control-container details[open] .pg-image-info-content-container {
     grid-template-rows: 1fr;
 }
@@ -500,19 +521,18 @@ nav>ul>li.pg-is-active>a {
     overflow: hidden;
 }
 
-/* .pg-image-control-container>div {
-    margin-inline-end: 100px;
+.pg-image-controls {
+    margin-inline-end: 90px;
 }
 
-.pg-image-control-container>div,
-.pg-image-control-container>div>div {
+.pg-image-controls {
     display: flex;
     justify-content: end;
     flex-wrap: wrap;
     gap: var(--space-xs);
 }
 
-.pg-image-control-container>div>div {
+/* .pg-image-control-container>div>div {
     gap: var(--space-3xs);
 }
 

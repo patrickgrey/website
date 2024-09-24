@@ -75,6 +75,7 @@ jsFiles: []
         {% endfor %}
 
         {% set imageNumber = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] | random %}
+        {% set imageNumber = 13 %}
 
         {% set imageAlt0 = "The beach at Taynload near the ferry to Gigha. An abandoned fishing trawler rests on its side at the top of the beach. The sun is shining and there are blue skies as waves wash up on the beach. The sand is wet and reflective of the sky." %}
 
@@ -155,7 +156,7 @@ jsFiles: []
             <header>
 
                 <div class="pg-img-container">
-                    <img src="/_shared/images/header/header-{{imageNumber}}.jpg" alt="{{imageAltArray[imageNumber] | safe}}" sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 2000px)) 2000px">
+                    <img data-id="headerPhoto" src="/_shared/images/header/header-{{imageNumber}}.jpg" alt="{{imageAltArray[imageNumber] | safe}}" sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 2000px)) 2000px">
     
                     <a href="/" class="pg-logo">
                         <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/pg-logo-01.svg" %}</a>
@@ -194,20 +195,26 @@ jsFiles: []
             </header>
 
             
-
-            <div class="pg-column-main pg-image-control-container">
-                <div class="pg-image-controls" style="display:none;">
-                    <button class="pg-needs-js">Zoom</button>
-                    <div>
-                    <button class="pg-needs-js">Previous image</button>
-                    <p class="pg-needs-js">icon</p>
-                    <button class="pg-needs-js">Next image</button>
+<div class="pg-column-main pg-image-control-container">
+                <div class="pg-image-controls pg-needs-js">
+                    <button data-id="photoMagnify" aria-label="Open dialogue with full photo">
+                        {% include "../../website-source/_shared/images/icons/icon-zoom-in.svg" %}
+                        {# {% include "../../website-source/_shared/images/icons/icon-zoom-out.svg" %} #}
+                        {# {% include "./_shared/images/icons/icon-zoom-in.svg" %} #}
+                        {# {% include "./_shared/images/icons/icon-zoom-out.svg" %} #}
+                        </button>
+                    <div style="display:none;">
+                        <button aria-label="Show image information">Previous image</button>
+                        <p>icon</p>
+                        <button class="pg-needs-js" aria-label="Show image information">Next image</button>
                     </div>
                 </div>
                 <details>
                     <summary aria-label="Show image information">
-                        {% include "../../website-source/_shared/images/icons/icon-triangle-filled.svg" %}
-                        {% include "../../website-source/_shared/images/icons/icon-info-circle-filled.svg" %}
+                         {% include "../../website-source/_shared/images/icons/icon-triangle-filled.svg" %}
+                        {% include "../../website-source/_shared/images/icons/icon-info-circle-filled.svg" %} 
+                        {#{% include "./_shared/images/icons/icon-triangle-filled.svg" %}
+                        {% include "./_shared/images/icons/icon-info-circle.svg" %}#}
                     </summary>
                     <div class="pg-image-info-content-container">
                         <div class="pg-image-info-content">
@@ -216,6 +223,7 @@ jsFiles: []
                     </div>
                 </details>
             </div>
+            
 
             
             <main id="main">
