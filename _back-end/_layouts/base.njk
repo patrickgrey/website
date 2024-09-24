@@ -82,32 +82,29 @@ jsFiles: []
             <p>
                 <a href="#main">Skip to main content</a> or <a href="#footer">the footer</a>.</p>
         </div>
-
-
-            <div class="pg-bg-photo"><img src="/_shared/images/header/header-0.jpg" alt="A photo taken from a hill with woodland at bottom and the sea and islands beyond. The furthest island mountains have snow on them. It's a sunny day with blue skies. The view is from above Crinan with the isle of Jura in the background." sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 1920px)) 1920px"></div>
             
         <div class="pg-full-height">
-            <div class="pg-column-main">
-                <header>
+            
+                
+            <header>
+
+                <div class="pg-img-container">
+                    <img src="/_shared/images/header/header-1.jpg" alt="A photo taken from a hill with woodland at bottom and the sea and islands beyond. The furthest island mountains have snow on them. It's a sunny day with blue skies. The view is from above Crinan with the isle of Jura in the background." sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 2000px)) 2000px">
     
-                    <img src="/_shared/images/header/header-0.jpg" alt="A photo taken from a hill with woodland at bottom and the sea and islands beyond. The furthest island mountains have snow on them. It's a sunny day with blue skies. The view is from above Crinan with the isle of Jura in the background." sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 1920px)) 1920px">
-    
-                    {# <div class="pg-logo-container  pg-column-main"> #}
-                        <a href="/" class="pg-logo">
-                            <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/pg-logo-01.svg" %}</a>
-                        </a>
-                    {# </div> #}
+                    <a href="/" class="pg-logo">
+                        <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/pg-logo-01.svg" %}</a>
+                    </a>
     
     
-                    <nav>
+                    <nav class="pg-column-main">
                         <ul>
                             {% set navPages = collections.all | eleventyNavigation %}
                             {% set navActiveClass = "is-active" %}
                             {%- for navItem in navPages %}
                                 {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
                                 <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li>
-
-
+    
+    
                                 {# {% set urlArray = page
                                     .url
                                     .split("/") %}
@@ -126,13 +123,11 @@ jsFiles: []
     
                         </ul>
                     </nav>
-    
-                </header>
+                </div>
 
-                <!--<div class="pg-header-control">
-                    <p>Control panel</p>
-                </div>-->
-            </div>
+            </header>
+
+
 
             
             <main id="main">
