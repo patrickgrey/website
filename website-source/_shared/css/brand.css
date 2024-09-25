@@ -363,6 +363,7 @@ header picture {
 header picture>img {
     pointer-events: none;
     object-fit: cover;
+    object-position: center center;
     /* height: calc(var(--pg-header-height) - (var(--pg-header-padding-bottom)*2)); */
     height: 100%;
     width: 100%;
@@ -454,7 +455,7 @@ nav>ul>li.pg-is-active>a {
 
 .pg-image-control-container button,
 .pg-image-control-container summary {
-    padding: 0 var(--space-s);
+    padding: 0 var(--space-2xs);
     font-size: var(--font-size--1);
     height: 45px;
     border-radius: 0.5em;
@@ -465,13 +466,22 @@ nav>ul>li.pg-is-active>a {
     box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
 
+@media screen and (min-width: 600px) {
+
+    .pg-image-control-container button,
+    .pg-image-control-container summary {
+        padding: 0 var(--space-s);
+    }
+}
+
 .pg-image-control-container button:active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
 
 .pg-image-control-container details>summary,
-.pg-image-controls button {
+.pg-image-controls button,
+.pg-image-controls-steps {
     display: flex;
     align-content: center;
     flex-wrap: wrap;
@@ -488,9 +498,14 @@ nav>ul>li.pg-is-active>a {
 }
 
 .pg-image-control-container details>summary>svg,
-.pg-image-controls button>svg {
+.pg-image-controls button>svg,
+.pg-image-controls-steps>svg {
     width: 2rem !important;
     height: auto !important;
+}
+
+.pg-image-controls-steps>svg {
+    color: #999;
 }
 
 .pg-image-control-container details>summary>svg:first-child {
@@ -536,17 +551,13 @@ nav>ul>li.pg-is-active>a {
     display: flex;
     justify-content: end;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--space-2xs);
 }
 
-/* .pg-image-control-container>div>div {
-    gap: var(--space-3xs);
+.pg-image-controls-steps {
+    gap: var(--space-2xs);
+    flex-wrap: nowrap;
 }
-
-.pg-image-control-container details>div {
-    width: 100%;
-
-} */
 
 /*
 ##          ###    ##    ##  #######  ##     ## ########

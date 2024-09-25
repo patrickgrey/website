@@ -74,7 +74,7 @@ jsFiles: []
             <script type="module" defer src="{{file}}"></script>
         {% endfor %}
 
-        {% set imageNumber = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] | random %}
+        {% set imageNumber = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] | random %}
         {% set imageNumber = 13 %}
 
         {% set imageAlt0 = "The beach at Taynload near the ferry to Gigha. An abandoned fishing trawler rests on its side at the top of the beach. The sun is shining and there are blue skies as waves wash up on the beach. The sand is wet and reflective of the sky." %}
@@ -113,10 +113,12 @@ jsFiles: []
 
         {% set imageAlt16 = "A view from on top a hill looking across a vast strech of water to the Isle of Jura. Multiple small islands are spread across the water as are several sailing boats. There's a nice blue sky." %}
 
-        {% set imageAltArray = [imageAlt0,imageAlt1,imageAlt2,imageAlt3,imageAlt4,imageAlt5,imageAlt6,imageAlt7,imageAlt8,imageAlt9,imageAlt10,imageAlt11,imageAlt12,imageAlt13,imageAlt14,imageAlt15,imageAlt16] %}
+        {% set imageAlt17 = "Fingers of a setting sun shining through clouds above some trees." %}
+
+        {% set imageAltArray = [imageAlt0,imageAlt1,imageAlt2,imageAlt3,imageAlt4,imageAlt5,imageAlt6,imageAlt7,imageAlt8,imageAlt9,imageAlt10,imageAlt11,imageAlt12,imageAlt13,imageAlt14,imageAlt15,imageAlt16,imageAlt17] %}
 
         <script>
-            const currentImage = {{imageNumber}};
+            let imageID = {{imageNumber}};
             const altDictionary = {
                 0: `{{imageAlt0 | safe}}`,
                 1: `{{imageAlt1 | safe}}`,
@@ -134,9 +136,10 @@ jsFiles: []
                 13: `{{imageAlt13 | safe}}`,
                 14: `{{imageAlt14 | safe}}`,
                 15: `{{imageAlt15 | safe}}`,
-                16: `{{imageAlt16 | safe}}`                
+                16: `{{imageAlt16 | safe}}`,                
+                17: `{{imageAlt17 | safe}}`                
             }
-            const currentAlt = "{{imageAltArray[imageNumber] | safe}}"
+            let currentAlt = "{{imageAltArray[imageNumber] | safe}}"
         </script>
 
     </head>
@@ -156,7 +159,7 @@ jsFiles: []
             <header>
 
                 <div class="pg-img-container">
-                    <img data-id="headerPhoto" src="/_shared/images/header/header-{{imageNumber}}.jpg" alt="{{imageAltArray[imageNumber] | safe}}" sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) and (max-width: 2000px)) 2000px">
+                    <img data-id="headerPhoto" src="/_shared/images/header/header-{{imageNumber}}.jpg" alt="{{imageAltArray[imageNumber] | safe}}" sizes="(max-width: 600px) 600px, ((min-width: 601px) and (max-width: 999px)) 1000px, ((min-width: 1000px) 2000px">
     
                     <a href="/" class="pg-logo">
                         <span class="visually-hidden">Go to the home page.</span>{% include "../../website-source/_shared/images/logo/pg-logo-01.svg" %}</a>
@@ -198,23 +201,30 @@ jsFiles: []
 <div class="pg-column-main pg-image-control-container">
                 <div class="pg-image-controls pg-needs-js">
                     <button data-id="photoMagnify" aria-label="Open dialogue with full photo">
-                        {% include "../../website-source/_shared/images/icons/icon-zoom-in.svg" %}
+                        {% include "../../website-source/_shared/images/icons/icon-zoom-out.svg" %}
                         {# {% include "../../website-source/_shared/images/icons/icon-zoom-out.svg" %} #}
                         {# {% include "./_shared/images/icons/icon-zoom-in.svg" %} #}
                         {# {% include "./_shared/images/icons/icon-zoom-out.svg" %} #}
                         </button>
-                    <div style="display:none;">
-                        <button aria-label="Show image information">Previous image</button>
-                        <p>icon</p>
-                        <button class="pg-needs-js" aria-label="Show image information">Next image</button>
+                    <div  class="pg-image-controls-steps">
+                        <button aria-label="Previous image">
+                          {# {% include "./_shared/images/icons/icon-arrow-circle-left.svg" %} #}
+                          {% include "../../website-source/_shared/images/icons/icon-arrow-circle-left.svg" %}
+                        </button>
+                        {# {% include "./_shared/images/icons/icon-photo-filled.svg" %} #}
+                        {# {% include "../../website-source/_shared/images/icons/icon-photo-filled.svg" %} #}
+                        <button aria-label="Next image">
+                          {# {% include "./_shared/images/icons/icon-arrow-circle-right.svg" %} #}
+                          {% include "../../website-source/_shared/images/icons/icon-arrow-circle-right.svg" %}
+                        </button>
                     </div>
                 </div>
                 <details>
                     <summary aria-label="Show image information">
                          {% include "../../website-source/_shared/images/icons/icon-triangle-filled.svg" %}
-                        {% include "../../website-source/_shared/images/icons/icon-info-circle-filled.svg" %} 
-                        {#{% include "./_shared/images/icons/icon-triangle-filled.svg" %}
-                        {% include "./_shared/images/icons/icon-info-circle.svg" %}#}
+                        {% include "../../website-source/_shared/images/icons/icon-info-circle.svg" %} 
+                        {# {% include "./_shared/images/icons/icon-triangle-filled.svg" %} #}
+                        {# {% include "./_shared/images/icons/icon-info-circle.svg" %} #}
                     </summary>
                     <div class="pg-image-info-content-container">
                         <div class="pg-image-info-content">
