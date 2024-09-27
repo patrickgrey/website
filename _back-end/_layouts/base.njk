@@ -173,20 +173,22 @@ jsFiles: []
                             {%- for navItem in navPages %}
                                 {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
                                 {# <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li> #}
-    
-    
-                                {% set urlArray = page
-                                    .url
-                                    .split("/") %}
-    
-                                {% if (navItem.url == "/") %}
-                                    <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
-                                    </li>
-                                {% elif navItem.url and page.url %}
-                                    <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
-                                    </li>
+                                {% if page.url %}
+        
+                                    {% set urlArray = page
+                                        .url
+                                        .split("/") %}
+        
+                                    {% if (navItem.url == "/") %}
+                                        <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
+                                            <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                        </li>
+                                    {% elif navItem.url and page.url %}
+                                        <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
+                                            <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                        </li>
+                                    {% endif %}
+                                    
                                 {% endif %}
     
                             {%- endfor %}
