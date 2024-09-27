@@ -9,7 +9,7 @@ backend:
   delete: Delete {{collection}} "{{slug}}"
   uploadMedia: Upload "{{path}}"
   deleteMedia: Delete "{{path}}"
-media_folder: "_shared/uploads"
+media_folder: "website-source/_shared/uploads"
 site_url: "https://patrickgrey.co.uk"
 logo_url: "https://patrickgrey.co.uk/_shared/images/logo/pg-logo-01.svg"
 search: false

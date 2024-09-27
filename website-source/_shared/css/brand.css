@@ -330,16 +330,25 @@ svg:not([width]):not([height]) {
 */
 
 header {
+    --pg-bg-alpha: 0.7;
     --pg-header-padding-bottom: var(--space-2xs);
     display: block;
 
-    background-color: var(--pg-colour-dark);
+    background-color: whitesmoke;
     height: var(--pg-header-height);
     width: 100%;
-    /* border-block-start: var(--pg-header-padding-bottom) solid var(--pg-colour-dark); */
-    /* border-block-end: var(--pg-header-padding-bottom) solid var(--pg-colour-dark); */
-    padding-block-start: var(--pg-header-padding-bottom);
-    padding-block-end: var(--pg-header-padding-bottom);
+    border-block-start: var(--pg-header-padding-bottom) solid var(--pg-colour-dark);
+    border-block-end: var(--pg-header-padding-bottom) solid var(--pg-colour-dark);
+    /* padding-block-start: var(--pg-header-padding-bottom); */
+    /* padding-block-end: var(--pg-header-padding-bottom); */
+    --pg-bg-size: 0.5rem;
+    --pg-bg-position: calc(var(--pg-bg-size) / 2);
+
+    background-image: radial-gradient(circle at center,
+            rgba(51, 51, 51, var(--pg-bg-alpha)) 1px,
+            transparent 0), radial-gradient(circle at center, rgba(51, 51, 51, var(--pg-bg-alpha)) 1px, transparent 0);
+    background-size: var(--pg-bg-size) var(--pg-bg-size);
+    background-position: 0 0, var(--pg-bg-position) var(--pg-bg-position);
 }
 
 header>.pg-img-container {
@@ -367,6 +376,8 @@ header picture>img {
     /* height: calc(var(--pg-header-height) - (var(--pg-header-padding-bottom)*2)); */
     height: 100%;
     width: 100%;
+    /* border-inline-start: 1px solid var(--pg-colour-dark); */
+    /* border-inline-end: 1px solid var(--pg-colour-dark); */
 }
 
 nav {
@@ -394,9 +405,9 @@ nav>ul>li {
 }
 
 nav>ul>li>a {
-    border-block-start: 1px solid rgba(245, 245, 245, 1);
-    border-inline-start: 1px solid rgba(245, 245, 245, 0.5);
-    border-inline-end: 1px solid rgba(245, 245, 245, 0.5);
+    /* border-block-start: 1px solid rgba(245, 245, 245, 1); */
+    /* border-inline-start: 1px solid rgba(245, 245, 245, 0.5); */
+    /* border-inline-end: 1px solid rgba(245, 245, 245, 0.5); */
     border-start-start-radius: 5px;
     border-start-end-radius: 5px;
 }
@@ -408,7 +419,7 @@ nav>ul>li>a:visited {
     background-color: var(--pg-colour-dark);
     color: whitesmoke;
     margin: 0;
-    padding: var(--space-2xs) var(--space-xs) var(--space-3xs) var(--space-xs);
+    padding: var(--space-2xs) var(--space-xs) var(--space-xs) var(--space-xs);
     text-decoration: none;
 }
 

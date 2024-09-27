@@ -200,9 +200,9 @@ jsFiles: []
             </header>
 
             
-<div class="pg-column-main pg-image-control-container">
+            <div class="pg-column-main pg-image-control-container">
                 <div class="pg-image-controls pg-needs-js">
-                    <button data-id="photoMagnify" aria-label="Open dialogue with full photo">
+                    <button data-id="photoMagnify" aria-label="Shrink the header photo to be contained.">
                         {% include "../../website-source/_shared/images/icons/icon-zoom-out.svg" %}
                         {# {% include "../../website-source/_shared/images/icons/icon-zoom-out.svg" %} #}
                         {# {% include "./_shared/images/icons/icon-zoom-in.svg" %} #}
@@ -230,7 +230,7 @@ jsFiles: []
                     </summary>
                     <div class="pg-image-info-content-container">
                         <div class="pg-image-info-content">
-                            <p class="pg-mbs-0">{{imageAltArray[imageNumber] | safe}}</p>
+                            <p class="pg-mbs-0" aria-live="polite">{{imageAltArray[imageNumber] | safe}}</p>
                         </div>
                     </div>
                 </details>
