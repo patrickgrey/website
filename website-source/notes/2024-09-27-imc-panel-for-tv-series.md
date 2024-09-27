@@ -9,7 +9,7 @@ tags:
 draft: true
 publish: 2024-09-27T09:15:00.000Z
 ---
-EUROCONTROL are launching a series of programmes to raise awareness of cyber security issues. It's called, "The inside man". I was asked to design and build a new panel for the [ALC Learning Zone home page](https://learningzone.eurocontrol.int/ilp/) (IMC LMS) to promote the series.
+EUROCONTROL are launching a series of programmes to raise awareness of cyber security issues. It's called, "The inside man". I was asked to design and build a new panel for the [ALC Learning Zone home page](https://learningzone.eurocontrol.int/ilp/) (IMC LMS) to promote the series. It incorporates the series poster that was designed by the production company.
 
 The panel had to be responsive and have self contained CSS so that it doesn't 'pollute' the rest of the page. I build an 11ty starter template for these panels that would make sure everything was output as required. I designed small, medium and large versions in Illustrator then built it once the designs were agreed. You can see screenshots of the result below.
 
