@@ -8,6 +8,7 @@
     "serve": "cross-env DEV_ENVIRONMENT=dev npx @11ty/eleventy --serve ",
     "decap": "npx decap-server",
     "dev": "run-s del serve",
+    "debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --dryrun",
     "build:11ty": "cross-env DEV_ENVIRONMENT=prod npx @11ty/eleventy",
     "build:esbuild": "node _back-end/build.mjs",
     "build:server": "npx @11ty/eleventy-dev-server --dir=website-build",

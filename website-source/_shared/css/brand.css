@@ -219,6 +219,10 @@ a[href^="#"]::after {
     margin-inline-end: 5px;
 }
 
+time {
+    white-space: nowrap;
+}
+
 /*
 .##.....##.########.####.##.......####.########.####.########..######.
 .##.....##....##.....##..##........##.....##.....##..##.......##....##
@@ -616,32 +620,30 @@ nav>ul>li.pg-is-active>a {
     margin-inline-start: var(--space-2xs);
 }
 
-/*
-##    ##  #######  ######## ########  ######
-###   ## ##     ##    ##    ##       ##    ##
-####  ## ##     ##    ##    ##       ##
-## ## ## ##     ##    ##    ######    ######
-##  #### ##     ##    ##    ##             ##
-##   ### ##     ##    ##    ##       ##    ##
-##    ##  #######     ##    ########  ######
-*/
-
-.pg-list-notes {
+.pg-list-notes,
+.pg-list-reading {
     padding-inline-start: 0;
 }
 
-.pg-list-notes>li {
+.pg-list-notes>li,
+.pg-list-reading>li {
     background-color: var(--pg-colour-light-grey);
     margin-block-end: var(--space-2xs);
     padding: var(--space-2xs);
     border-radius: 5px;
 }
 
-.pg-list-notes>li>a {
+.pg-list-reading>li>p {
+    margin: 0;
+}
+
+.pg-list-notes>li>a,
+.pg-list-reading>li>p>a {
     font-weight: bold;
 }
 
-.pg-list-notes>li>a::before {
+.pg-list-notes>li>a::before,
+.pg-list-reading>li>p>a::before {
     content: "";
     display: inline-block;
     width: 1em;
@@ -651,8 +653,36 @@ nav>ul>li.pg-is-active>a {
     vertical-align: text-top;
 }
 
-.pg-list-notes>li .pg-tags-list {
+.pg-list-reading>li>p>a::before {
+    background-image: url(/_shared/images/icons/icon-book.svg);
+    margin-inline-end: var(--space-2xs);
+}
+
+.pg-list-notes>li .pg-tags-list,
+.pg-list-reading>li .pg-tags-list {
     margin-block-start: var(--space-2xs);
+}
+
+/*
+########  ########    ###    ########
+##     ## ##         ## ##   ##     ##
+##     ## ##        ##   ##  ##     ##
+########  ######   ##     ## ##     ##
+##   ##   ##       ######### ##     ##
+##    ##  ##       ##     ## ##     ##
+##     ## ######## ##     ## ########
+*/
+
+.pg-read-label {
+    color: var(--pg-colour-mid);
+}
+
+.pg-list-reading>li[data-media="video"]>p>a::before {
+    background-image: url(/_shared/images/icons/icon-video.svg);
+}
+
+.pg-list-reading>li[data-media="podcast"]>p>a::before {
+    background-image: url(/_shared/images/icons/icon-podcast.svg);
 }
 
 /*
@@ -694,6 +724,7 @@ nav>ul>li.pg-is-active>a {
     border-start-end-radius: 5px;
     border-end-end-radius: 5px;
     border-end-start-radius: 5px;
+    font-size: var(--font-size--1);
 }
 
 .pg-tag::before {

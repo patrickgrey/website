@@ -96,6 +96,10 @@ export default async function (eleventyConfig) {
         return DateTime.fromJSDate(dateObj, { zone: zone || "utc" }).toFormat(format || "dd LLLL yyyy");
     });
 
+    eleventyConfig.addFilter('stringToDate', (dateString) => {
+        return new Date(dateString)
+    });
+
     eleventyConfig.addFilter('htmlDateString', (dateObj) => {
         // dateObj input: https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
         return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd');

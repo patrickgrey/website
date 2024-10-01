@@ -44,8 +44,22 @@ permalink: "admin/index.html"
                     );
             }
         });
+
+        const ReadingPreview = createClass({
+            render: function() {
+            const entry = this.props.entry;
+
+            return h('article', {}, //wrap the content in an article and div to get the same layout as the main website.
+                        h('div', {"className": "pg-column-main"},
+                            h('h1', {}, entry.getIn(['data', 'title']))
+                        )
+                    );
+            }
+        });
+        
         // Register the above class for use
         CMS.registerPreviewTemplate("notes", NotePreview);
+        CMS.registerPreviewTemplate("reading", ReadingPreview);
         // Inlcude the websites style sheets and boom, it starts to look very similar.
         CMS.registerPreviewStyle("/_shared/css/reset.css");
         CMS.registerPreviewStyle("/_shared/css/brand.css");
@@ -53,6 +67,8 @@ permalink: "admin/index.html"
         // This admin only CSS helps mimic the main site and adds simple syntax highlighting.
         CMS.registerPreviewStyle("admin.css");
     </script>
+
+    <link href="mobile-overrides.css" rel="stylesheet" />
 
 </body>
 

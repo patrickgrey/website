@@ -28,3 +28,18 @@ collections:
       - { label: "Publish Date", name: "publish", widget: "datetime" }
       - { label: "Update Date", name: "update", widget: "datetime", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
+  - name: "reading"
+    label: "Reading lists"
+    folder: "website-source/reading"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "Url", name: "url", widget: "string"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date read", name: "dateRead", widget: "datetime"}
+      - {label: "Authors", name: "authors", widget: "list"}
+      - {label: "Notes", name: "notes", widget: "text"}
+      - {label: "Topics", name: "topics", widget: "list"}
+      - {label: "Purposes", name: "purposes", widget: "list"}
