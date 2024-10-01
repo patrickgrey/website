@@ -12,7 +12,7 @@ I needed to get my content into the right format for Decap to manage the content
 
 * Convert JSON to a single YAML using <https://jsonformatter.org/json-to-yaml>
 * I installed a tool called YQ to split the big YAML file into multiple YAML files with the correct title. I used "WINGET" to do this - already a part of Powershell it seems. From here <https://github.com/mikefarah/yq/?tab=readme-ov-file> I got this install instruction: `winget install --id MikeFarah.yq`
-* I used this command `yq '.[]' reading.yml -s 'dateRead. + "-" + (.title | downcase |= sub(" ", "-"))'`
+* I used this command `yq '.[]' reading.yml -s '.dateRead + "-" + (.title | downcase |= sub(" ", "-"))'`
 
 The YAML file had an array of posts like this:
 
