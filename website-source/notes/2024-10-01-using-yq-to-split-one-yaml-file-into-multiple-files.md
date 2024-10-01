@@ -3,7 +3,7 @@ title: Using YQ to split one YAML file into multiple files
 tags:
   - YAML
   - YQ
-draft: true
+draft: false
 publish: 2024-10-01T13:19:00.000Z
 ---
 I had a single JSON file with my reading history in it. I wanted to use that with Decap CSM which is running this website at the moment. Unfortunately, it doesn't seem possible use a single file in Decap that contains a collection of data that 11ty can get data from.
@@ -12,7 +12,7 @@ I needed to get my content into the right format for Decap to manage the content
 
 * Convert JSON to a single YAML using <https://jsonformatter.org/json-to-yaml>
 * I installed a tool called YQ to split the big YAML file into multiple YAML files with the correct title. I used "WINGET" to do this - already a part of Powershell it seems. From here <https://github.com/mikefarah/yq/?tab=readme-ov-file> I got this install instruction: `winget install --id MikeFarah.yq`
-* I used this command `yq '.[]' reading.yml -s '.dateRead + "-" + (.title | downcase |= sub(" ", "-"))'`
+* I to use this command `yq '.[]' reading.yml -s '.dateRead + "-" + (.title | downcase |= sub(" ", "-"))' `but I couldn't get the filename sanitized so I just went with `yq '.[]' reading.yml -s '.dateRead + \"-\" + \"oldfile\" + $index'`
 
 The YAML file had an array of posts like this:
 
@@ -46,4 +46,4 @@ The YAML file had an array of posts like this:
     - personal
 ```
 
-The shell code replaces spaces in the title with hyphens after it's all made lower case. Let's see if it works...
+The shell code replaces spaces in the title with hyphens after it's all made lower case. Let's see if it works... It does!!
