@@ -6,7 +6,7 @@ tags:
   - project
   - EUROCONTROL
   - 11ty
-draft: true
+draft: false
 publish: 2024-09-27T09:15:00.000Z
 ---
 EUROCONTROL are launching a series of programmes to raise awareness of cyber security issues. It's called, "The inside man". I was asked to design and build a new panel for the [ALC Learning Zone home page](https://learningzone.eurocontrol.int/ilp/) (IMC LMS) to promote the series. It incorporates the series poster that was designed by the production company.
