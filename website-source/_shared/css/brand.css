@@ -223,6 +223,15 @@ time {
     white-space: nowrap;
 }
 
+p>code,
+li>code {
+    background-color: var(--pg-colour-mid);
+    border-block-start: 2px solid var(--pg-colour-mid);
+    border-block-end: 2px solid var(--pg-colour-mid);
+    color: whitesmoke;
+    padding-inline: var(--space-3xs);
+}
+
 /*
 .##.....##.########.####.##.......####.########.####.########..######.
 .##.....##....##.....##..##........##.....##.....##..##.......##....##
@@ -423,7 +432,7 @@ nav>ul>li>a:visited {
     background-color: var(--pg-colour-dark);
     color: whitesmoke;
     margin: 0;
-    padding: var(--space-2xs) var(--space-xs) var(--space-xs) var(--space-xs);
+    padding: var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-xs);
     text-decoration: none;
 }
 

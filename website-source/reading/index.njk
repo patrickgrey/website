@@ -8,15 +8,15 @@ override:tags: []
 
 <article>
     <div class="pg-column-main flow">  
-      <h1>Reading list</h1>
+      <h1>Reading list</h1> 
       <p>Here's a list of what I've been reading / watching / listening to this year.</p>
 
         <ol class="pg-list pg-list-reading">
-                    {% for read in collections.reading | reverse %}
+                    {% for read in collections.reading | sort(false, false, 'data.dateRead') | reverse %}
                         <li data-purpose="{{read.data.purpose}}"  data-media="{{read.data.media}}">
                             <p>
                                 <a href="{{read.data.url}}" target="_blank">{{read.data.title}}</a>
-                                <time class="notelist-date" datetime="{{read.data.dateRead | stringToDate |  htmlDateString}}">{{read.data.dateRead | stringToDate | readableDate}}</time>
+                                <time class="notelist-date" datetime="{{read.data.dateRead | string | stringToDate |  htmlDateString}}">{{read.data.dateRead | string | stringToDate | readableDate}}</time>
                             </p>
                             {% if read.data.authors and read.data.authors.length != 0 %}
                             <p><span class="pg-read-label">Author(s):</span>
