@@ -2,6 +2,7 @@ import { minify } from "terser";
 import { DateTime } from "luxon";
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy"
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import pluginBundle from "@11ty/eleventy-plugin-bundle";
 import eleventyAutoCacheBuster from "eleventy-auto-cache-buster";
 import { pluginDrafts } from "./_back-end/config/eleventy.config.drafts.js";
 import { pluginReading } from "./_back-end/config/eleventy.config.reading.js";
@@ -11,7 +12,7 @@ const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const pluginBundle = require("@11ty/eleventy-plugin-bundle");
+// const pluginBundle = require("@11ty/eleventy-plugin-bundle");
 const safeLinks = require('@sardine/eleventy-plugin-external-links');
 import { transform } from 'lightningcss';
 
