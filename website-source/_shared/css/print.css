@@ -1,0 +1,9 @@
+img {
+    display: block;
+    width: 60vw;
+    height: auto;
+    max-height: 30vh;
+    object-fit: contain;
+    object-position: center center;
+    margin: 1rem auto;
+}

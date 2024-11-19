@@ -62,6 +62,8 @@ jsFiles: []
             <link rel="stylesheet" href="{{file}}">
         {% endfor %}
 
+        <link rel="stylesheet" media="print" href="/_shared/css/print.css">
+
         {% if env === 'dev' %}
             <script defer src="/_shared/js/shared.js"></script>
         {% endif %}
