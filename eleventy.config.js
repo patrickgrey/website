@@ -19,7 +19,7 @@ import { transform } from 'lightningcss';
 
 export default async function (eleventyConfig) {
 
-    eleventyConfig.addPassthroughCopy("website-source/**/*.(css|js|json)");
+    eleventyConfig.addPassthroughCopy("website-source/**/*.(css|js|json|xsl|xml)");
     eleventyConfig.addPassthroughCopy("website-source/**/*.{svg,webp,avif,png,jpeg,jpg,ico,webmanifest,txt,ttf,yml}");
 
 
@@ -31,6 +31,25 @@ export default async function (eleventyConfig) {
 
     // Official plugins
     eleventyConfig.addPlugin(pluginRss);
+    // eleventyConfig.addPlugin(pluginRss, {
+    //     type: "atom", // or "rss", "json"
+    //     outputPath: "/feed/feed.xml",
+    //     stylesheet: "pretty-atom-feed.xsl",
+    //     collection: {
+    //         name: "note",
+    //         limit: 0,
+    //     },
+    //     metadata: {
+    //         language: "en",
+    //         title: "Patrick Grey",
+    //         subtitle: "A web developer living, working and playing in Scotland.",
+    //         base: "https://www.patrickgrey.co.uk/",
+    //         author: {
+    //             name: "Patrick Grey"
+    //         }
+    //     }
+    // });
+
     eleventyConfig.addPlugin(pluginSyntaxHighlight, {
         preAttributes: { tabindex: 0 }
     });

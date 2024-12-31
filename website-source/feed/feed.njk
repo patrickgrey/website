@@ -1,0 +1,37 @@
+---json
+{
+  "permalink": "feed/feed.xml",
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "title": "Patrick Grey",
+    "description": "A web developer living, working and playing in Scotland.",
+    "language": "en",
+    "base": "https://patrickgrey.co.uk/",
+    "author": {
+      "name": "Patrick Grey"
+    }
+  }
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
+  <title>{{ metadata.title }}</title>
+  <subtitle>{{ metadata.description }}</subtitle>
+  <link href="https://patrickgrey.co.uk/feed/feed.xml" rel="self" />
+  <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
+  <updated>{{ collections.note | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+  </author>
+  {%- for note in collections.note | reverse %}
+  {%- set absolutePostUrl %}{{ note.url | htmlBaseUrl(metadata.base) }}{% endset %}
+  <entry>
+    <title>{{ note.data.title }}</title>
+    <link href="{{ absolutePostUrl }}" />
+    <updated>{{ note.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">{{ note.content | renderTransforms(note.data.page, metadata.base) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>
