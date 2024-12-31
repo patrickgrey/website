@@ -6,7 +6,9 @@ authors:
   - Elly Loel
 notes: Elly does a great job of outlining the difficulties in answering the job
   title question, "What do I call myself"? The question helps to illustrate some
-  of the problems endemic in the tech industry today.
+  of the problems endemic in the tech industry today. I think this article came
+  out when more and more people were starting realise the issues that React was
+  creating. Since then, I think the movement has only got stronger.
 topics:
   - web development
 purposes:
