@@ -68,7 +68,7 @@ https://nicolas-hoizey.com/feeds/all.xml
                         <p>
                             <xsl:value-of select="atom:feed/atom:description"/>
                         </p>
-                        <p>This preview only shows titles, but the actual feed contains the full content.</p>
+                        <!-- <p>This preview only shows titles, but the actual feed contains the full content.</p> -->
                         <a class="head_link">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="/atom:feed/atom:link[not(@rel)]/@href"/>
