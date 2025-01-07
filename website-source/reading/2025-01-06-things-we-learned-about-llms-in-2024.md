@@ -11,7 +11,11 @@ notes: "This is an expert and fair review of the LLM domain to date. It notes
   motorways: adding more lanes encourages more traffic. I think the main problem
   will remain something that wasn't mentioned here. The organisations behind
   this tech are mostly bad actor acolyte's of unfettered capitlaism. Profit
-  without regard to humans. We've seen this before."
+  without regard to humans. We've seen this before. That and missing Government
+  regulation.  And here is where the big profit is:
+  https://www.theguardian.com/technology/2025/jan/07/uk-government-ai-military-\
+  drones-faculty-ai-artificial-intelligence. The only regulation the UK
+  government has proposed so far is to excuse LLMs from copyright law."
 topics:
   - LLM
 purposes:
