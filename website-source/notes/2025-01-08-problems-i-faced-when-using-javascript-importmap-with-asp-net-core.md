@@ -3,7 +3,6 @@ title: Problems I faced when using Javascript importmap with ASP.NET Core
 tags:
   - javascript
   - asp.net
-draft: true
 publish: 2025-01-08T16:22:00.000Z
 ---
 I needed to use [CKEditor 5](https://github.com/ckeditor/ckeditor5/) in a web page we were building. CKEditor is a library that transforms textareas (and other elements) into a rich text editor.  CKEditor has a [build tool](https://ckeditor.com/ckeditor-5/builder/) that allows you to include only the features you need. To load the javascript file that produces, thier site recommends using an importmap.
