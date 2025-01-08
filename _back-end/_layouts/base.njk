@@ -22,6 +22,14 @@ jsFiles: []
         <meta name="generator" content="{{ eleventy.generator }}">
         <meta name="theme-color" content="#ffffff">
 
+        <meta property="og:title" content="{{ title | striptags(false) }}">
+        <meta property="og:url" content="{{ metadata.url + page.url | url }}">
+        <meta property="og:description" content="{{ description or metadata.description }}">
+        <meta name="fediverse:creator" content="@patrick@glasgow.social">
+        <meta property="og:image" content="{{ metadata.url }}/_shared/images/header/header-4.jpg">
+
+        
+
         <link rel="me" href="https://glasgow.social/@patrick">
         <link rel="icon" type="image/svg+xml" href="/_shared/favicons/favicon.svg">
 <link rel="icon" type="image/png" href="/_shared/favicons/favicon.png">
