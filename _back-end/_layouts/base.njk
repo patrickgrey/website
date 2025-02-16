@@ -51,6 +51,42 @@ jsFiles: []
             shared .token.tag {
                 color: hotpink !important;
             }
+
+            pre {
+                counter-reset: lineNumber;
+            }
+
+            code .highlight-line::before {
+                -webkit-user-select: none;
+                border-right: 1px solid #404040;
+                color: #858585;
+                content: counter(lineNumber);
+                counter-increment: lineNumber;
+                display: inline-block;
+                font-variant-numeric: tabular-nums;
+                margin-right: 1.2em;
+                padding-right: 1.2em;
+                text-align: right;
+                width: 2.4em;
+            }
+
+            pre[data-language]::before {
+                content: attr(data-language);
+                color: yellow;
+                transform: translateX(0.5rem) translateY(-1rem);
+                pointer-events: none;
+                text-align: end;
+                text-transform: uppercase;
+                z-index: 1;
+                margin-block-end: -24px;
+                padding: 6px;
+                font-size: 12px;
+                font-style: italic;
+                line-height: 1;
+                display: block;
+                position: sticky;
+                inset-inline-start: 0;
+            }
         </style>
 
         {% if env === 'dev' %}
@@ -74,6 +110,21 @@ jsFiles: []
 
         <link rel="stylesheet" media="print" href="/_shared/css/print.css">
 
+        {% if jsImports.length > 0 %}
+        <script type="importmap">
+            {
+                "imports": {
+                    {% for file in jsImports %}
+                    "{{file.name}}": "{{file.path}}"
+                    {%- if not loop.last -%}
+                    ,
+                    {% endif %}
+                    {% endfor %}
+                }
+            }
+        </script>
+        {% endif %}
+
         {% if env === 'dev' %}
             <script defer src="/_shared/js/shared.js"></script>
         {% endif %}
@@ -83,7 +134,7 @@ jsFiles: []
         {% endfor %}
 
         {% for file in jsFiles %}
-            <script type="module" defer src="{{file}}"></script>
+            <script type="module" src="{{file}}"></script>
         {% endfor %}
 
         {% set imageNumber = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] | random %}

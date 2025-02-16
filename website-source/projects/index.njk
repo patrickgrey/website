@@ -1,0 +1,37 @@
+---
+title: Projects
+layout: base
+eleventyNavigation:
+  key: projects
+  order: 3
+---
+
+<article>
+
+    <div class="pg-column-main flow"> 
+
+        <h1>{{title}}</h1>
+
+        <p>I want to use this part of the website to experiment with side projects. Some are small and just used for learning. Some might actually be a thing. Finally, I keep notes on current work projects (anonymised) to help me build a CV or write tenders at a later point.</p>
+
+        <h2>Learning projects</h2>
+
+        <ul reversed class="pg-list">
+            {% for learn in collections.learning | reverse %}
+                    <li>
+
+                        <a href="{{ learn.url }}" class="notelist-link">
+                            {% if learn.data.title %}
+                                {{ learn.data.title | trim | striptags(false) }}
+                            {% else %}
+                                {{ learn.url | trim }}
+                            {% endif %}
+                        </a><time class="" datetime="{{ learn.date | htmlDateString }}">{{ learn.date | readableDate("dd LLLL yyyy") }}</time>
+
+                    </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+</article>

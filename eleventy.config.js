@@ -8,7 +8,7 @@ import { pluginDrafts } from "./_back-end/config/eleventy.config.drafts.js";
 import { pluginReading } from "./_back-end/config/eleventy.config.reading.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
+// const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -51,7 +51,13 @@ export default async function (eleventyConfig) {
     // });
 
     eleventyConfig.addPlugin(pluginSyntaxHighlight, {
-        preAttributes: { tabindex: 0 }
+        alwaysWrapLineHighlights: true,
+        preAttributes: {
+            tabindex: 0,
+            "data-language": function ({ language, content, options }) {
+                return language;
+            }
+        }
     });
     eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
@@ -137,12 +143,12 @@ export default async function (eleventyConfig) {
     });
 
     // Only use vite in dev - esbuild for build
-    if (process.env.DEV_ENVIRONMENT === "dev") {
-        eleventyConfig.addPlugin(EleventyVitePlugin, {
-            tempFolderName: "website-build", // Default name of the temp folder
-            // viteOptions: { base: "/" },
-        });
-    }
+    // if (process.env.DEV_ENVIRONMENT === "dev") {
+    //     eleventyConfig.addPlugin(EleventyVitePlugin, {
+    //         tempFolderName: "website-build", // Default name of the temp folder
+    //         // viteOptions: { base: "/" },
+    //     });
+    // }
 
     // Remove templates from build
     // if (process.env.DEV_ENVIRONMENT != "dev") {
@@ -153,6 +159,7 @@ export default async function (eleventyConfig) {
 
     eleventyConfig.setServerOptions({
         showAllHosts: true,
+        domDiff: false,
     })
 
     return {
