@@ -1,6 +1,7 @@
 export default {
     "tags": [
-        "note"
+        "note",
+        "post"
     ],
     "layout": "notes.njk"
 };
