@@ -10,7 +10,9 @@ notes: Using just HTML links and CSS page transitions to replace intra page
   doesn't sit well with me. Progressively enhanced JS interactions in page give
   you an option if JS is broken. This approach breaks if JS breaks. Clicking the
   close button on navigation if JS is broken, for example, takes you back to the
-  home page, not the page you were.
+  home page, not the page you were. You could fix the menu by generating a
+  navigation page for each post with the correct back link.... millions of pages
+  😅
 topics:
   - web development
   - css
