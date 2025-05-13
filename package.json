@@ -23,28 +23,28 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@11ty/eleventy": "3.0.0",
-    "@11ty/eleventy-img": "^5.0.0",
-    "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-rss": "^2.0.2",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "@11ty/eleventy-plugin-vite": "^4.0.0",
+    "@11ty/eleventy": "3.1.0",
+    "@11ty/eleventy-img": "^6.0.3",
+    "@11ty/eleventy-navigation": "^1.0.4",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+    "@11ty/eleventy-plugin-vite": "^6.0.0",
     "@sardine/eleventy-plugin-external-links": "^1.4.0",
     "cross-env": "^7.0.3",
     "cross-var": "^1.1.0",
-    "del-cli": "^5.1.0",
+    "del-cli": "^6.0.0",
     "directory-tree": "^3.5.2",
-    "dotenv": "^16.4.5",
-    "dotenv-cli": "^7.4.2",
-    "eleventy-auto-cache-buster": "^0.6.1",
-    "esbuild": "^0.24.0",
-    "lightningcss": "^1.27.0",
-    "luxon": "^3.5.0",
+    "dotenv": "^16.5.0",
+    "dotenv-cli": "^8.0.0",
+    "eleventy-auto-cache-buster": "^0.8.1",
+    "esbuild": "^0.25.4",
+    "lightningcss": "^1.30.0",
+    "luxon": "^3.6.1",
     "npm-run-all": "^4.1.5",
-    "terser": "^5.34.1",
+    "terser": "^5.39.1",
     "tiny-glob": "^0.2.9"
   },
   "dependencies": {
-    "decap-cms-app": "^3.3.3"
+    "decap-cms-app": "^3.6.2"
   }
 }
