@@ -20,6 +20,7 @@ export async function onRequest(context) {
             'state',
             crypto.getRandomValues(new Uint8Array(12)).join(''),
         );
+
         return Response.redirect(redirectUrl.href, 301);
 
     } catch (error) {
