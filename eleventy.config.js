@@ -71,7 +71,7 @@ export default async function (eleventyConfig) {
     // Plugins
     eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(pluginReading);
-    eleventyConfig.addPlugin(eleventyAutoCacheBuster);
+    // eleventyConfig.addPlugin(eleventyAutoCacheBuster);
     eleventyConfig.addPlugin(safeLinks);
 
     // Add bundles
