@@ -13,14 +13,14 @@
                         {{ note.url | trim }}
                     {% endif %}</a><time class="notelist-date" datetime="{{ note.date | htmlDateString }}">{{ note.date | readableDate("dd LLLL yyyy") }}</time>
 
-                <ul class="pg-tags-list">
+                {# <ul class="pg-tags-list">
                     {% for tag in note.data.tags %}
                         {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
                         <li>
                             <a href="{{ tagUrl }}" class="pg-tag">{{ tag }}</a>
                         </li>
                     {% endfor %}
-                </ul>
+                </ul> #}
 
             </li>
         {% endif %}

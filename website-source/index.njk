@@ -8,54 +8,24 @@ eleventyNavigation:
   order: 1
 ---
 
-
-
 <article>
-
-  
-    
-    <div class="pg-column-main flow">  
-
-{# 
-
-<h1>Patrick Grey</h1>
-<h2>Web developer & eLearning specialist.</h2>
-
-masto
-github
-codeberg
-rss
-
-<p>I've worked with clients across Europe, from large international organisations to local community clubs, helping them convert their ideas into effective, human-friendly websites.</p>
-
-<p>This is where I write down what I'm learning, what I've been reading and demo personal projects.</p>
-
-<p>If you need help with a project, I'm available to hire via my company, <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>.</p>
-#}
+  <h2>Recent notes</h2>
+  {% set notelist = collections.note %}
+  {% set noteIcon = "note" %}
+  {% include "note-list.njk" %}
+</article>
 
 
+<article> 
+  <h2>Recent projects</h2>
+  {% set notelist = collections.note %}
+  {% set noteIcon = "note" %}
+  {% include "note-list.njk" %}
+</article>
 
-      
-      <h1>Hello!</h1>  
-
-      <p>Welcome to my little corner of the web. Come in, make yourself at home.</p>
-
-      <p>I'm <strong>Patrick Grey</strong>. I'm a front-end developer living in the Mid&#8209;Argyll area of Scotland. I have a web development business called <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>. Take a look, maybe I can help you on your next project!</p>
-
-      <p>This is the place where I infrequently write about stuff. Often coding stuff. I like to keep a note of the latest things I've read / listened to / watched on my <a href="/reading/">reading list</a>.</p>
-
-      <p>You can <a href="https://glasgow.social/@patrick" target="_blank">find me on Mastodon</a>. Feel free to say hi, I really enjoy talking to all sorts of people, especially nerds.</p>
-
-      <p>I'm continually developing this site in the wild so hold onto your hat! (insert under construction gif here)</p>
-    </div>
-
-    <div>
-      <div class="pg-column-main flow"> 
-        <h2>Recent notes</h2>
-        {% set notelist = collections.note %}
-        {% set noteIcon = "note" %}
-        {% include "note-list.njk" %}
-      </div>
-    </div>
-
+<article> 
+  <h2>Recent reading</h2>
+  {% set notelist = collections.note %}
+  {% set noteIcon = "note" %}
+  {% include "note-list.njk" %}
 </article>
