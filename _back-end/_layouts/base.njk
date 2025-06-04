@@ -152,12 +152,53 @@ jsFiles: []
             
         <div class="pg-full-height pg-column-main">
 
-            <header>
+            <header class="pg-flow">
+
+                <img src="/_shared/images/me-01.jpg" alt="Picture of Patrick's face">
 
                 <h1>Patrick Grey</h1>
                 <p>Web developer &amp; eLearning specialist</p>
 
+                <nav class="pg-column-main">
+                    <ul>
+                        {% set navPages = collections.all | eleventyNavigation %}
+                        {% set navActiveClass = "pg-is-active" %}
+                        {%- for navItem in navPages %}
+                            {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
+                            {# <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li> #}
+                            {% if page.url %}
+    
+                                {% set urlArray = page
+                                    .url
+                                    .split("/") %}
+    
+                                {% if (navItem.url == "/") %}
+                                    <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
+                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                    </li>
+                                {% elif navItem.url and page.url %}
+                                    <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
+                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                    </li>
+                                {% endif %}
+                                
+                            {% endif %}
+
+                        {%- endfor %}
+
+                    </ul>
+                </nav>
+
                 <section>
+                    <p>Contact me!</p>
+                    <ul class="pg-socials">
+                        <li><a href="https://glasgow.social/@patrick" target="_blank">https://glasgow.social/@patrick</a></li>
+                        <li><a href="https://github.com/patrickgrey" target="_blank">https://github.com/patrickgrey</a></li>
+                        <li><a href="http://localhost:8080/feed/feed.xml" target="_blank">RSS</a></li>
+                    </ul>
+                </section>
+
+                <section class="pg-flow">
                     <h2>About</h2>
                     <p>I've worked with clients across Europe, from large international organisations to local community clubs, helping them convert their ideas into effective, human-friendly websites.</p>
     
@@ -166,50 +207,10 @@ jsFiles: []
                     <p>If you need help with a project, I'm available to hire via my company, <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>.</p>
                 </section>
 
-                <p>Contact me!</p>
-                <ul class="pg-socials">
-                    <li><a href="https://glasgow.social/@patrick" target="_blank">https://glasgow.social/@patrick</a></li>
-                    <li><a href="https://github.com/patrickgrey" target="_blank">https://github.com/patrickgrey</a></li>
-                    <li><a href="http://localhost:8080/feed/feed.xml" target="_blank">RSS</a></li>
-                </ul>
-
-    
-    
-                    <nav class="pg-column-main">
-                        <ul>
-                            {% set navPages = collections.all | eleventyNavigation %}
-                            {% set navActiveClass = "pg-is-active" %}
-                            {%- for navItem in navPages %}
-                                {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
-                                {# <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li> #}
-                                {% if page.url %}
-        
-                                    {% set urlArray = page
-                                        .url
-                                        .split("/") %}
-        
-                                    {% if (navItem.url == "/") %}
-                                        <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
-                                            <a href="{{ navItem.url }}">{{ navItem.title }}</a>
-                                        </li>
-                                    {% elif navItem.url and page.url %}
-                                        <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
-                                            <a href="{{ navItem.url }}">{{ navItem.title }}</a>
-                                        </li>
-                                    {% endif %}
-                                    
-                                {% endif %}
-    
-                            {%- endfor %}
-    
-                        </ul>
-                    </nav>
-
-
             </header>           
 
             
-            <main id="main">
+            <main id="main"  class="pg-flow">
                 {{ content | safe }}
             </main>
                         
