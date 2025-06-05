@@ -519,7 +519,18 @@ header>nav ul>li>a {
     transition: background-color 0.2s ease-in;
 }
 
-header>nav ul>li>a.pg-is-active::after {}
+header>nav ul>li>a.pg-is-active::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--pg-colour-column-bg);
+    border-radius: 3px;
+    /* transform: translateX(-30%) translateY(-30%); */
+}
 
 header>nav ul>li>a:focus-visible,
 header>nav ul>li>a:hover {
