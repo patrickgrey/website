@@ -159,7 +159,7 @@ jsFiles: []
                 <h1>Patrick Grey</h1>
                 <p>Web developer &amp; eLearning specialist</p>
 
-                <nav class="pg-column-main">
+                <nav>
                     <ul>
                         {% set navPages = collections.all | eleventyNavigation %}
                         {% set navActiveClass = "pg-is-active" %}
@@ -174,11 +174,11 @@ jsFiles: []
     
                                 {% if (navItem.url == "/") %}
                                     <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                        <a href="{{ navItem.url }}">{{ navItem.title }} <span>5</span></a>
                                     </li>
                                 {% elif navItem.url and page.url %}
                                     <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">{{ navItem.title }}</a>
+                                        <a href="{{ navItem.url }}">{{ navItem.title }} <span>69</span></a>
                                     </li>
                                 {% endif %}
                                 
