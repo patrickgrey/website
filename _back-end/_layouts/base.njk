@@ -159,22 +159,49 @@ jsFiles: []
                 <h1>Patrick Grey</h1>
                 <p>Web developer &amp; eLearning specialist</p>
 
+                <section class="pg-contact">
+                    <p class="pg-visually-hidden">Contact me!</p>
+                    <ul class="pg-socials">
+                        <li><a href="https://glasgow.social/@patrick" target="_blank">
+                        {% include "../../website-source/_shared/images/icons/icon-mastodon.svg" %}
+                        <span class="pg-visually-hidden">https://glasgow.social/@patrick</span></a></li>
+
+                        <li><a href="https://github.com/patrickgrey" target="_blank">
+                        {% include "../../website-source/_shared/images/icons/icon-github.svg" %}
+                        <span class="pg-visually-hidden">https://github.com/patrickgrey</span></a></li>
+
+                        <li><a href="/feed/feed.xml" >
+                        {% include "../../website-source/_shared/images/icons/icon-rss-doc.svg" %}
+                        <span class="pg-visually-hidden">
+                            RSS</span></a></li>
+
+                        <li>
+                            <a href="https://en.wikipedia.org/wiki/Elon_Musk_salute_controversy" target="_blank" >
+                            {% include "../../website-source/_shared/images/icons/icon-no-twitter.svg" %}
+                            </a></li>
+                    </ul>
+                </section>
+
+
                 <nav>
                     <ul>
-
-                        <li><a href="/">
+                        <li><a 
+                        {% if(page.url == "/")%} class="pg-is-active" {% endif %} href="/">
                             {% include "../../website-source/_shared/images/icons/icon-home-heart.svg" %}
                             home <span>5</span></a></li>
 
-                        <li><a href="/">
+                        <li><a 
+                        {% if(page.url == "/notes/")%} class="pg-is-active" {% endif %} href="/notes">
                             {% include "../../website-source/_shared/images/icons/icon-pencil.svg" %}
                             notes <span>69</span></a></li>
 
-                        <li><a href="/">
+                        <li><a 
+                        {% if(page.url == "/projects/")%} class="pg-is-active" {% endif %} href="/projects">
                             {% include "../../website-source/_shared/images/icons/icon-packages.svg" %}
                             projects <span>69</span></a></li>
 
-                        <li><a href="/">
+                        <li><a 
+                        {% if(page.url == "/reading/")%} class="pg-is-active" {% endif %} href="/reading">
                             {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
                             reading <span>692</span></a></li>
 
@@ -226,14 +253,7 @@ jsFiles: []
                     </ul>
                 </section>
 
-                <section>
-                    <p>Contact me!</p>
-                    <ul class="pg-socials">
-                        <li><a href="https://glasgow.social/@patrick" target="_blank">https://glasgow.social/@patrick</a></li>
-                        <li><a href="https://github.com/patrickgrey" target="_blank">https://github.com/patrickgrey</a></li>
-                        <li><a href="http://localhost:8080/feed/feed.xml" target="_blank">RSS</a></li>
-                    </ul>
-                </section>
+                
 
                 <more-info>
                     <section class="pg-flow">

@@ -83,10 +83,12 @@
     --pg-max-width: 50ch;
     --pg-flow-space: 0.9em;
     --pg-side-padding: var(--space-2xs);
+    --pg-radius-round: 1e5px;
     --pg-column-padding: 1rem;
     --pg-colour-blue: #52fff6;
     --pg-colour-pink: #ee9bff;
     --pg-colour-dark-grey: #333;
+    --pg-colour-mid-grey: #888;
     --pg-colour-column-bg: whitesmoke;
 
 
@@ -140,8 +142,17 @@ header,
 main,
 footer {
     background-color: var(--pg-colour-column-bg);
-    padding-inline: var(--space-s);
+    padding-inline: var(--space-2xs);
     margin-block: 0;
+}
+
+@media screen and (min-width: 600px) {
+
+    header,
+    main,
+    footer {
+        padding-inline: var(--space-s);
+    }
 }
 
 header {
@@ -288,7 +299,7 @@ li>code {
 ..#######.....##....####.########.####....##....####.########..######.
 */
 
-.visually-hidden:not(:focus):not(:active) {
+.pg-visually-hidden:not(:focus):not(:active) {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -453,14 +464,13 @@ header>h1+p {
     text-transform: uppercase;
     text-wrap: balance;
     margin-block-start: 0 !important;
-    margin-block-end: var(--space-m);
+    line-height: 1.2;
+    /* margin-block-end: var(--space-m); */
 }
 
 header>picture img {
-    /* width: 100%; */
     max-width: min(var(--space-2xl), 30vw);
     height: auto;
-    /* max-height: 200px; */
     margin: 0 auto var(--space-s) auto;
     border-radius: 999px;
     box-shadow: 0 0 0 var(--space-3xs) var(--pg-colour-blue);
@@ -479,9 +489,20 @@ header>picture img {
     }
 }
 
-header>nav ul {
+/*
+##    ##    ###    ##     ##
+###   ##   ## ##   ##     ##
+####  ##  ##   ##  ##     ##
+## ## ## ##     ## ##     ##
+##  #### #########  ##   ##
+##   ### ##     ##   ## ##
+##    ## ##     ##    ###
+*/
+
+header>nav>ul {
     list-style: none;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: var(--space-3xs);
 }
@@ -493,9 +514,17 @@ header>nav ul>li>a {
     gap: var(--space-3xs);
     text-decoration: none;
     background-color: var(--pg-colour-pink);
-    padding: var(--space-3xs) var(--space-3xs);
-    /* padding-inline-end: var(--space-l); */
+    padding: var(--space-3xs) var(--space-2xs);
     border-radius: 5px;
+    transition: background-color 0.2s ease-in;
+}
+
+header>nav ul>li>a.pg-is-active::after {}
+
+header>nav ul>li>a:focus-visible,
+header>nav ul>li>a:hover {
+    box-shadow: none;
+    background-color: var(--pg-colour-blue);
 }
 
 header>nav ul>li>a>svg {
@@ -505,41 +534,91 @@ header>nav ul>li>a>svg {
 
 
 header>nav ul>li>a>span {
-    /* position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 50%;
-    right: 4px;
-    transform: translateY(-50%); */
-    display: inline-block;
+    display: none;
     font-size: var(--font-size--2);
     border-radius: 999px;
     min-width: 1.5rem;
     text-align: center;
-    /* vertical-align: baseline; */
-    /* line-height: 1; */
     padding: 3px;
     margin-inline-start: var(--space-3xs);
     background-color: var(--pg-colour-blue);
+    transition: background-color 0.2s ease-in;
 }
 
-/* @media screen and (min-width: 600px) {
+header>nav ul>li>a:focus-visible>span,
+header>nav ul>li>a:hover>span {
+    background-color: var(--pg-colour-pink);
+}
+
+@media screen and (min-width: 652px) {
     header>nav ul>li>a {
-        padding-inline-end: var(--space-m);
+        padding: var(--space-3xs) var(--space-3xs);
     }
 
     header>nav ul>li>a>span {
-        right: var(--space-3xs);
+        display: inline-block;
     }
-} */
-
-header>nav ul>li>a:hover,
-header>nav ul>li>a:focus-visible {
-    box-shadow: none;
-
 }
 
+@media screen and (min-width: 850px) {
+    header>nav>ul {
+        margin-block-start: var(--space-m);
+    }
+}
+
+
+/*
+ ######   #######  ##    ## ########    ###     ######  ########
+##    ## ##     ## ###   ##    ##      ## ##   ##    ##    ##
+##       ##     ## ####  ##    ##     ##   ##  ##          ##
+##       ##     ## ## ## ##    ##    ##     ## ##          ##
+##       ##     ## ##  ####    ##    ######### ##          ##
+##    ## ##     ## ##   ###    ##    ##     ## ##    ##    ##
+ ######   #######  ##    ##    ##    ##     ##  ######     ##
+*/
+
+.pg-contact {
+    margin-block-start: var(--space-xs);
+}
+
+.pg-contact>ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3xs);
+}
+
+.pg-contact>ul a::after {
+    display: none !important;
+}
+
+.pg-contact>ul>li a {
+    background-color: var(--pg-colour-mid-grey);
+    color: white;
+    display: flex;
+    padding: var(--space-3xs);
+    border-radius: var(--pg-radius-round);
+    transition: background-color 0.2s ease-in;
+}
+
+.pg-contact>ul>li a:hover,
+.pg-contact>ul>li a:focus-visible {
+    background-color: var(--pg-colour-dark-grey);
+    box-shadow: none;
+}
+
+@media screen and (min-width: 850px) {
+    .pg-contact {
+        position: absolute;
+        top: 0;
+        right: calc(var(--space-xs) * -1);
+        transform: translateX(100%);
+    }
+
+    .pg-contact>ul {
+        flex-direction: column;
+    }
+}
 
 /*
 ##       ####  ######  ########  ######
