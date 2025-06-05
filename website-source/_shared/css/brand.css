@@ -483,38 +483,48 @@ header>nav ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--space-3xs);
 }
 
 header>nav ul>li>a {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
     text-decoration: none;
     background-color: var(--pg-colour-pink);
-    padding: var(--space-3xs) var(--space-2xs);
-    padding-inline-end: var(--space-l);
+    padding: var(--space-3xs) var(--space-3xs);
+    /* padding-inline-end: var(--space-l); */
     border-radius: 5px;
+}
+
+header>nav ul>li>a>svg {
+    display: inline-block;
+    width: 1.5rem;
 }
 
 
 header>nav ul>li>a>span {
-    position: absolute;
+    /* position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     top: 50%;
     right: 4px;
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
+    display: inline-block;
     font-size: var(--font-size--2);
     border-radius: 999px;
     min-width: 1.5rem;
-    /* text-align: center;
-    vertical-align: baseline; */
+    text-align: center;
+    /* vertical-align: baseline; */
     /* line-height: 1; */
     padding: 3px;
+    margin-inline-start: var(--space-3xs);
     background-color: var(--pg-colour-blue);
 }
 
-@media screen and (min-width: 600px) {
+/* @media screen and (min-width: 600px) {
     header>nav ul>li>a {
         padding-inline-end: var(--space-m);
     }
@@ -522,7 +532,7 @@ header>nav ul>li>a>span {
     header>nav ul>li>a>span {
         right: var(--space-3xs);
     }
-}
+} */
 
 header>nav ul>li>a:hover,
 header>nav ul>li>a:focus-visible {

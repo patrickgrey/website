@@ -1,5 +1,5 @@
 ---
-cssFiles: []
+cssFiles: ["/_shared/css/more-info.css"]
 jsFiles: []
 ---
 
@@ -161,12 +161,32 @@ jsFiles: []
 
                 <nav>
                     <ul>
-                        {% set navPages = collections.all | eleventyNavigation %}
+
+                        <li><a href="/">
+                            {% include "../../website-source/_shared/images/icons/icon-home-heart.svg" %}
+                            home <span>5</span></a></li>
+
+                        <li><a href="/">
+                            {% include "../../website-source/_shared/images/icons/icon-pencil.svg" %}
+                            notes <span>69</span></a></li>
+
+                        <li><a href="/">
+                            {% include "../../website-source/_shared/images/icons/icon-packages.svg" %}
+                            projects <span>69</span></a></li>
+
+                        <li><a href="/">
+                            {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
+                            reading <span>692</span></a></li>
+
+
+
+
+                        {# {% set navPages = collections.all | eleventyNavigation %}
                         {% set navActiveClass = "pg-is-active" %}
-                        {%- for navItem in navPages %}
+                        {%- for navItem in navPages %} #}
                             {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
                             {# <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li> #}
-                            {% if page.url %}
+                            {# {% if page.url %}
     
                                 {% set urlArray = page
                                     .url
@@ -174,20 +194,37 @@ jsFiles: []
     
                                 {% if (navItem.url == "/") %}
                                     <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">{{ navItem.title }} <span>5</span></a>
+                                        <a href="{{ navItem.url }}">
+                                            {% include "../../website-source/_shared/images/icons/icon-home-filled.svg" %}
+                                            {{ navItem.title }} <span>5</span></a>
                                     </li>
                                 {% elif navItem.url and page.url %}
                                     <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">{{ navItem.title }} <span>69</span></a>
+                                        <a href="{{ navItem.url }}">
+                                            {% include "../../website-source/_shared/images/icons/icon-{{urlArray[1]}}.svg" %}
+                                            {{ navItem.title }} <span>69</span></a>
                                     </li>
                                 {% endif %}
                                 
                             {% endif %}
 
-                        {%- endfor %}
+                        {%- endfor %} #}
 
                     </ul>
                 </nav>
+
+                <section>
+                    <h2>Tags</h2>
+
+                    <ul>
+                        {% for tag in collections.all | getAllTags %}
+                            {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+                            <li>
+                                <a href="{{ tagUrl }}" >{{ tag }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
 
                 <section>
                     <p>Contact me!</p>
@@ -198,14 +235,16 @@ jsFiles: []
                     </ul>
                 </section>
 
-                <section class="pg-flow">
-                    <h2>About</h2>
-                    <p>I've worked with clients across Europe, from large international organisations to local community clubs, helping them convert their ideas into effective, human-friendly websites.</p>
-    
-                    <p>This is where I write down what I'm learning, what I've been reading and demo personal projects.</p>
-    
-                    <p>If you need help with a project, I'm available to hire via my company, <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>.</p>
-                </section>
+                <more-info>
+                    <section class="pg-flow">
+                        <h2>About</h2>
+                        <p>I've worked with clients across Europe, from large international organisations to local community clubs, helping them convert their ideas into effective, human-friendly websites.</p>
+        
+                        <p>This is where I write down what I'm learning, what I've been reading and demo personal projects.</p>
+        
+                        <p>If you need help with a project, I'm available to hire via my company, <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>.</p>
+                    </section>
+                </more-info>
 
             </header>           
 
