@@ -140,6 +140,10 @@ body {
     border-image: var(--border-color) 1;
 }
 
+main {
+    padding-block-start: var(--space-m);
+}
+
 header,
 main,
 footer {
@@ -325,6 +329,10 @@ svg:not([width]):not([height]) {
     position: relative;
 }
 
+.pg-flow-force-start-margin {
+    margin-block-start: var(--pg-flow-space, 1em);
+}
+
 @media not (scripting: enabled) {
     .pg-needs-js {
         display: none !important;
@@ -452,6 +460,28 @@ header {
     padding-block-start: var(--space-s);
     border-start-start-radius: var(--space-m);
     border-start-end-radius: var(--space-m);
+    border-block-end: 1px solid var(--pg-colour-blue);
+}
+
+/* https: //codepen.io/hexagoncircle/pen/LYMweej */
+
+/* Fade in shadow on scroll when supported */
+@supports (animation-timeline: scroll()) {
+    header {
+        animation: scroll-shadow linear both;
+        animation-timeline: scroll();
+        animation-range: 0ex 50ex;
+    }
+
+    @keyframes scroll-shadow {
+        from {
+            border-block-end: none;
+        }
+
+        to {
+            border-block-end: 2px solid var(--pg-colour-pink);
+        }
+    }
 }
 
 header>h1 {
@@ -481,6 +511,10 @@ header>picture img {
 }
 
 @media screen and (min-width: 600px) {
+
+    header {
+        top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 6rem) * -1);
+    }
 
     header>h1,
     header>h1+p {
@@ -668,6 +702,7 @@ header>nav ul>li>a:hover>span {
     scrollbar-color: var(--pg-colour-pink) white;
     z-index: 100;
     background-color: var(--pg-colour-column-bg);
+    margin-block-end: var(--space-3xs);
 }
 
 .pg-tags>ul {
