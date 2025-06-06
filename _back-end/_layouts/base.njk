@@ -206,38 +206,6 @@ jsFiles: []
                             {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
                             reading <span>692</span></a></li>
 
-
-
-
-                        {# {% set navPages = collections.all | eleventyNavigation %}
-                        {% set navActiveClass = "pg-is-active" %}
-                        {%- for navItem in navPages %} #}
-                            {# Check that the item url is first in the page url so that e.g. tags/article doesn't make article active #}
-                            {# <li><a href="{{ navItem.url }}">{{ navItem.title }}</a></li> #}
-                            {# {% if page.url %}
-    
-                                {% set urlArray = page
-                                    .url
-                                    .split("/") %}
-    
-                                {% if (navItem.url == "/") %}
-                                    <li {% if navItem.url == page.url %}class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">
-                                            {% include "../../website-source/_shared/images/icons/icon-home-filled.svg" %}
-                                            {{ navItem.title }} <span>5</span></a>
-                                    </li>
-                                {% elif navItem.url and page.url %}
-                                    <li{% if navItem.url == "/"+urlArray[1]+"/" %} class="{{navActiveClass}}"{% endif %}>
-                                        <a href="{{ navItem.url }}">
-                                            {% include "../../website-source/_shared/images/icons/icon-{{urlArray[1]}}.svg" %}
-                                            {{ navItem.title }} <span>69</span></a>
-                                    </li>
-                                {% endif %}
-                                
-                            {% endif %}
-
-                        {%- endfor %} #}
-
                     </ul>
                 </nav>
 
