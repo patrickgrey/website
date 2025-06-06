@@ -157,7 +157,7 @@ jsFiles: []
                 <img src="/_shared/images/me-01.jpg" alt="Picture of Patrick's face">
 
                 <h1>Patrick Grey</h1>
-                <p>Web developer &amp; eLearning specialist</p>
+                <p>Web developer &amp; e-learning specialist</p>
 
                 <section class="pg-contact">
                     <p class="pg-visually-hidden">Contact me!</p>
@@ -178,6 +178,7 @@ jsFiles: []
                         <li>
                             <a href="https://en.wikipedia.org/wiki/Elon_Musk_salute_controversy" target="_blank" >
                             {% include "../../website-source/_shared/images/icons/icon-no-twitter.svg" %}
+                            <span class="pg-visually-hidden">Please don't use twitter.</span>
                             </a></li>
                     </ul>
                 </section>
@@ -240,11 +241,11 @@ jsFiles: []
                     </ul>
                 </nav>
 
-                <section>
+                <section class="pg-tags">
                     <h2 class="pg-visually-hidden">Tags</h2>
 
                     <ul>
-                        {% for tag in collections.all | getAllTags %}
+                        {% for tag in collections.all | getAllTags | sort %}
                             {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
                             <li>
                                 <a href="{{ tagUrl }}" >{{ tag }}</a>

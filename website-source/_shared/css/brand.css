@@ -81,6 +81,7 @@
         monospace;
 
     --pg-max-width: 50ch;
+    --pg-button-corners: 5px;
     --pg-flow-space: 0.9em;
     --pg-side-padding: var(--space-2xs);
     --pg-radius-round: 1e5px;
@@ -515,7 +516,7 @@ header>nav ul>li>a {
     text-decoration: none;
     background-color: var(--pg-colour-pink);
     padding: var(--space-3xs) var(--space-2xs);
-    border-radius: 5px;
+    border-radius: var(--pg-button-corners);
     transition: background-color 0.2s ease-in;
 }
 
@@ -573,6 +574,7 @@ header>nav ul>li>a:hover>span {
 
 @media screen and (min-width: 850px) {
     header>nav>ul {
+        justify-content: start;
         margin-block-start: var(--space-m);
     }
 }
@@ -629,6 +631,49 @@ header>nav ul>li>a:hover>span {
     .pg-contact>ul {
         flex-direction: column;
     }
+}
+
+/*
+########    ###     ######    ######
+   ##      ## ##   ##    ##  ##    ##
+   ##     ##   ##  ##        ##
+   ##    ##     ## ##   ####  ######
+   ##    ######### ##    ##        ##
+   ##    ##     ## ##    ##  ##    ##
+   ##    ##     ##  ######    ######
+*/
+
+.pg-tags {
+    overflow-x: auto;
+    scrollbar-color: var(--pg-colour-pink) white;
+}
+
+.pg-tags>ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-3xs);
+    padding-block-end: 3px;
+}
+
+.pg-tags>ul>li>a {
+    display: inline-block;
+    white-space: nowrap;
+    background-color: var(--pg-colour-blue);
+    padding-block: 7px;
+    padding-inline: var(--space-3xs);
+    text-decoration: none;
+    border-radius: var(--pg-button-corners);
+    font-size: var(--font-size--1);
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+    transition: background-color 0.2s ease-in;
+}
+
+.pg-tags>ul>li>a:hover,
+.pg-tags>ul>li>a:focus-visible {
+    box-shadow: none;
+    background-color: var(--pg-colour-pink);
+    text-decoration: underline;
 }
 
 /*
