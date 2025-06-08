@@ -319,6 +319,25 @@ li>code {
     margin-block-start: var(--pg-flow-space, 1em);
 }
 
+.pg-icon-link {
+    display: block;
+    background-color: var(--pg-colour-blue);
+    width: fit-content;
+    border-radius: var(--pg-radius-round);
+    border: 2px solid var(--pg-colour-dark-grey);
+    transition: background-color 0.2s ease-in;
+}
+
+.pg-icon-link:hover,
+.pg-icon-link:focus-visible {
+    box-shadow: none;
+    background-color: var(--pg-colour-pink);
+}
+
+.pg-icon-link:after {
+    display: none !important;
+}
+
 .pg-mbs-0 {
     margin-block-start: 0 !important;
 }
@@ -585,11 +604,6 @@ header .pg-profile-container>picture img {
     box-shadow: none;
 }
 
-.pg-profile-container>a:hover,
-.pg-profile-container>a:focus-visible {
-    box-shadow: none;
-}
-
 .pg-profile-container>a>svg {
     fill: var(--pg-colour-blue);
     transition: fill 0.2s ease-in;
@@ -604,21 +618,6 @@ header .pg-profile-container>picture img {
     display: none !important;
 }
 
-
-/*
-   ###    ########   #######  ##     ## ########
-  ## ##   ##     ## ##     ## ##     ##    ##
- ##   ##  ##     ## ##     ## ##     ##    ##
-##     ## ########  ##     ## ##     ##    ##
-######### ##     ## ##     ## ##     ##    ##
-##     ## ##     ## ##     ## ##     ##    ##
-##     ## ########   #######   #######     ##
-*/
-
-.pg-about {
-    background-color: white;
-    padding: var(--space-2xs);
-}
 
 /*
 ##    ##    ###    ##     ##
@@ -962,6 +961,37 @@ header>nav ul>li>a:hover>span {
 }
 
 /*
+   ###    ########   #######  ##     ## ########
+  ## ##   ##     ## ##     ## ##     ##    ##
+ ##   ##  ##     ## ##     ## ##     ##    ##
+##     ## ########  ##     ## ##     ##    ##
+######### ##     ## ##     ## ##     ##    ##
+##     ## ##     ## ##     ## ##     ##    ##
+##     ## ########   #######   #######     ##
+*/
+
+.pg-about {
+    background-color: white;
+    padding: var(--space-2xs);
+    border-radius: var(--space-m);
+    text-align: left;
+}
+
+.pg-about h2 {
+
+    margin-block-start: var(--space-2xs);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.pg-about .pg-icon-link {
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
+/*
 ########  #######   #######  ######## ######## ########
 ##       ##     ## ##     ##    ##    ##       ##     ##
 ##       ##     ## ##     ##    ##    ##       ##     ##
@@ -972,8 +1002,15 @@ header>nav ul>li>a:hover>span {
 */
 
 footer {
+    border-block-start: 2px solid var(--pg-colour-pink);
     margin-block-end: var(--space-2xl);
-    padding-block-end: var(--space-2xl);
+    padding-block: var(--space-l);
     border-end-start-radius: var(--space-m);
     border-end-end-radius: var(--space-m);
+    text-align: center;
+}
+
+.pg-ai svg {
+    display: inline-block;
+    height: 1.5rem;
 }

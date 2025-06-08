@@ -242,16 +242,17 @@ jsFiles: []
             </main>
                         
             <footer id="footer" class="pg-flow">
-                <p>Built with <a href="https://11ty.dev/" target="_blank">Eleventy v3.0.0</a> 😍</p>
                 <div class="pg-flow pg-about">
-                <h2 id="about">About</h2>
-                <p>I've worked with clients across Europe, from large international organisations to local community clubs, helping them convert their ideas into effective, human-friendly websites.</p>
-        
-                        <p>This is where I write down what I'm learning, what I've been reading and demo personal projects.</p>
-        
-                        <p>If you need help with a project, I'm available to hire via my company, <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>.</p>
-                <p><a href="#top">Back to top</a></p>
+                <h2 id="about">About <a href="#top" class="pg-icon-link"><span class="pg-visually-hidden">Back to top</span>{%include '../../website-source/_shared/images/icons/icon-arrow-down.svg'%}</a></h2>
+                    <p>I've worked with clients across Europe, from large international organisations to local community clubs, helping them convert their ideas into effective, human-friendly websites.</p>
+            
+                            <p>This is where I write down what I'm learning, what I've been reading and demo personal projects.</p>
+            
+                            <p>If you need help with a project, I'm available to hire via my company, <a href="https://risingsky.co.uk" target="_blank">Rising Sky</a>.</p>
                 </div>
+                <p>Accessibility statement</p>
+                <p class="pg-ai">No {%include '../../website-source/_shared/images/icons/icon-sparkles.svg'%}AI{%include '../../website-source/_shared/images/icons/icon-sparkles.svg'%} 🙄 is used to create the content of this site.</p>
+                <p>Built with <a href="https://11ty.dev/" target="_blank">{{ eleventyinfo.packageName}}:  {{eleventyinfo.packageVersion}}</a> 😍</p>
             </footer>
         </div>
 
