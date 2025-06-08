@@ -615,10 +615,9 @@ header .pg-profile-container>picture img {
 ##     ## ########   #######   #######     ##
 */
 
-.pg-about summary {
-    position: absolute;
-    top: 0;
-
+.pg-about {
+    background-color: white;
+    padding: var(--space-2xs);
 }
 
 /*
@@ -971,3 +970,10 @@ header>nav ul>li>a:hover>span {
 ##       ##     ## ##     ##    ##    ##       ##    ##
 ##        #######   #######     ##    ######## ##     ##
 */
+
+footer {
+    margin-block-end: var(--space-2xl);
+    padding-block-end: var(--space-2xl);
+    border-end-start-radius: var(--space-m);
+    border-end-end-radius: var(--space-m);
+}
