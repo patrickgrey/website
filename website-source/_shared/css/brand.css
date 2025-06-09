@@ -541,8 +541,10 @@ header>h1+p {
 
 .pg-profile-container {
     position: relative;
-    max-width: min(var(--space-2xl), 30vw);
+    max-width: min(calc(var(--space-2xl) + var(--space-3xs)), 30vw);
     margin: 0 auto var(--space-s) auto;
+    overflow: hidden;
+
 }
 
 @media screen and (min-width: 600px) {
@@ -554,17 +556,37 @@ header>h1+p {
     }
 }
 
-header .pg-profile-container>picture img {
+.pg-profile-container-inner {
+    position: relative;
+    /* z-index: 100; */
+    border-radius: var(--pg-radius-round);
+    /* box-shadow: 0 0 0 var(--space-3xs) var(--pg-colour-blue); */
+    border: var(--space-3xs) solid var(--pg-colour-blue);
+    overflow: hidden;
+}
+
+header .pg-profile-container>.pg-profile-container-inner>div.pg-profile-image-bottom>picture img,
+header .pg-profile-container>.pg-profile-container-inner>div.pg-profile-image-top>picture img {
     width: 100%;
     height: auto;
-    border-radius: var(--pg-radius-round);
-    box-shadow: 0 0 0 var(--space-3xs) var(--pg-colour-blue);
+}
+
+header .pg-profile-container>div.pg-profile-container-inner>div.pg-profile-image-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+header .pg-profile-container:hover>div.pg-profile-container-inner>div.pg-profile-image-top {
+    transform: translateX(0%);
 }
 
 .pg-profile-container>a {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: var(--space-3xs);
+    right: var(--space-3xs);
     display: block;
     background-color: transparent;
     color: var(--pg-colour-dark-grey);
@@ -872,7 +894,7 @@ header>nav ul>li>a:hover>span {
     margin: 0;
     font-size: var(--font-size--2);
     padding: var(--space-3xs) var(--space-2xs);
-    color: var(--pg-colour-mid-grey);
+    color: var(--pg-colour-dark-grey);
 }
 
 .pg-card .pg-summary {
