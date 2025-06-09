@@ -566,21 +566,36 @@ header>h1+p {
 }
 
 header .pg-profile-container>.pg-profile-container-inner>div.pg-profile-image-bottom>picture img,
-header .pg-profile-container>.pg-profile-container-inner>div.pg-profile-image-top>picture img {
+header .pg-profile-container>.pg-profile-container-inner>div.pg-profile-image-top>picture img,
+header .pg-profile-container>.pg-profile-container-inner>svg {
     width: 100%;
     height: auto;
+    border-radius: var(--pg-radius-round);
+}
+
+header .pg-profile-container>.pg-profile-container-inner>svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header .pg-profile-container>.pg-profile-container-inner>svg #hat-1,
+header .pg-profile-container>.pg-profile-container-inner>svg #tash-1,
+header .pg-profile-container>.pg-profile-container-inner>svg #beard-1,
+header .pg-profile-container>.pg-profile-container-inner>svg #specs-1 {
+    display: none;
 }
 
 header .pg-profile-container>div.pg-profile-container-inner>div.pg-profile-image-top {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateX(100%);
+    transform: translateX(100%) rotate(90deg);
     transition: transform 0.3s ease-in-out;
 }
 
 header .pg-profile-container:hover>div.pg-profile-container-inner>div.pg-profile-image-top {
-    transform: translateX(0%);
+    transform: translateX(0%)rotate(0deg);
 }
 
 .pg-profile-container>a {
