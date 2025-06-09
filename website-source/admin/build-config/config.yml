@@ -29,6 +29,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Draft?", name: "draft", widget: "boolean", default: false }
+      - {label: "Summary", name: "summary", widget: "text"}
       - { label: "Publish Date", name: "publish", widget: "datetime" }
       - { label: "Update Date", name: "update", widget: "datetime", required: false }
       - { label: "Body", name: "body", widget: "markdown" }

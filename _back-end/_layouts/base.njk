@@ -194,17 +194,17 @@ jsFiles: []
                         <li><a 
                         {% if(page.url == "/notes/")%} class="pg-is-active" {% endif %} href="/notes">
                             {% include "../../website-source/_shared/images/icons/icon-pencil.svg" %}
-                            notes <span>69</span></a></li>
+                            notes <span>{{collections.note.length or 0}}</span></a></li>
 
                         <li><a 
                         {% if(page.url == "/projects/")%} class="pg-is-active" {% endif %} href="/projects">
                             {% include "../../website-source/_shared/images/icons/icon-packages.svg" %}
-                            projects <span>69</span></a></li>
+                            projects <span>{{collections.projects.length or 0}}</span></a></li>
 
                         <li><a 
                         {% if(page.url == "/reading/")%} class="pg-is-active" {% endif %} href="/reading">
                             {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
-                            reading <span>692</span></a></li>
+                            reading <span>{{collections.reading.length or 0}}</span></a></li>
 
                     </ul>
                 </nav>

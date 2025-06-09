@@ -12,7 +12,14 @@
             {% if loop.index0 < cardimit %}
                 <li>
                     <div class="pg-card pg-flow">
-                        <h3><a href="{{ card.url }}">{{card.data.title}}</a></h3>
+                        <a href="{{ card.url }}">
+                            {% if cardIcon %}
+                                {% include "../../website-source/_shared/images/icons/" + cardIcon + ".svg" %}
+                            {% endif %}
+                            
+                            <h3>{{card.data.title}}</h3>
+                        </a>
+
                         <time datetime="{{ card.date | htmlDateString }}">{{ card.date | readableDate("dd LLLL yyyy") }}</time>
                         {% if cardSummary %}
                         <div class="pg-summary">{{card.data[cardSummary]}}</div>
@@ -29,9 +36,7 @@
                             </ul>
                         </section>
 
-                        {% if cardIcon %}
-                            {% include "../../website-source/_shared/images/icons/" + cardIcon + ".svg" %}
-                        {% endif %}
+                        
                     </div>
                     
                 </li>

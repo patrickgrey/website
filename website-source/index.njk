@@ -11,6 +11,7 @@ eleventyNavigation:
 <article  class="pg-flow">
   <h2>Recent notes</h2>
   {% set cardList = collections.note %}
+  {% set cardSummary = "summary" %}
   {% set cardIcon = "icon-pencil" %}
   {% include "card-list.njk" %}
 </article>
