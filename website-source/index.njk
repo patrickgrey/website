@@ -18,14 +18,15 @@ eleventyNavigation:
 
 <article class="pg-flow"> 
   <h2>Recent projects</h2>
-  {% set notelist = collections.note %}
-  {% set noteIcon = "note" %}
-  {% include "note-list.njk" %}
+  {% set cardList = collections.projects %}
+  {% set cardIcon = "icon-packages" %}
+  {% include "card-list.njk" %}
 </article>
 
 <article class="pg-flow"> 
   <h2>Recent reading</h2>
-  {% set notelist = collections.note %}
-  {% set noteIcon = "note" %}
-  {% include "note-list.njk" %}
+  {% set cardList = collections.reading %}
+  {% set cardSummary = "notes" %}
+  {% set cardIcon = "icon-book-open" %}
+  {% include "card-list.njk" %}
 </article>

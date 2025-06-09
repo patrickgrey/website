@@ -96,8 +96,8 @@
     --pg-background-glow: radial-gradient(circle at 8% -20%, var(--pg-colour-blue) 0%, transparent 26%),
         radial-gradient(circle at 37% -45%, var(--pg-colour-pink) 0%, transparent 40%);
 
-    --pg-background-glow-bottom: radial-gradient(circle at 105% 140%, var(--pg-colour-blue) 0%, transparent 16%),
-        radial-gradient(circle at 90% 173%, var(--pg-colour-pink) 0%, transparent 20%);
+    --pg-background-glow-bottom: radial-gradient(circle at 105% 140%, var(--pg-colour-pink) 0%, transparent 16%),
+        radial-gradient(circle at 95% 173%, var(--pg-colour-blue) 0%, transparent 20%);
 
 
 }
@@ -800,7 +800,7 @@ header>nav ul>li>a:hover>span {
 
 .pg-tags {
     overflow-x: auto;
-    scrollbar-color: var(--pg-colour-pink) white;
+    scrollbar-color: var(--pg-colour-blue) var(--pg-colour-column-bg);
     z-index: 100;
     background-color: var(--pg-colour-column-bg);
     margin-block-end: var(--space-3xs);
@@ -816,7 +816,9 @@ header>nav ul>li>a:hover>span {
 .pg-tags>ul>li>a {
     display: inline-block;
     white-space: nowrap;
-    background-color: var(--pg-colour-blue);
+    /* background-color: var(--pg-colour-blue); */
+    background-color: transparent;
+    border: 2px solid var(--pg-colour-blue);
     padding-block: 7px;
     padding-inline: var(--space-3xs);
     text-decoration: none;
@@ -824,13 +826,13 @@ header>nav ul>li>a:hover>span {
     font-size: var(--font-size--1);
     text-box-trim: trim-both;
     text-box-edge: cap alphabetic;
-    transition: background-color 0.2s ease-in;
+    transition: background-color 0.2s ease-in
 }
 
 .pg-tags>ul>li>a:hover,
 .pg-tags>ul>li>a:focus-visible {
     box-shadow: none;
-    background-color: var(--pg-colour-pink);
+    background-color: var(--pg-colour-blue);
     text-decoration: underline;
 }
 
@@ -851,13 +853,14 @@ header>nav ul>li>a:hover>span {
 
 .pg-card {
     position: relative;
-    padding: var(--space-s);
+    padding: var(--space-2xs);
     padding-inline-start: calc(var(--space-s) + 0.5rem);
-    padding-block-end: var(--space-2xs);
+    /* padding-block-end: var(--space-m); */
     background-color: white;
+    /* border-inline-start: thin solid var(--pg-colour-pink); */
     border-radius: var(--space-2xs);
-    margin-block-end: var(--space-s);
-    /* background-image: var(--pg-background-glow-bottom); */
+    margin-block-end: var(--space-m);
+    background-image: var(--pg-background-glow-bottom);
     /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08),
         0 2px 2px rgba(0, 0, 0, 0.12),
         0 4px 4px rgba(0, 0, 0, 0.16),
@@ -884,6 +887,7 @@ header>nav ul>li>a:hover>span {
     position: absolute;
     top: 0;
     right: 0;
+    transform: translateY(-90%);
     margin: 0;
     font-size: var(--font-size--2);
     padding: var(--space-3xs) var(--space-2xs);
@@ -893,24 +897,45 @@ header>nav ul>li>a:hover>span {
     /* border: 3px solid var(--pg-colour-pink); */
 }
 
+.pg-card .pg-summary {
+    padding: var(--space-2xs);
+    font-size: var(--font-size--1);
+    background-color: var(--pg-colour-column-bg);
+}
+
 .pg-card .pg-tags {
     background-color: transparent;
     margin-block-end: 0;
-    margin-block-start: var(--space-3xs);
+    margin-block-start: var(--space-2xs);
 }
+
+/* .pg-card .pg-tags a {
+    background-color: white;
+    border: 2px solid var(--pg-colour-blue);
+} */
 
 .pg-card>svg {
     position: absolute;
     left: 0;
     top: 50%;
-    background-color: var(--pg-colour-pink);
-    color: white;
-    /* border: 2px solid var(--pg-colour-dark-grey); */
+    /* background-color: var(--pg-colour-pink); */
+    background-color: white;
+    stroke: var(--pg-colour-pink);
+    stroke-width: 2px;
+    border: 2px solid var(--pg-colour-pink);
     border-radius: var(--pg-radius-round);
-    width: 1.75em;
-    height: 1.75em;
+    width: 1.45em;
+    height: 1.45em;
     padding: 6px;
-    transform: translate(-50%, -100%);
+    transform: translate(-30%, -100%);
+}
+
+@media screen and (min-width: 850px) {
+    .pg-card>svg {
+        width: 1.65em;
+        height: 1.65em;
+        transform: translate(-50%, -100%);
+    }
 }
 
 
