@@ -44,3 +44,18 @@ collections:
       - {label: "Notes", name: "notes", widget: "text"}
       - {label: "Topics", name: "topics", widget: "list"}
       - {label: "Purposes", name: "purposes", widget: "list"}
+  - name: "projects"
+    label: "Projects"
+    folder: "website-source/projects"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Draft?", name: "draft", widget: "boolean", default: false }
+      - {label: "Summary", name: "summary", widget: "text"}
+      - { label: "Publish Date", name: "publish", widget: "datetime" }
+      - { label: "Update Date", name: "update", widget: "datetime", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }

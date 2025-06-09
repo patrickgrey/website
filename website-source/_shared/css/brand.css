@@ -675,7 +675,11 @@ header>nav ul>li>a.pg-is-active::after {
     height: 8px;
     background-color: var(--pg-colour-blue);
     border-radius: 3px;
-    /* transform: translateX(-30%) translateY(-30%); */
+    transition: background-color 0.2s ease-in;
+}
+
+header>nav ul>li>a.pg-is-active:hover::after {
+    background-color: var(--pg-colour-pink);
 }
 
 header>nav ul>li>a:focus-visible,
@@ -923,6 +927,10 @@ header>nav ul>li>a:hover>span {
     background-color: transparent;
     margin-block-end: 0;
     margin-block-start: var(--space-xs);
+}
+
+.pg-read-more {
+    text-align: right;
 }
 
 /*

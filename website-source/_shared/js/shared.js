@@ -9,6 +9,13 @@
     const beard1 = profileSVG.querySelector(`#beard-1`);
     const hat1 = profileSVG.querySelector(`#hat-1`);
 
+    const bodyStyles = window.getComputedStyle(document.body);
+    const blue = bodyStyles.getPropertyValue('--pg-colour-blue');
+    const pink = bodyStyles.getPropertyValue('--pg-colour-pink');
+    const darkGrey = bodyStyles.getPropertyValue('--pg-colour-dark-grey');
+
+    const colourArray = [blue, pink, "black"]
+
 
     function pickDisguise() {
         const partsArray = [specs1, tash1, beard1, hat1]
@@ -21,9 +28,13 @@
             }
         })
 
+        const colour = colourArray[Math.floor(Math.random() * colourArray.length)]
+        profileSVG.style.color = colour
+
+
         if (chosenCount === 0) {
-            let random = Math.floor(Math.random() * partsArray.length);
-            let item = partsArray[random];
+            let random = Math.floor(Math.random() * partsArray.length)
+            let item = partsArray[random]
             item.style.display = "block"
         }
     }
