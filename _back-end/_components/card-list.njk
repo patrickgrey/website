@@ -1,0 +1,64 @@
+{% if cardList | length === 0 %}
+    <div class="pg-card pg-flow">
+        <p>*Tumbleweed gif* (It's 49Mb so Im using text instead...)</p>
+        <p>Nothing to see here! I'm obviously working hard to create the first piece of content for this section, otherwise, what's the point of having it? Alternatively, I've renamed some small thing and broken this section, sorry if that's the case. Finally, I may have deleted all my content, in which case, I'm away for a small cry.</p>
+    </div>
+{% else %}
+    {% set cardimit = cardimit or 5 %}
+
+    <ol reversed class="pg-card-list">
+
+        {% for card in cardList | reverse %}
+            {% if loop.index0 < cardimit %}
+                <li>
+                    <div class="pg-card pg-flow">
+                        <h3><a href="{{ card.url }}">{{card.data.title}}</a></h3>
+                        <time datetime="{{ card.date | htmlDateString }}">{{ card.date | readableDate("dd LLLL yyyy") }}</time>
+
+                        <section class="pg-tags">
+                            <ul>
+                                {% for tag in card.data.tags %}
+                                    {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+                                    <li>
+                                        <a href="{{ tagUrl }}">{{ tag }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        {% if cardIcon %}
+                            {% include "../../website-source/_shared/images/icons/" + cardIcon + ".svg" %}
+                        {% endif %}
+                    </div>
+                    
+                </li>
+            {% endif %}
+        {% endfor %}
+
+    </ol>
+{% endif %}
+
+{#}
+<ol reversed class="pg-card-list">
+    {% for note in notelist | reverse %}
+        {% if loop.index0 < forLimit %}
+            <li class="notelist-item{% if note.url == url %} notelist-item-active{% endif %}">
+
+                <a href="{{ note.url }}" class="notelist-link">
+                    {% if note.data.title %}{{ note.data.title | trim | striptags(false) }}{% else %}
+                        {{ note.url | trim }}
+                    {% endif %}</a><time class="notelist-date" datetime="{{ note.date | htmlDateString }}">{{ note.date | readableDate("dd LLLL yyyy") }}</time> #}
+
+                {# <ul class="pg-tags-list">
+                    {% for tag in note.data.tags %}
+                        {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+                        <li>
+                            <a href="{{ tagUrl }}" class="pg-tag">{{ tag }}</a>
+                        </li>
+                    {% endfor %}
+                </ul> #}
+
+            {# </li>
+        {% endif %}
+    {% endfor %}
+</ol> #}
