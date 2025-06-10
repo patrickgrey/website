@@ -3,5 +3,5 @@ export default {
         "note",
         "post"
     ],
-    "layout": "notes.njk"
+    "layout": "long-form.njk"
 };

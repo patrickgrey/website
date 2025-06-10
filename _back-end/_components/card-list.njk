@@ -4,12 +4,12 @@
         <p>Nothing to see here! I'm obviously working hard to create the first piece of content for this section, otherwise, what's the point of having it? Alternatively, I've renamed some small thing and broken this section, sorry if that's the case. Finally, I may have deleted all my content, in which case, I'm away for a small cry.</p>
     </div>
 {% else %}
-    {% set cardimit = cardimit or 5 %}
+    {% set cardLimit = cardLimit or 5 %}
 
     <ol reversed class="pg-card-list">
 
         {% for card in cardList | reverse %}
-            {% if loop.index0 < cardimit %}
+            {% if loop.index0 < cardLimit %}
                 <li>
                     <div class="pg-card pg-flow">
                         <a href="{{ card.url }}">
@@ -25,7 +25,7 @@
                         <div class="pg-summary">{{card.data[cardSummary]}}</div>
                         {% endif %}
 
-                        <section class="pg-tags">
+                        <section class="pg-tags-no-scroll">
                             <ul>
                                 {% for tag in card.data.tags %}
                                     {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}

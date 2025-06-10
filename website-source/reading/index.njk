@@ -9,39 +9,16 @@ eleventyNavigation:
   order: 4
 ---
 
-<article>
-    <div class="pg-column-main flow">  
-      <h1>Reading list</h1> 
-      <p>Here's a list of what I've been reading / watching / listening to this year.</p>
-
-        <ol class="pg-list pg-list-reading">
-                    {% for read in collections.reading | sort(false, false, 'data.dateRead') | reverse %}
-                        <li data-purpose="{{read.data.purpose}}"  data-media="{{read.data.media}}">
-                            <p>
-                                <a href="{{read.data.url}}" target="_blank">{{read.data.title}}</a>
-                                <time class="notelist-date" datetime="{{read.data.dateRead | string | stringToDate |  htmlDateString}}">{{read.data.dateRead | string | stringToDate | readableDate}}</time>
-                            </p>
-                            {% if read.data.authors and read.data.authors.length != 0 %}
-                            <p><span class="pg-read-label">Author(s):</span>
-                                <strong>{{read.data.authors.join(", ")}}</strong>
-                            </p>
-                            {% endif %}
-                            {% if read.data.notes and read.data.notes != "" %}
-                            <p><span class="pg-read-label">Notes:</span> {{read.data.notes}}
-                            </p>
-                            {% endif %}
-                            {% if read.data.topics and read.data.topics.length != 0 %}
-                            <p><span class="pg-read-label">Topics(s):</span>
-                                <strong>{{read.data.topics.join(", ")}}</strong>
-                            </p>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-        </ol>
-
-      <p>TODO add previous year links and separeate lists by month then add filters by topic and purpose...</p>
-    </div>
+<article  class="pg-flow">
+  <h2>Reading</h2>
+    <p>Here's a list of what I've been reading / watching / listening to.</p>
+    {% set cardList = collections.reading %}
+    {% set cardLimit = 999999 %}
+    {% set cardSummary = "notes" %}
+    {% set cardIcon = "icon-book-open" %}
+    {% include "card-list.njk" %}
 </article>
+
 
 {# https://9elements.com/blog/building-the-perfect-logo-strip/ #}
 

@@ -797,22 +797,35 @@ header>nav ul>li>a:hover>span {
    ##    ##     ##  ######    ######
 */
 
-.pg-tags {
+.pg-tags,
+.pg-tags-no-scroll {
     overflow-x: auto;
-    scrollbar-color: var(--pg-colour-blue) var(--pg-colour-column-bg);
+    scrollbar-color: var(--pg-colour-blue) transparent;
     z-index: 100;
-    background-color: var(--pg-colour-column-bg);
+    background-color: transparent;
     margin-block-end: var(--space-3xs);
 }
 
-.pg-tags>ul {
+.pg-tags-no-scroll {
+    overflow-x: visible;
+    margin-block-end: 0;
+    margin-block-start: var(--space-xs);
+}
+
+.pg-tags>ul,
+.pg-tags-no-scroll>ul {
     list-style: none;
     display: flex;
     gap: var(--space-3xs);
     padding-block-end: var(--space-3xs);
 }
 
-.pg-tags>ul>li>a {
+.pg-tags-no-scroll>ul {
+    flex-wrap: wrap;
+}
+
+.pg-tags>ul>li>a,
+.pg-tags-no-scroll>ul>li>a {
     display: inline-block;
     white-space: nowrap;
     /* background-color: var(--pg-colour-blue); */
@@ -829,7 +842,9 @@ header>nav ul>li>a:hover>span {
 }
 
 .pg-tags>ul>li>a:hover,
-.pg-tags>ul>li>a:focus-visible {
+.pg-tags>ul>li>a:focus-visible,
+.pg-tags-no-scroll>ul>li>a:hover,
+.pg-tags-no-scroll>ul>li>a:focus-visible {
     box-shadow: none;
     background-color: var(--pg-colour-blue);
     text-decoration: underline;
@@ -848,6 +863,7 @@ header>nav ul>li>a:hover>span {
 .pg-card-list {
     list-style: none;
     padding-inline-start: 0;
+    margin-block-start: var(--space-s);
 }
 
 .pg-card {
@@ -923,11 +939,15 @@ header>nav ul>li>a:hover>span {
     margin-block-start: 0;
 }
 
-.pg-card .pg-tags {
+/* .pg-card .pg-tags {
     background-color: transparent;
     margin-block-end: 0;
     margin-block-start: var(--space-xs);
 }
+
+.pg-card .pg-tags ul {
+    flex-wrap: wrap;
+} */
 
 .pg-read-more {
     text-align: right;
@@ -987,4 +1007,23 @@ footer {
 .pg-ai svg {
     display: inline-block;
     height: 1.5rem;
+}
+
+/*
+ ######   #######  ##    ## ######## ######## ##    ## ########
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##
+##       ##     ## ####  ##    ##    ##       ####  ##    ##
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##
+##       ##     ## ##  ####    ##    ##       ##  ####    ##
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##
+ ######   #######  ##    ##    ##    ######## ##    ##    ##
+*/
+
+.pg-published {
+    color: white;
+    background-color: var(--pg-colour-dark-grey);
+    font-size: var(--font-size--1);
+    width: fit-content;
+    padding-inline: var(--space-3xs);
+    text-box-edge: cap alphabetic;
 }
