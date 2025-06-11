@@ -8,10 +8,6 @@ publish: 2025-02-16T17:22:00.000Z
 ---
 <article>
 
-    <div class="pg-column-main flow">
-
-        <h1>{{title}}</h1>
-
         <p>Today I want to try using import maps. The end goal is to be able to remove Vite from my build process and simplify things. Reducing dependencies is always satisfying to me.</p>
 
         <p>Bonus extra task is to see if I can integrate a JavaScript package from NPM or UNPKG.</p>
@@ -20,7 +16,10 @@ publish: 2025-02-16T17:22:00.000Z
 
         <p>I've had trouble using them at work, I think mainly due to problems with relative paths but also the error messages you get aren't that helpful i.e. I keep getting <code>Uncaught TypeError: Failed to resolve module specifier "module1". Relative references must start with either "/", "./", or "../".</code></p>
 
-        <h2>Plan</h2>
+        {% highlight "console" %}Uncaught TypeError: Failed to resolve module specifier "module1". Relative references must start with either "/", "./", or "../"
+        {% endhighlight %}
+
+        <h3>Plan</h3>
 
         <ol>
             <li>Get one JS file to load another simple one.</li>
@@ -31,18 +30,20 @@ publish: 2025-02-16T17:22:00.000Z
 
         <div data-notepad class="pg-notepad"></div>
 
-        <h2>Fails</h2>
+        <h3>Fails</h3>
         <p>Here is my initial setup that didn't work.</p>
         <p>
             {% highlight "html" %}
 <script type="module" src="./js/index.js"></script>
-<script type="importmap">
+
+    <script type="importmap">
     {
         "imports": {
             "module1": "./js/packages/module1.js"
         }
     }
-</script>
+    
+    </script>
             {% endhighlight %}
         </p>
 
@@ -84,7 +85,7 @@ publish: 2025-02-16T17:22:00.000Z
 
         <!-- https://www.honeybadger.io/blog/import-maps/ -->
 
-    </div>
+
 
 </article> 
 

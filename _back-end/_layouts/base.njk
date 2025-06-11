@@ -200,17 +200,17 @@ jsFiles: []
                             home</a></li>
 
                         <li><a 
-                        {% if(page.url == "/notes/")%} class="pg-is-active" {% endif %} href="/notes">
+                        {% if( "/notes/" in page.url)%} class="pg-is-active" {% endif %} href="/notes">
                             {% include "../../website-source/_shared/images/icons/icon-pencil.svg" %}
                             notes <span>{{collections.note.length or 0}}</span></a></li>
 
                         <li><a 
-                        {% if(page.url == "/projects/")%} class="pg-is-active" {% endif %} href="/projects">
+                        {% if("/projects/" in page.url)%} class="pg-is-active" {% endif %} href="/projects">
                             {% include "../../website-source/_shared/images/icons/icon-packages.svg" %}
                             projects <span>{{collections.project.length or 0}}</span></a></li>
 
                         <li><a 
-                        {% if(page.url == "/reading/")%} class="pg-is-active" {% endif %} href="/reading">
+                        {% if("/reading/" in page.url)%} class="pg-is-active" {% endif %} href="/reading">
                             {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
                             reading <span>{{collections.reading.length or 0}}</span></a></li>
 

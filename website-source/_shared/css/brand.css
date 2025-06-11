@@ -132,7 +132,7 @@ body {
 }
 
 body {
-    --pg-bg-alpha: 0.05;
+    --pg-bg-alpha: 0.1;
     --pg-bg-size: 0.5rem;
     --pg-bg-position: calc(var(--pg-bg-size) / 2);
     --border-color: linear-gradient(to right,
@@ -143,11 +143,11 @@ body {
     font-size: var(--font-size-0);
     background-color: white;
     color: var(--pg-colour-dark-grey);
-    /* background-image: radial-gradient(circle at center,
+    background-image: radial-gradient(circle at center,
             rgba(51, 51, 51, var(--pg-bg-alpha)) 1px,
             transparent 0), radial-gradient(circle at center, rgba(51, 51, 51, var(--pg-bg-alpha)) 1px, transparent 0);
     background-size: var(--pg-bg-size) var(--pg-bg-size);
-    background-position: 0 0, var(--pg-bg-position) var(--pg-bg-position); */
+    background-position: 0 0, var(--pg-bg-position) var(--pg-bg-position);
     border-top: var(--pg-border-body-top) solid var(--pg-colour-blue);
     border-image: var(--border-color) 1;
 }
@@ -215,6 +215,10 @@ h2 {
 h3 {
     font-size: var(--font-size-1);
     font-weight: 400;
+}
+
+h3 strong {
+    font-weight: bold;
 }
 
 
@@ -892,6 +896,23 @@ header>nav ul>li>a:hover>span {
     margin-block-end: var(--space-xs);
 }
 
+.pg-card.pg-card-reading>a::after {
+    display: none !important;
+}
+
+.pg-card.pg-card-reading>a>h3::after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: text-top;
+    background-image: url(/_shared/images/icons/icon-new-window.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-inline-start: 3px;
+    margin-inline-end: 5px;
+}
+
 .pg-card>a:hover,
 .pg-card>a:focus-visible {
     box-shadow: none;
@@ -1029,4 +1050,6 @@ footer {
     width: fit-content;
     padding-inline: var(--space-3xs);
     text-box-edge: cap alphabetic;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
 }

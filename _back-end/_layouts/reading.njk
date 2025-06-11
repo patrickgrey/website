@@ -11,7 +11,7 @@ jsFiles: []
 
         {% set tagList = tags | sort %}
         {% include "tag-list.njk" %}
-        <p class="pg-published">Published: <datetime>{{publish | readableDate}}</datetime></p>
+        <p class="pg-published">Date read: <datetime>{{publish | readableDate}}</datetime></p>
         {% if update %}<p>Updated: <datetime>{{update | readableDate}}</datetime></p>{% endif%}
         {{ content | safe }}
     </div>

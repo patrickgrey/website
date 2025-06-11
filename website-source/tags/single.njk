@@ -16,9 +16,11 @@ permalink: /tags/{{ tag | slugify }}/
 
 <article>
   <div class="pg-column-main">
-    <h2>Tagged {{ tag }}</h2>
+    <h2>Tagged &quot;{{ tag }}&quot;</h2>
 
     {% set cardList = collections[tag] %}
+    {% set cardLimit = 999999 %}
+    {% set cardSummary = "notes" %}
     {% include "card-list.njk" %}
     
 

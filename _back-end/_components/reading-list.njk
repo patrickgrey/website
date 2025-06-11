@@ -1,0 +1,38 @@
+{% if readingList | length === 0 %}
+    <div class="pg-card pg-flow">
+        <p>*Tumbleweed gif* (It's 49Mb so I'm using text instead...)</p>
+        <p>Nothing to see here! I'm obviously working hard to create the first piece of content for this section, otherwise, what's the point of having it? Alternatively, I've renamed some small thing and broken this section, sorry if that's the case. Finally, I may have deleted all my content, in which case, I'm away for a small cry.</p>
+    </div>
+{% else %}
+    {% set readingLimit = readingLimit or 5 %}
+
+    <ol reversed class="pg-card-list">
+
+        {% for read in readingList | reverse %}
+            {% if loop.index0 < readingLimit %}
+                <li>
+                    <div class="pg-card pg-card-reading pg-flow">
+                        <a href="{{ read.data.url }}" target="_blank">
+                            {# {% if cardIcon %} #}
+                                {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
+                            {# {% endif %} #}
+                            
+                            <h3>{{read.data.title}} by <strong>{{read.data.authors}}</strong></h3>
+                        </a>
+
+                        <time datetime="{{ read.date | htmlDateString }}">{{ read.date | readableDate("dd LLLL yyyy") }}</time>
+                        {% if readingSummary %}
+                        <div class="pg-summary">{{read.data[readingSummary]}}</div>
+                        {% endif %}
+
+                        {% set tagList = read.data.topics | sort %}
+                        {% include "tag-list.njk" %}
+                        
+                    </div>
+                    
+                </li>
+            {% endif %}
+        {% endfor %}
+
+    </ol>
+{% endif %}

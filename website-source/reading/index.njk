@@ -12,11 +12,11 @@ eleventyNavigation:
 <article  class="pg-flow">
   <h2>Reading</h2>
     <p>Here's a list of what I've been reading / watching / listening to.</p>
-    {% set cardList = collections.reading %}
-    {% set cardLimit = 999999 %}
-    {% set cardSummary = "notes" %}
-    {% set cardIcon = "icon-book-open" %}
-    {% include "card-list.njk" %}
+    {% set readingList = collections.reading %}
+    {% set readingLimit = 999999 %}
+    {% set readingSummary = "notes" %}
+    {% set readingIcon = "icon-book-open" %}
+    {% include "reading-list.njk" %}
 </article>
 
 

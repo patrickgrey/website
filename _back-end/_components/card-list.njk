@@ -27,18 +27,6 @@
 
                         {% set tagList = card.data.tags | sort %}
                         {% include "tag-list.njk" %}
-
-                        {# <section class="pg-tags-no-scroll">
-                            <ul>
-                                {% for tag in card.data.tags %}
-                                    {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-                                    <li>
-                                        <a href="{{ tagUrl }}">{{ tag }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </section> #}
-
                         
                     </div>
                     
