@@ -225,15 +225,19 @@ jsFiles: []
                     <div class="pg-skip">
                         <p><a class="pg-mbe-s" href="#main">Skip tags list</a></p>
                     </div>
+
+                    {% set tagList = collections.all | getAllTags | sort %}
+                    {% set tagsScroll = true %}
+                    {% include "tag-list.njk" %}
                     
-                    <ul>
+                    {# <ul>
                         {% for tag in collections.all | getAllTags | sort %}
                             {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
                             <li>
                                 <a href="{{ tagUrl }}" >{{ tag }}</a>
                             </li>
                         {% endfor %}
-                    </ul>
+                    </ul> #}
                 </section>
 
                 
@@ -260,6 +264,7 @@ jsFiles: []
                 </div>
                 {# https://www.w3.org/WAI/planning/statements/ #}
                 <p>Accessibility statement</p>
+                <p>View <a href="/tags/">all tags</a></p>
                 <p class="pg-ai">No {%include '../../website-source/_shared/images/icons/icon-sparkles.svg'%}AI{%include '../../website-source/_shared/images/icons/icon-sparkles.svg'%} 🙄 is used to create the content of this site.</p>
                 <p>Built with <a href="https://11ty.dev/" target="_blank">{{ eleventyinfo.packageName}}:  {{eleventyinfo.packageVersion}}</a> 😍</p>
             </footer>

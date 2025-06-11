@@ -1,0 +1,16 @@
+{% if tagList | length === 0 %}
+    <p>There are no tags at this moment.</p>
+{% endif %}
+
+{% set scrollClass =  "pg-tags pg-tags-scroll" if tagsScroll else "pg-tags" %}
+
+<section class="{{scrollClass}}">                    
+    <ol>
+        {% for currentTag in tagList %}
+            {% set tagUrl %}/tags/{{ currentTag | slugify }}/{% endset %}
+            <li>
+                <a href="{{ tagUrl }}" {% if currentTag === tag %}class="pg-tag-current"{% endif %}>{{ currentTag }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+</section>

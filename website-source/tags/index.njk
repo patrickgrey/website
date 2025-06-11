@@ -5,14 +5,8 @@ permalink: /tags/
   <div class="pg-column-main flow">
     <h1>Tags</h1>
 
-    <ul class="pg-tags-list">
-        {% for tag in collections.all | getAllTags %}
-            {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-            <li>
-                <a href="{{ tagUrl }}" class="pg-tag">{{ tag }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% set tagList = collections.all | getAllTags | sort %}
+    {% include "tag-list.njk" %}
 
 
   </div>

@@ -16,12 +16,13 @@ permalink: /tags/{{ tag | slugify }}/
 
 <article>
   <div class="pg-column-main">
-    <h1>Tagged <span class="pg-tag">{{ tag }}</span></h1>
+    <h2>Tagged {{ tag }}</h2>
 
-    {% set notelist = collections[tag] %}
+    {% set cardList = collections[tag] %}
+    {% include "card-list.njk" %}
     
 
-    <p>See <a href="/tags/">all tags</a>.</p>
+    <p>See <a href="/tags/">all tags  ↪</a>.</p>
 
   </div>
 </article>
