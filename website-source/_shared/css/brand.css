@@ -367,6 +367,22 @@ li>code {
     margin-block-end: var(--space-xs) !important;
 }
 
+.pg-pbe-s {
+    padding-block-end: var(--space-s) !important;
+}
+
+.pg-bg {
+    background-color: var(--pg-colour-column-bg);
+}
+
+.pg-centre>p {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: none;
+}
+
 /* Change this to line height? */
 svg:not([width]):not([height]) {
     height: 1.5ex;
@@ -452,6 +468,7 @@ svg:not([width]):not([height]) {
 .pg-column-wide-3,
 .pg-column-wide-4 {
     margin: 0 auto;
+    /* background-color: var(--pg-colour-column-bg); */
 }
 
 .pg-column-wide-1 {

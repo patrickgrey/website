@@ -18,8 +18,29 @@ Small screen:
 
 Medium screen:
 
+</div>
+<div class="pg-full-width">
+<div class="pg-column-wide-1 pg-centre">
+
 ![A screenshot of a promotion panel for The Inside Man on a medium screen.](/_shared/uploads/safe-panel-medium.png "The Inside Man: medium screen.")
+
+</div>
+</div>
+<div class="pg-main-inner pg-flow">
 
 Large screen:
 
+</div>
+<div class="pg-full-width">
+<div class="pg-column-wide-1 pg-centre">
+
 ![A screenshot of a promotion panel for The Inside Man on a large screen.](/_shared/uploads/safe-panel-large.png "The Inside Man: large screen")
+
+</div>
+</div>
+
+<div class="pg-main-inner pg-flow">
+
+A fun little project!
+
+</div>

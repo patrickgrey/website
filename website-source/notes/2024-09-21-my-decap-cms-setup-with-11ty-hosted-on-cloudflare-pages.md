@@ -157,7 +157,6 @@ collections:
 
 </div>
 </div>
-
 <div class="pg-main-inner pg-flow">
 
 ## Keeping 11ty Image transform with Decap

@@ -8,3 +8,4 @@ TODO:
 - long form, fix css, especially projects.
 - honey trap for AI
 - Breakout layout
+- IMC panel images
