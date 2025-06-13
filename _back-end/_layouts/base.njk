@@ -33,7 +33,7 @@ jsFiles: []
         <link rel="me" href="https://glasgow.social/@patrick">
         
         <link rel="icon" type="image/svg+xml" href="/_shared/favicons/favicon.svg">
-<link rel="icon" type="image/png" href="/_shared/favicons/favicon.png">
+        <link rel="icon" type="image/png" href="/_shared/favicons/favicon.png">
 
         {#- Atom and JSON feeds included by default #}
         <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
@@ -54,6 +54,11 @@ jsFiles: []
 
             pre {
                 counter-reset: lineNumber;
+            }
+
+            code[class*=language-], pre[class*=language-] {
+                font-size: 0.8em;
+                margin-block: 0;
             }
 
             code .highlight-line::before {
@@ -149,7 +154,7 @@ jsFiles: []
             </p>
         </div>
             
-        <div class="pg-full-height pg-column-main">
+        <div class="pg-full-height">
 
             <header class="pg-flow">
 
@@ -167,7 +172,7 @@ jsFiles: []
                 <p>Web developer &amp; e&#8209;learning specialist</p>                    
 
 
-                <section class="pg-contact">
+                <aside class="pg-contact">
                     <p class="pg-visually-hidden">Contact me!</p>
                     <ul class="pg-socials">
                         <li><a href="https://glasgow.social/@patrick" target="_blank">
@@ -189,7 +194,7 @@ jsFiles: []
                             <span class="pg-visually-hidden">Please don't use twitter.</span>
                             </a></li>
                     </ul>
-                </section>
+                </aside>
 
 
                 <nav>
@@ -219,7 +224,7 @@ jsFiles: []
 
                 
 
-                <section class="pg-tags">
+                {# <section class="pg-tags">
                     <h2 class="pg-visually-hidden">Tags</h2>
                     
                     <div class="pg-skip">
@@ -229,28 +234,14 @@ jsFiles: []
                     {% set tagList = collections.all | getAllTags | sort %}
                     {% set tagsScroll = true %}
                     {% include "tag-list.njk" %}
-                    
-                    {# <ul>
-                        {% for tag in collections.all | getAllTags | sort %}
-                            {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-                            <li>
-                                <a href="{{ tagUrl }}" >{{ tag }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul> #}
-                </section>
-
-                
-
-
-                    
+                </section> #}
 
 
             </header>           
 
             
-            <main id="main"  class="pg-flow">
-                {{ content | safe }}
+            <main id="main"  class="pg-column-main">
+                <div class="pg-main-inner pg-flow">{{ content | safe }}</div>
             </main>
                         
             <footer id="footer" class="pg-flow">

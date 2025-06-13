@@ -4,7 +4,7 @@
 
 {% set scrollClass =  "pg-tags pg-tags-scroll" if tagsScroll else "pg-tags" %}
 
-<section class="{{scrollClass}}">                    
+<div class="{{scrollClass}}">                    
     <ol>
         {% for currentTag in tagList %}
             {% set tagUrl %}/tags/{{ currentTag | slugify }}/{% endset %}
@@ -13,4 +13,4 @@
             </li>
         {% endfor %}
     </ol>
-</section>
+</div>

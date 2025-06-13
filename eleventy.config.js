@@ -1,4 +1,4 @@
-import { minify } from "terser";
+// import { minify } from "terser";
 import { DateTime } from "luxon";
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy"
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
@@ -109,10 +109,10 @@ export default async function (eleventyConfig) {
         return new TextDecoder().decode(code);
     });
 
-    eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
-        const minified = await minify(code);
-        return callback(null, minified.code);
-    });
+    // eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
+    //     const minified = await minify(code);
+    //     return callback(null, minified.code);
+    // });
 
     // Return all the tags used in a collection
     eleventyConfig.addFilter("getAllTags", collection => {

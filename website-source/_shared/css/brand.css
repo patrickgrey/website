@@ -81,6 +81,10 @@
         monospace;
 
     --pg-max-width: 50ch;
+    --pg-wide-1: 70ch;
+    --pg-wide-2: 90ch;
+    --pg-wide-3: 110ch;
+    --pg-wide-4: 130ch;
     --pg-border-body-top: 0.75rem;
     --pg-button-corners: 5px;
     --pg-flow-space: 0.9em;
@@ -152,12 +156,12 @@ body {
     border-image: var(--border-color) 1;
 }
 
-main {
+.pg-main-inner {
     padding-block-start: var(--space-m);
 }
 
 header,
-main,
+.pg-main-inner,
 footer {
     background-color: var(--pg-colour-column-bg);
     padding-inline: var(--space-2xs);
@@ -167,22 +171,42 @@ footer {
 @media screen and (min-width: 600px) {
 
     header,
-    main,
+    .pg-main-inner,
     footer {
         padding-inline: var(--space-s);
     }
 }
 
 header {
+    width: 100%;
     background-image: var(--pg-background-glow);
+    max-width: var(--pg-max-width);
+    margin: 0 auto;
 }
 
-main {
+.pg-main-inner {
     padding-block-end: var(--space-l);
+}
+
+footer {
+    max-width: var(--pg-max-width);
+    margin: 0 auto;
 }
 
 *::selection {
     background-color: var(--pg-colour-pink);
+}
+
+ul,
+ol {
+    /* list-style-position: inside; */
+    padding-inline-start: var(--space-xs);
+}
+
+main ul li+li,
+main ol li+li {
+    margin-block-start: var(--space-2xs);
+    line-height: 1.8;
 }
 
 p {
@@ -232,6 +256,8 @@ a {
     color: var(--pg-colour-dark-grey);
     background-color: var(--pg-colour-blue);
     outline: none;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 a:focus-visible,
@@ -281,14 +307,14 @@ time {
     white-space: nowrap;
 }
 
-p>code,
+/* p>code,
 li>code {
     background-color: var(--pg-colour-mid);
     border-block-start: 2px solid var(--pg-colour-mid);
     border-block-end: 2px solid var(--pg-colour-mid);
     color: whitesmoke;
     padding-inline: var(--space-3xs);
-}
+} */
 
 /*
 .##.....##.########.####.##.......####.########.####.########..######.
@@ -387,6 +413,7 @@ svg:not([width]):not([height]) {
     grid-template-columns: 100%;
     min-height: 100vh;
     padding-block-start: var(--space-m);
+    padding-inline: var(--space-xs);
 }
 
 /* .pg-column-main {
@@ -399,16 +426,48 @@ svg:not([width]):not([height]) {
 .pg-column-main {
     display: grid;
     grid-template-columns: [full-start] 1fr [wrapper-start] minmax(0, var(--pg-max-width)) [wrapper-end] 1fr [full-end];
-    column-gap: var(--pg-side-padding, 0.5rem);
+    /* column-gap: var(--pg-side-padding, 0.5rem); */
 }
 
 .pg-column-main>* {
     grid-column: wrapper;
 }
 
+.pg-main-inner {
+    background-color: var(--pg-colour-column-bg);
+    width: 100%;
+}
+
 .pg-full-width {
     grid-column: full;
-    padding: var(--pg-side-padding, 0.5rem);
+    padding-inline: var(--pg-side-padding, 0.5rem);
+
+    /* width: 100vw;
+    margin-left: 50%;
+    transform: translate3d(-50%, 0, 0); */
+}
+
+.pg-column-wide-1,
+.pg-column-wide-2,
+.pg-column-wide-3,
+.pg-column-wide-4 {
+    margin: 0 auto;
+}
+
+.pg-column-wide-1 {
+    max-width: var(--pg-wide-1);
+}
+
+.pg-column-wide-2 {
+    max-width: var(--pg-wide-2);
+}
+
+.pg-column-wide-3 {
+    max-width: var(--pg-wide-3);
+}
+
+.pg-column-wide-4 {
+    max-width: var(--pg-wide-4);
 }
 
 /*
@@ -463,6 +522,7 @@ header {
     z-index: 100;
     top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 12rem) * -1);
     padding-block-start: var(--space-s);
+    padding-block-end: var(--space-s);
     border-start-start-radius: var(--space-m);
     border-start-end-radius: var(--space-m);
     border-block-end: 1px solid var(--pg-colour-blue);
@@ -808,6 +868,7 @@ header>nav ul>li>a:hover>span {
 }
 
 .pg-tags-scroll {
+    width: 100%;
     overflow-x: auto;
     scrollbar-color: var(--pg-colour-blue) transparent;
 }
@@ -818,12 +879,20 @@ header>nav ul>li>a:hover>span {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3xs);
+    padding-inline-start: 0;
 }
 
 .pg-tags-scroll>ul,
 .pg-tags-scroll>ol {
     flex-wrap: nowrap;
     padding-block-end: var(--space-3xs);
+    padding-inline-start: 0;
+}
+
+.pg-tags>ul>li,
+.pg-tags>ol>li {
+    margin-block-start: 0;
+    line-height: 1;
 }
 
 .pg-tags>ul>li>a,

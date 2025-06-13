@@ -16,6 +16,11 @@ I needed to get my content into the right format for Decap to manage the content
 
 The YAML file had an array of posts like this:
 
+</div>
+
+<div class="pg-full-width">
+<div class="pg-column-wide-1">
+
 ```yaml
 - url: 'https://www.tbray.org/ongoing/When/202x/2024/01/15/Google-2024'
   title: Mourning Google
@@ -45,5 +50,10 @@ The YAML file had an array of posts like this:
   purposes:
     - personal
 ```
+
+</div>
+</div>
+
+<div class="pg-main-inner pg-flow">
 
 The shell code replaces spaces in the title with hyphens after it's all made lower case. Let's see if it works... It does!!

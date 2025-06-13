@@ -3,6 +3,9 @@ title: Problems I faced when using Javascript importmap with ASP.NET Core
 tags:
   - javascript
   - asp.net
+draft: false
+summary: Combining importmap and ASP.NET Core can help get rid of the default
+  bloat of libraries like jQuery and Boostrap.
 publish: 2025-01-08T16:22:00.000Z
 ---
 I needed to use [CKEditor 5](https://github.com/ckeditor/ckeditor5/) in a web page we were building. CKEditor is a library that transforms textareas (and other elements) into a rich text editor.  CKEditor has a [build tool](https://ckeditor.com/ckeditor-5/builder/) that allows you to include only the features you need. To load the javascript file that produces, thier site recommends using an importmap.
@@ -13,7 +16,12 @@ I've often struggled to get importmap working, largely to my own stupidity, but 
 
 I develop front-end prototypes in [eleventy](<>) (the front end DX is much nicer) before switching to Visual Studio for ASP.NET Core MVC development.
 
-For the front-end prototype code I use:
+For the front-end prototype code I use: 
+
+</div>
+
+<div class="pg-full-width">
+<div class="pg-column-wide-1">
 
 ```html
 <script type="importmap">
@@ -26,7 +34,15 @@ For the front-end prototype code I use:
 </script>
 ```
 
+</div>
+</div>
+
+<div class="pg-main-inner pg-flow">
 In my C# code I use:
+</div>
+
+<div class="pg-full-width">
+<div class="pg-column-wide-1">
 
 ```dotnet
 <script type="importmap">
@@ -38,6 +54,11 @@ In my C# code I use:
     }
 </script>
 ```
+
+</div>
+</div>
+
+<div class="pg-main-inner pg-flow">
 
 The first path is to the main file while the second path is for the package so the first file can load the multiple modules the package.
 
@@ -85,10 +106,16 @@ It turns out the minification process going over the already minified CKEditor f
 
 ## MVC Tilde
 
-Finallly, in the ASP.NET View page, we use the tilde (` ~ `) to get the server path. This works for images and other files like javascript and CSS links but not for the import map links :-(
+Finallly, in the ASP.NET View page, we use the tilde (`~`) to get the server path. This works for images and other files like javascript and CSS links but not for the import map links :-(
 
 I went down the rabbit hole of printing out the server path but this is now more complex than it used to be in old ASP.NET (4sih). Instead I just hard coded the root path URL when not in debug. A very fragile solution I wasn't happy with. That was until I found this great article by Khalid Abuhakmeh on importmap use with ASP.NET: <https://khalidabuhakmeh.com/javascript-import-maps-for-aspnet-core-developers> 
 
-They note the use of `"hello-world": "@Url.Content("~/js/hello-world.js")"` to allow the tilde to be supported. A much better solution!
+They note the use of 
+
+```dotnet
+"hello-world": "@Url.Content("~/js/hello-world.js")"
+```
+
+to allow the tilde to be supported. A much better solution!
 
 Now import maps is working I'm going to see if I can stop using Vite altogether. Less complexity, more win.

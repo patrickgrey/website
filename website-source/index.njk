@@ -8,29 +8,22 @@ eleventyNavigation:
   order: 1
 ---
 
-<article  class="pg-flow">
-  <h2>Recent notes</h2>
-  {% set cardList = collections.note %}
-  {% set cardSummary = "summary" %}
-  {% set cardIcon = "icon-pencil" %}
-  {% include "card-list.njk" %}
-  <p class="pg-read-more"><a href="/notes/">Read all notes ↪</a></p>
-</article>
+<h2>Recent notes</h2>
+{% set cardList = collections.note %}
+{% set cardSummary = "summary" %}
+{% set cardIcon = "icon-pencil" %}
+{% include "card-list.njk" %}
+<p class="pg-read-more"><a href="/notes/">Read all notes ↪</a></p>
 
+<h2>Recent projects</h2>
+{% set cardList = collections.project %}
+{% set cardIcon = "icon-packages" %}
+{% include "card-list.njk" %}
+<p class="pg-read-more"><a href="/projects/">Read about all projects ↪</a></p>
 
-<article class="pg-flow"> 
-  <h2>Recent projects</h2>
-  {% set cardList = collections.project %}
-  {% set cardIcon = "icon-packages" %}
-  {% include "card-list.njk" %}
-  <p class="pg-read-more"><a href="/projects/">Read about all projects ↪</a></p>
-</article>
-
-<article class="pg-flow"> 
-  <h2>Recent reading</h2>
-  {% set cardList = collections.reading %}
-  {% set cardSummary = "notes" %}
-  {% set cardIcon = "icon-book-open" %}
-  {% include "card-list.njk" %}
-  <p class="pg-read-more"><a href="/reading/">See reading list ↪</a></p>
-</article>
+<h2>Recent reading</h2>
+{% set cardList = collections.reading %}
+{% set cardSummary = "notes" %}
+{% set cardIcon = "icon-book-open" %}
+{% include "card-list.njk" %}
+<p class="pg-read-more"><a href="/reading/">See reading list ↪</a></p>

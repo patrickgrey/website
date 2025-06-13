@@ -10,12 +10,16 @@
 
         {% for read in readingList | reverse %}
             {% if loop.index0 < readingLimit %}
-                <li>
-                    <div class="pg-card pg-card-reading pg-flow">
+                <li class="pg-card pg-card-reading pg-flow">
+
                         <a href="{{ read.data.url }}" target="_blank">
-                            {# {% if cardIcon %} #}
+                            {% if read.data.type === "video" %}
+                                {% include "../../website-source/_shared/images/icons/icon-video.svg" %}
+                            {% elif read.data.type === "audio" %}
+                                {% include "../../website-source/_shared/images/icons/icon-audio.svg" %}
+                            {% else %}
                                 {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
-                            {# {% endif %} #}
+                            {% endif %}
                             
                             <h3>{{read.data.title}} by <strong>{{read.data.authors}}</strong></h3>
                         </a>
@@ -28,7 +32,7 @@
                         {% set tagList = read.data.topics | sort %}
                         {% include "tag-list.njk" %}
                         
-                    </div>
+
                     
                 </li>
             {% endif %}

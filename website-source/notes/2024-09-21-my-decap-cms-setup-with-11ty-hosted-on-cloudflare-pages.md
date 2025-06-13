@@ -44,6 +44,10 @@ Decap needs an index.html file to host the React app and a config.yml. I changed
 
 index.njk:
 
+</div>
+<div class="pg-full-width">
+<div class="pg-column-wide-1">
+
 ```html
 {% raw %}
 ---
@@ -108,7 +112,16 @@ permalink: "admin/index.html"
 {% endraw %}
 ```
 
+</div>
+</div>
+
+<div class="pg-main-inner pg-flow">
+
 Config.yml (local)
+
+</div>
+<div class="pg-full-width">
+<div class="pg-column-wide-1">
 
 ```yaml
 # when using the default proxy server port
@@ -141,6 +154,11 @@ collections:
       - { label: "Update Date", name: "update", widget: "datetime", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 ```
+
+</div>
+</div>
+
+<div class="pg-main-inner pg-flow">
 
 ## Keeping 11ty Image transform with Decap
 

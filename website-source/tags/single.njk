@@ -15,7 +15,6 @@ permalink: /tags/{{ tag | slugify }}/
 ---
 
 <article>
-  <div class="pg-column-main">
     <h2>Tagged &quot;{{ tag }}&quot;</h2>
 
     {% set cardList = collections[tag] %}
@@ -26,5 +25,4 @@ permalink: /tags/{{ tag | slugify }}/
 
     <p>See <a href="/tags/">all tags  ↪</a>.</p>
 
-  </div>
 </article>

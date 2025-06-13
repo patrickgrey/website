@@ -11,7 +11,7 @@
         {% for card in cardList | reverse %}
             {% if loop.index0 < cardLimit %}
                 <li>
-                    <div class="pg-card pg-flow">
+                    <article class="pg-card pg-flow">
                         <a href="{{ card.url }}">
                             {% if cardIcon %}
                                 {% include "../../website-source/_shared/images/icons/" + cardIcon + ".svg" %}
@@ -28,7 +28,7 @@
                         {% set tagList = card.data.tags | sort %}
                         {% include "tag-list.njk" %}
                         
-                    </div>
+                    </article>
                     
                 </li>
             {% endif %}

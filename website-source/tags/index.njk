@@ -1,13 +1,7 @@
 ---
 permalink: /tags/
 ---
-<article>
-  <div class="pg-column-main flow">
-    <h1>Tags</h1>
+    <h2>Tags</h2>
 
     {% set tagList = collections.all | getAllTags | sort %}
     {% include "tag-list.njk" %}
-
-
-  </div>
-</article>
