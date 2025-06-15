@@ -2,10 +2,13 @@
 Remember to run `npm run decap` before the dev server when developing locally you dufus! (Yes, I lost a couple of hours when I forgot this)
 
 TODO:
+
+- Test Accessibility
 - Accessibility statement
+- honey trap for AI: https://heydonworks.com/article/poisoning-well/
+- Shortcode for wide
 - DONE Media type for reading card icons
-- Fix bullets in articles
-- long form, fix css, especially projects.
-- honey trap for AI
-- Breakout layout
-- IMC panel images
+- DONE Fix bullets in articles
+- DONE long form, fix css, especially projects.
+- DONE Breakout layout
+- DONE IMC panel images

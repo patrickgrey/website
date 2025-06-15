@@ -14,10 +14,12 @@ publish: 2025-02-16T17:22:00.000Z
 
         <p>What are Import Maps? <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">Mozzilla gives us some detail</a>.</p>
 
-        <p>I've had trouble using them at work, I think mainly due to problems with relative paths but also the error messages you get aren't that helpful i.e. I keep getting </p>
+        <p>I've had trouble using them at work, I think mainly due to problems with relative paths but also the error messages you get aren't that helpful i.e. I keep getting:</p>
 
+        {% fullwide "0" %}
         {% highlight "console" %}Uncaught TypeError: Failed to resolve module specifier "module1". Relative references must start with either "/", "./", or "../"
         {% endhighlight %}
+        {% endfullwide %}
 
         <h3>Plan</h3>
 
@@ -32,52 +34,52 @@ publish: 2025-02-16T17:22:00.000Z
 
         <h3>Fails</h3>
         <p>Here is my initial setup that didn't work.</p>
-        <p>
-            {% highlight "html" %}
+        {% fullwide "0" %}
+{% highlight "html" %}
 <script type="module" src="./js/index.js"></script>
-
     <script type="importmap">
     {
         "imports": {
             "module1": "./js/packages/module1.js"
         }
     }
-    
+
     </script>
-            {% endhighlight %}
-        </p>
+{% endhighlight %}
+        {% endfullwide %}
 
         <p>I take the relative URL from the index page. This results in the error noted above.</p>
 
-        <p>
+        {% fullwide "0" %}
             {% highlight "html" %}
 <script type="module" src="./js/index.js"></script>
-<script type="importmap">
-    {
-        "imports": {
-            "module1": "./packages/module1.js"
+    <script type="importmap">
+        {
+            "imports": {
+                "module1": "./packages/module1.js"
+            }
         }
-    }
-</script>
+    </script>
             {% endhighlight %}
-        </p>
+        {% endfullwide %}
 
         <p>I take the relative URL from the javascript file. This still results in the error noted above.</p>
 
         <p><strong>What I was doing wrong</strong> was loading my script before the import map is created. Seems obvious now 😅. Links are relative to the HTML page. Now the scripts load as expected.</p>
 
-        <p>So, this works:
+        <p>So, this works:</p>
+        {% fullwide "0" %}
                         {% highlight "html" %}
-<script type="importmap">
-    {
-        "imports": {
-            "module1": "./js/packages/module1.js"
+    <script type="importmap">
+        {
+            "imports": {
+                "module1": "./js/packages/module1.js"
+            }
         }
-    }
-</script>
+    </script>
 <script type="module" src="./js/index.js"></script>
             {% endhighlight %}
-        </p>
+        {% endfullwide %}
 
         <p>I want to be able to develop offline (the joys of wifi in rural Scotland). UNPKG seems a good start but not for all the files I need if offline. I need to investigate further and will update this post if I get anywhere.</p>
 

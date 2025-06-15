@@ -81,6 +81,7 @@
         monospace;
 
     --pg-max-width: 50ch;
+    --pg-wide-0: 100%;
     --pg-wide-1: 70ch;
     --pg-wide-2: 90ch;
     --pg-wide-3: 110ch;
@@ -463,12 +464,17 @@ svg:not([width]):not([height]) {
     transform: translate3d(-50%, 0, 0); */
 }
 
+.pg-column-wide-0,
 .pg-column-wide-1,
 .pg-column-wide-2,
 .pg-column-wide-3,
 .pg-column-wide-4 {
     margin: 0 auto;
     /* background-color: var(--pg-colour-column-bg); */
+}
+
+.pg-column-wide-0 {
+    max-width: var(--pg-max-width);
 }
 
 .pg-column-wide-1 {

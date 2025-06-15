@@ -59,6 +59,7 @@ jsFiles: []
             code[class*=language-], pre[class*=language-] {
                 font-size: 0.8em;
                 margin-block: 0;
+                border-radius:0;
             }
 
             code .highlight-line::before {
@@ -241,7 +242,9 @@ jsFiles: []
 
             
             <main id="main"  class="pg-column-main">
-                <div class="pg-main-inner pg-flow">{{ content | safe }}</div>
+                <div class="pg-main-inner pg-flow">
+                    {{ content | safe }}
+                </div>
             </main>
                         
             <footer id="footer" class="pg-flow">

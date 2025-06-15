@@ -157,6 +157,22 @@ export default async function (eleventyConfig) {
     //     eleventyConfig.ignores.add('website-source/_example-hero/**/*');
     // }
 
+    eleventyConfig.addPairedShortcode(
+        'fullwide',
+        (content, width, classes, isEnd = false, isStart = false) => {
+            // let startWrap = (!isStart) ? `</div>` : ``;
+            let endWrap = (!isEnd) ? `<div class="pg-main-inner pg-flow">` : ``;
+            if (!isStart)
+                return `</div>
+                            <div class="pg-full-width">
+                                <div class="pg-column-wide-${width} ${classes}">
+                                    ${content}
+                                </div>
+                            </div>
+                        ${endWrap}`
+        }
+    )
+
     eleventyConfig.setServerOptions({
         showAllHosts: true,
         domDiff: false,

@@ -18,10 +18,7 @@ I develop front-end prototypes in [eleventy](<>) (the front end DX is much nicer
 
 For the front-end prototype code I use: 
 
-</div>
-
-<div class="pg-full-width">
-<div class="pg-column-wide-1">
+{% fullwide "1" %}
 
 ```html
 <script type="importmap">
@@ -34,15 +31,11 @@ For the front-end prototype code I use:
 </script>
 ```
 
-</div>
-</div>
+{% endfullwide %}
 
-<div class="pg-main-inner pg-flow">
 In my C# code I use:
-</div>
 
-<div class="pg-full-width">
-<div class="pg-column-wide-1">
+{% fullwide "1" %}
 
 ```dotnet
 <script type="importmap">
@@ -55,10 +48,7 @@ In my C# code I use:
 </script>
 ```
 
-</div>
-</div>
-
-<div class="pg-main-inner pg-flow">
+{% endfullwide %}
 
 The first path is to the main file while the second path is for the package so the first file can load the multiple modules the package.
 
