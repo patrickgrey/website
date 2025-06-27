@@ -431,6 +431,7 @@ svg:not([width]):not([height]) {
     min-height: 100vh;
     padding-block-start: var(--space-m);
     padding-inline: var(--space-xs);
+    background-image: var(--pg-background-glow);
 }
 
 /* .pg-column-main {
@@ -738,6 +739,7 @@ header>nav>ul {
     justify-content: center;
     flex-wrap: wrap;
     gap: var(--space-3xs);
+    padding-inline-start: 0;
 }
 
 header>nav ul>li>a {
@@ -966,6 +968,7 @@ header>nav ul>li>a:hover>span {
 }
 
 .pg-card {
+    line-height: 1.3;
     position: relative;
     padding: var(--space-xs) var(--space-xs);
     background-color: white;
