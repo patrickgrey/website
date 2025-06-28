@@ -101,14 +101,19 @@
     --pg-background-glow: radial-gradient(circle at 8% -20%, var(--pg-colour-blue) 0%, transparent 26%),
         radial-gradient(circle at 37% -45%, var(--pg-colour-pink) 0%, transparent 40%);
 
-    --pg-background-glow-bottom: radial-gradient(circle at 105% 140%, var(--pg-colour-pink) 0%, transparent 16%),
-        radial-gradient(circle at 95% 173%, var(--pg-colour-blue) 0%, transparent 20%);
+    --pg-background-glow-bottom:
+        radial-gradient(circle at -60px calc(100% - 0px), var(--pg-colour-pink) 0, transparent 200px),
+        radial-gradient(circle at 130px calc(100% + 70px), var(--pg-colour-blue) 0, transparent 180px),
+        radial-gradient(circle at calc(100% - 60px) calc(100% - 0px), var(--pg-colour-pink) 0, transparent 200px),
+        radial-gradient(circle at calc(100% - 150px) calc(100% + 70px), var(--pg-colour-blue) 0, transparent 180px);
 
     --pg-background-glow-top-right:
-
         radial-gradient(circle at calc(100% - 120px) -55px, var(--pg-colour-pink) 0, transparent 100px),
-
         radial-gradient(circle at calc(100% - 0px) -50px, var(--pg-colour-blue) 0, transparent 140px);
+
+    --pg-background-glow-bottom-right:
+        radial-gradient(circle at calc(100% - 60px) calc(100% - 0px), var(--pg-colour-pink) 0, transparent 200px),
+        radial-gradient(circle at calc(100% - 150px) calc(100% + 70px), var(--pg-colour-blue) 0, transparent 180px);
 
 
 }
@@ -1125,7 +1130,7 @@ footer {
     border-end-start-radius: var(--space-m);
     border-end-end-radius: var(--space-m);
     text-align: center;
-    background-image: var(--pg-background-glow);
+    background-image: var(--pg-background-glow-bottom);
 }
 
 .pg-ai svg {
