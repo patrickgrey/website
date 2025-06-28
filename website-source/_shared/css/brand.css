@@ -93,7 +93,7 @@
     --pg-radius-round: 1e5px;
     --pg-column-padding: 1rem;
     --pg-colour-blue: #52fff6;
-    --pg-colour-pink: #ee9bff;
+    --pg-colour-pink: #f1a8ff;
     --pg-colour-dark-grey: #333;
     --pg-colour-mid-grey: #757575;
     --pg-colour-column-bg: whitesmoke;
@@ -458,7 +458,7 @@ svg:not([width]):not([height]) {
 
 .pg-full-width {
     grid-column: full;
-    padding-inline: var(--pg-side-padding, 0.5rem);
+    /* padding-inline: var(--pg-side-padding, 0.5rem); */
 
     /* width: 100vw;
     margin-left: 50%;
@@ -550,6 +550,7 @@ header {
     border-start-start-radius: var(--space-m);
     border-start-end-radius: var(--space-m);
     border-block-end: 1px solid var(--pg-colour-blue);
+    border-block-start: 1px solid white;
 }
 
 /* https: //codepen.io/hexagoncircle/pen/LYMweej */
@@ -731,6 +732,7 @@ header>nav {
     z-index: 100;
     background-color: var(--pg-colour-column-bg);
     margin-block-start: var(--space-m) !important;
+
 }
 
 header>nav>ul {
@@ -738,8 +740,11 @@ header>nav>ul {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: fit-content;
     gap: var(--space-3xs);
     padding-inline-start: 0;
+    padding-block: var(--space-3xs);
+    border-block: solid 2px white;
 }
 
 header>nav ul>li>a {
