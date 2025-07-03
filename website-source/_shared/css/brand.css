@@ -207,6 +207,10 @@ strong {
     font-weight: bold;
 }
 
+code {
+    font-family: monospace;
+}
+
 ul,
 ol {
     /* list-style-position: inside; */
