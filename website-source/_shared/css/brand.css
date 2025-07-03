@@ -377,8 +377,28 @@ li>code {
     margin-block-end: var(--space-xs) !important;
 }
 
+.pg-pbs-s {
+    padding-block-end: var(--space-s) !important;
+}
+
 .pg-pbe-s {
     padding-block-end: var(--space-s) !important;
+}
+
+.pg-mbs-m {
+    margin-block-start: var(--space-m) !important;
+}
+
+.pg-mbe-m {
+    margin-block-end: var(--space-m) !important;
+}
+
+.pg-mbs-l {
+    margin-block-start: var(--space-l) !important;
+}
+
+.pg-mbe-l {
+    margin-block-end: var(--space-l) !important;
 }
 
 .pg-bg {

@@ -1,0 +1,67 @@
+.demo-outside button {
+    background-color: white;
+    width: fit-content;
+    padding-inline: 0.5em;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.demo-outside button:hover {
+    color: white;
+    background-color: black;
+}
+
+summary {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+table caption {
+    background-color: white;
+    width: fit-content;
+    margin: 0 auto;
+    padding-inline: 0.5em;
+    border-start-start-radius: 5px;
+    border-start-end-radius: 5px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+th,
+td {
+    padding: 0.2em;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+td {
+    font-size: clamp(0.9375rem, 0.8625rem + 0.375vw, 1.2rem);
+}
+
+.nk-header {
+    display: flex;
+    align-items: center;
+}
+
+.nk-header h1 {
+    margin-block-start: 0;
+    line-height: 1;
+    text-wrap: balance;
+}
+
+.nk-header>.nk-logo {
+    width: 100%;
+    max-width: 150px;
+    margin-inline-start: 0.5em;
+    margin-inline-end: 1em;
+}

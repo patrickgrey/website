@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+	<!--
+	A tartan SVG, generated via a Python script by TilmannR
+	thread count: Bk10 R60 Bk28 Y2 Bk28 R10
+	color palette: {'Bk': '#111', 'R': '#c00', 'Y': '#cc0'}
+	-->
+	<defs>
+		<pattern id="v" width="256" height="256" patternUnits="userSpaceOnUse">
+			<rect x="0" width="256" height="256" fill="#111"/>
+			<rect x="5" width="60" height="256" fill="#c00"/>
+			<rect x="93" width="2" height="256" fill="#cc0"/>
+			<rect x="123" width="10" height="256" fill="#c00"/>
+			<rect x="161" width="2" height="256" fill="#cc0"/>
+			<rect x="191" width="60" height="256" fill="#c00"/>
+		</pattern>
+		<pattern id="h" xlink:href="#v" patternTransform="rotate(90)"/>
+	</defs>
+
+	<rect fill="url(#v)" width="512" height="512"/>
+	<path stroke="url(#h)" stroke-width="725" stroke-dasharray="1.41421" d="M-0.75 -0.75L512.0 512.0"/>
+</svg>

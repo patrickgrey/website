@@ -9,16 +9,49 @@ draft: true
 summary: "Introducing a new web component library: Naked Web Components! Why naked? Well, they focus purely on elements and functionality and try to get out of the way as much as possible where styling is concerned. They are scarily ugly :-)"
 ---
 
-<img style="float:left;margin-inline-end: 1em;margin-block-start:1em; max-width:180px;" src="./images/skeleton.png" alt="Naked web components logo which is a cartoon skeleton">
+<img style="float:left;margin-inline-end: 1em;margin-block-start:1em; max-width:180px;" src="./images/skeleton.png" alt="Naked web components logo which is a cartoon skeleton.">
 
-<p>Naked Web Components is a library of '<strong>bare-bones</strong>' (hahahahahaha) components that focus on functionality without theming or style. I'm building out the library in public.</p>
+<p>Naked Web Components is a library of '<strong>bare-bones</strong>' (hahahahahaha) components that focus on <strong>functionality</strong>. I'm building the library out in public.</p>
 
-<p>Themed components like <a href="https://shoelace.style/" target="_blank">Shoelace</a> are great for quickly implementing good-looking UIs, but I often found that when we already had an application theme, I was spending a fair bit of time resetting or fighting against the theme to match the rest of the app.</p>
+<p>Themed components like <a href="https://shoelace.style/" target="_blank">Shoelace</a> are great for quickly implementing good-looking UIs (I use Shoelace alot and am grateful for it), but I often found that when we already had an application theme, I was spending a fair bit of time <strong>resetting</strong> or <strong>fighting against</strong> the theme to match the rest of the app.</p>
+
+<p>Naked web components have <strong>no built in styling or theming</strong>. They are a blank slate for you to add styles to. I try to make them <strong>HTML first</strong> where possible and don't use the shadow DOM (I have nothing against the SHADOW).</p>
+
+<p>These components aren't very clever, they just aim to do the basics so you can drop them in anywhere and <strong>modify</strong> the Javascript to you needs.</p>
+
+<p>I try to make them <strong>accessible</strong> but I'm sure that aspect can be improved so any suggestions are welcome.</p>
+
+<img style="float:right;margin-inline-start: 1em; max-width:180px;" src="./images/skeleton-dressed.png" alt="Naked web components logo which is a cartoon skeleton, with added hat and bow tie.">
+
+<p>Of course, sometimes we are in a hurry and need to show something that looks a bit better than default element styling. For these situations, I also supply a simple CSS file to <strong>dress the component</strong> up a little to make it less skeletal.</p>
+
+<hr class="pg-mbs-l pg-mbe-l">
+
+<h3>The components</h3>
+
+<p>Visit each component page to see examples and how to's.</p>
+
+<ul>
+    <li><a href="./naked-table-sort/">naked-table-sort</a> | <a href="https://codeberg.org/patrickgrey/naked-table-sort" target="_blank"><span style="display:inline-block;margin-inline:0.25em;">{% include '../../_shared/images/icons/codeberg-logo_icon_blue.svg' %}</span>respository</a></li>
+</ul>
+
+<p>More to come soon! Next in line, <code>&lt;naked-table-filter&gt;</code>.</p>
+
+<h3>Licencing</h3>
+
+<p>Naked Web Components are licenced under the excellent <a href="./LICENCE/">Kelp Commons Licence</a> by Chris Ferdinandi (<a href="https://github.com/cferdinandi/kelp/blob/main/LICENSE.md" target="_blank">original</a>) which is copyright <a href="https://gomakethings.com/" target="_blank">Go Make Things</a>, LLC.</p>
+
+<p>If you are interested in licencing the library for commercial use, this can be done under the licences taken from the same source:</p>
+
+<ul>
+    <li><a href="./LICENCE-pro/">Pro licence</a> (£20 per project)</a></li>
+    <li><a href="./LICENCE-enterprise/">Enterprise licence</a> (£200 per project)</li>
+</ul>
+
+<hr class="pg-mbs-l pg-mbe-l">
 
 <p>DONE fix tags, filter out category tags</p>
 <p>DONE Write readme for sort</p>
 <p>DONE Ask Chris Ferdinandi re licences</p>
 <p>Add demo page on my website</p>
 <p>Write naked components parent page with licences</p>
-
-<p><a href="./naked-table-sort/">naked-table-sort</a></p>

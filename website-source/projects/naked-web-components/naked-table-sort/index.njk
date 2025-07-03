@@ -1,7 +1,7 @@
 ---
 title: "naked-table-sort"
-cssFiles: ["./css/index.css"] 
-jsFiles: ["./js/index.js"]
+cssFiles: ["./naked-table-sort.css", "./demo.css"] 
+jsFiles: ["./demo.js", "./naked-table-sort.js"]
 tags: ["web components"]
 publish: 2025-07-03T17:22:00.000Z
 draft: true
@@ -14,3 +14,1835 @@ summary: "A simple web component to sort tables"
 <p>Write readme for sort</p>
 <p>Add demo page on my website</p>
 <p>Write naked components parent page with licences</p>
+
+
+            <img class="nk-logo" src="./images/skeleton.png"
+                alt="Naked web components logo a white cartoon skeleton on black background">
+
+
+        <p>This web component sorts table data. Hidden caption text is added to the table to assist screen readers. It
+            is part of the <a href="https://patrickgrey.co.uk/projects/naked-web-components/" target="_blank">Naked web
+                component
+                library</a>. You can find the source code for this demo at <a
+                href="https://codeberg.org/patrickgrey/naked-table-sort"
+                target="_blank">https://codeberg.org/patrickgrey/naked-table-sort</a>.
+        </p>
+
+        <p>Note that the table below contains blank cells or data to test that it works as expected.</p>
+
+        <details>
+            <summary>How to use</summary>
+            <div>
+
+                <p>First add the <code>naked-table-sort.js</code> file to your page:
+                    <code>&lt;script defer src="naked-table-sort.js"&gt;&lt;/script&gt;</code>.
+                </p>
+
+                <p>Next, wrap your column header text:
+                    <code>&lt;th&gt;&lt;naked-table-sort&gt;Column title&lt;/naked-table-sort&gt;&lt;/th&gt;</code>. If
+                    your table headers
+                    only contain text, BOOM! That's you sorted ;-)
+                </p>
+
+                <p>Naked web components leave the styling up to you entirely, but if you want a little more dressing,
+                    you can also link to the CSS file:
+                    <code>&lt;link rel="stylesheet" href="naked-table-sort.css"&gt;</code>
+                </p>
+
+                <p>Sometimes, the text you want to sort is nested inside other elements. The second column shows you how
+                    to resolve that using the <code>data-text-find</code> attribute to send a selector string
+                    (querySelector) to locate the text you need.</p>
+
+
+                <p>The final column example shows how to pre-process text before sorting. Maybe you want to remove part
+                    of the cell string before sorting (as in this case). See the <code>demo.js</code> file for how this
+                    is done.</p>
+
+                <p>The final column also shows you how to enhance an existing button (or link - it should be a button
+                    though...) This is
+                    useful if you have a sort function on the back-end but want to enhance it with front end sorting and
+                    have a back-end fallback if <a
+                        href="https://adamsilver.io/blog/javascript-isnt-always-available-and-its-not-the-users-fault/"
+                        target="_blank">JavaScript isn't available</a>.</p>
+
+                <p>Lastly, using the component in the table header automatically tell it which column to sort. If you
+                    want to trigger the sort from outside the table, you can use the <code>data-table</code> attribute
+                    to set a selector string to find the table and the <code>data-column-index</code> attribute to set
+                    which column to sort.</p>
+
+                <p>Right click and select "View page source" to see how this page was built.</p>
+
+                
+            </div>
+        </details>
+
+        <p class="demo-outside"><naked-table-sort data-table="#modernScots" data-column-index="1">Sort names
+                        outside of
+                        table</naked-table-sort></p>
+
+        <table id="modernScots">
+            <caption>Scottish food preferences</caption>
+            <thead>
+                <tr>
+                    <th><naked-table-sort>First name</naked-table-sort></th>
+                    <th><naked-table-sort data-text-find="div>span:nth-child(2)">Tartan</naked-table-sort></th>
+                    <th><naked-table-sort id="convertMe"><button type="button"
+                                class="backEndButtonForSorting">Scran</button></naked-table-sort></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hasan</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Salwa</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Eilidh</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Dominique</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Boniface</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Islay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Dieter</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Boniface</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Ilham</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Ilham</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Hasan</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Salwa</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Eilidh</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Ajani</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Salwa</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Dominique</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Boniface</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Donaldina</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Dieter</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Salwa</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Dominique</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Salwa</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Damerae</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Ilham</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Salwa</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Dominique</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Eilidh</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Donaldina</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Ilham</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Ajani</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Dominique</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A plate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Boniface</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Damerae</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Dieter</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Dominique</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Damerae</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Ilham</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Islay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Hasan</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Donaldina</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Iseabail</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Donaldina</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Boniface</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A plate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Courvoisier</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Claudette</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Ilham</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Damerae</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A hipster slate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Cedella</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A plate of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td>A bowl of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A plate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Damerae</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Dieter</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Abigay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td> <strong>Kebab</strong></td>
+                </tr>
+                <tr>
+                    <td>Agnes</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A plate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Ailean</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td> <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Jamila</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Archie</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A hipster slate of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Eilidh</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td> <strong>Porridge</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/MacLachlan_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McYellow</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Alasdair</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A chip wrapper of <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Angus</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt="" src="./images/icon-no-image.svg"
+                                    style="max-width: 1em;"></span><span></span></div>
+                    </td>
+                    <td> <strong>Haggis</strong></td>
+                </tr>
+                <tr>
+                    <td>Heidi</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Gunn_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McGreen</span></div>
+                    </td>
+                    <td>A plate of <strong>Chips</strong></td>
+                </tr>
+                <tr>
+                    <td>Islay</td>
+                    <td>
+                        <div style="display: flex; gap: 1em;"><span><img alt=""
+                                    src="./images/Brodie_tartan_(Vestiarium_Scoticum).svg"
+                                    style="max-width: 1em;"></span><span>Clan McRed</span></div>
+                    </td>
+                    <td>A bowl of <strong>Haggis</strong></td>
+                </tr>
+            </tbody>
+        </table>
