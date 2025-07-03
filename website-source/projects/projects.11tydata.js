@@ -1,7 +1,7 @@
 export default {
     "tags": [
-        "project",
-        "post"
+        "project"
     ],
-    "layout": "long-form.njk"
+    "layout": "long-form.njk",
+    "excludeTags": ["project"]
 };

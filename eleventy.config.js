@@ -79,6 +79,9 @@ export default async function (eleventyConfig) {
     // eleventyConfig.addBundle("js");
 
     // Custom collections
+    eleventyConfig.addCollection("tagsWithout", function (collectionApi) {
+        return collectionApi.getFilteredByTags("post", "page");
+    });
     // eleventyConfig.addCollection("pagesSorted", function (collectionApi) {
     //     const pages = collectionApi.getFilteredByTag("page");
     //     const sorted = pages.sort(function (a, b) {
@@ -121,6 +124,16 @@ export default async function (eleventyConfig) {
             (item.data.tags || []).forEach(tag => tagSet.add(tag));
         }
         return Array.from(tagSet);
+    });
+
+    // https://github.com/11ty/eleventy/issues/1244
+    eleventyConfig.addFilter("removeTags", function (input, removeTagsArray) {
+        if (!removeTagsArray) {
+            return input
+        } else {
+            return input.filter(element => !removeTagsArray.includes(element))
+        }
+
     });
 
     eleventyConfig.addFilter("filterTagList", function filterTagList(tags) {

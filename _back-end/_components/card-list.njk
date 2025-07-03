@@ -25,6 +25,7 @@
                         <div class="pg-summary">{{card.data[cardSummary]}}</div>
                         {% endif %}
 
+                        {# {% set excludeTags = excludeTags %} #}
                         {% set tagList = card.data.tags | sort %}
                         {% include "tag-list.njk" %}
                         

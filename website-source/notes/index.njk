@@ -13,6 +13,7 @@ eleventyNavigation:
   <h2>Notes</h2>
   <p>This is my blog.</p> 
   {% set cardList = collections.note %}
+  {% set excludeTags = ["note"] %}
   {% set cardLimit = 999999 %}
   {% set cardSummary = "summary" %}
   {% set cardIcon = "icon-pencil" %}

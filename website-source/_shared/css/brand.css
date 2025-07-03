@@ -203,6 +203,10 @@ footer {
     background-color: var(--pg-colour-pink);
 }
 
+strong {
+    font-weight: bold;
+}
+
 ul,
 ol {
     /* list-style-position: inside; */
@@ -1131,6 +1135,7 @@ footer {
     border-end-end-radius: var(--space-m);
     text-align: center;
     background-image: var(--pg-background-glow-bottom);
+    border-block-end: 1px solid white;
 }
 
 .pg-ai svg {
@@ -1157,4 +1162,5 @@ footer {
     text-box-edge: cap alphabetic;
     margin-inline-start: auto;
     margin-inline-end: 0;
+    margin-block-end: var(--space-m);
 }

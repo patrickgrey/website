@@ -1,7 +1,7 @@
 export default {
     "tags": [
-        "note",
-        "post"
+        "note"
     ],
-    "layout": "long-form.njk"
+    "layout": "long-form.njk",
+    "excludeTags": ["note"]
 };

@@ -4,13 +4,15 @@
 
 {% set scrollClass =  "pg-tags pg-tags-scroll" if tagsScroll else "pg-tags" %}
 
-<div class="{{scrollClass}}">                    
+<div class="{{scrollClass}}">             
     <ol>
-        {% for currentTag in tagList %}
-            {% set tagUrl %}/tags/{{ currentTag | slugify }}/{% endset %}
-            <li>
-                <a href="{{ tagUrl }}" {% if currentTag === tag %}class="pg-tag-current"{% endif %}>{{ currentTag }}</a>
-            </li>
+        {% for currentTag in tagList | removeTags(excludeTags) %}
+            {# {% if excludeTags.indexOf(currentTag) === -1 %} #}
+                {% set tagUrl %}/tags/{{ currentTag | slugify }}/{% endset %}
+                <li>
+                    <a href="{{ tagUrl }}" {% if currentTag === tag %}class="pg-tag-current"{% endif %}>{{ currentTag }}</a>
+                </li>
+            {# {% endif %} #}
         {% endfor %}
     </ol>
 </div>

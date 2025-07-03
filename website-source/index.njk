@@ -8,20 +8,23 @@ eleventyNavigation:
   order: 1
 ---
 
-<h2>Recent scribbles</h2>
+<h2>Recent notes</h2>
+{% set excludeTags = ["note"] %}
 {% set cardList = collections.note %}
 {% set cardSummary = "summary" %}
 {% set cardIcon = "icon-pencil" %}
 {% include "card-list.njk" %}
 <p class="pg-read-more"><a href="/notes/">Read all notes ↪</a></p>
 
-<h2>Recent things I've worked on</h2>
+<h2>Recent projects</h2>
+{% set excludeTags = ["project"] %}
 {% set cardList = collections.project %}
 {% set cardIcon = "icon-packages" %}
 {% include "card-list.njk" %}
 <p class="pg-read-more"><a href="/projects/">Read about all projects ↪</a></p>
 
-<h2>Recent things I've read</h2>
+<h2>What I've been 'reading'</h2>
+{% set excludeTags = ["reading"] %}
 {% set cardList = collections.reading %}
 {% set cardSummary = "notes" %}
 {% set cardIcon = "icon-book-open" %}

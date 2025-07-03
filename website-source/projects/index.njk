@@ -11,6 +11,7 @@ override:tags: []
   <h2>Projects</h2>
     <p>Documenting work projects and personal side projects.</p>
     {% set cardList = collections.project %}
+    {% set excludeTags = ["project"] %}
     {% set cardSummary = "summary" %}
     {% set cardIcon = "icon-packages" %}
     {% include "card-list.njk" %}
