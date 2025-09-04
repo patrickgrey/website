@@ -1,5 +1,5 @@
  naked-sticky-overflow [data-scroll-container] {
-     --naked-top-offset: 15rem;
+     --naked-top-offset: var(--space-xl);
      top: calc(50vh - var(--naked-top-offset)) !important;
  }
 
