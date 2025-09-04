@@ -140,7 +140,7 @@ jsFiles: []
         {% endfor %}
 
         {% for file in jsFiles %}
-            <script type="module" src="{{file}}"></script>
+            <script defer type="module" src="{{file}}"></script>
         {% endfor %}
 
        

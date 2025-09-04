@@ -265,6 +265,29 @@ h4 {
     text-transform: capitalize;
 }
 
+button:not([data-sort],
+    [data-scroll-right],
+    [data-scroll-left]) {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    background-color: var(--pg-colour-pink);
+    padding: var(--space-3xs) var(--space-2xs);
+    border: 0;
+    border-radius: var(--pg-button-corners);
+    transition: background-color 0.2s ease-in;
+}
+
+button:focus-visible:not([data-sort],
+    [data-scroll-right],
+    [data-scroll-left]),
+button:hover:not([data-sort],
+    [data-scroll-right],
+    [data-scroll-left]) {
+    background-color: var(--pg-colour-blue);
+}
 
 a {
     color: var(--pg-colour-dark-grey);
@@ -399,6 +422,10 @@ li>code {
 
 .pg-mbs-l {
     margin-block-start: var(--space-l) !important;
+}
+
+.pg-mbs-2xl {
+    margin-block-start: var(--space-2xl) !important;
 }
 
 .pg-mbe-l {
@@ -900,7 +927,7 @@ header>nav ul>li>a:hover>span {
     box-shadow: none;
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 923px) {
     .pg-contact {
         position: fixed;
         top: calc(var(--pg-border-body-top) + var(--space-m) + var(--space-s));

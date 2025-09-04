@@ -1,0 +1,44 @@
+.pg-table-overflow {
+    overflow: auto;
+}
+
+table.pg-demo-table {
+    width: 100%;
+    min-width: 850px;
+}
+
+table.pg-demo-table thead {
+    position: sticky;
+    top: var(--space-2xl);
+    background-color: var(--pg-colour-dark-grey);
+    color: white;
+    font-weight: bold;
+}
+
+table.pg-demo-table thead button[data-sort] {
+    font: revert;
+}
+
+table.pg-demo-table tbody {
+    background-color: white;
+}
+
+table.pg-demo-table th,
+table.pg-demo-table td {
+    padding: var(--space-2xs) var(--space-3xs);
+}
+
+div[data-scroll-container] {
+    top: var(--space-3xl) !important;
+}
+
+fieldset.pg-filters {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2xs);
+}
+
+naked-filter>div>input,
+naked-filter>div>select {
+    font: revert !important;
+}
