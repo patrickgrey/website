@@ -197,29 +197,22 @@ jsFiles: []
                     </ul>
                 </aside>
 
-
                 <nav>
                     <ul>
-                        <li><a 
-                        {% if(page.url == "/")%} class="pg-is-active" {% endif %} href="/">
-                            {% include "../../website-source/_shared/images/icons/icon-home-heart.svg" %}
-                            home</a></li>
 
-                        <li><a 
-                        {% if( "/notes/" in page.url)%} class="pg-is-active" {% endif %} href="/notes">
-                            {% include "../../website-source/_shared/images/icons/icon-pencil.svg" %}
-                            notes <span>{{collections.note.length or 0}}</span></a></li>
+                        {%- for entry in collections.all | eleventyNavigation %}
+                        <li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page" class="pg-is-active"{% endif %}>{{ entry.title }}
 
-                        <li><a 
-                        {% if("/projects/" in page.url)%} class="pg-is-active" {% endif %} href="/projects">
-                            {% include "../../website-source/_shared/images/icons/icon-packages.svg" %}
-                            projects <span>{{collections.project.length or 0}}</span></a></li>
+                        {% if "/notes/" in  entry.url %} 
+                            <span>{{collections.note.length or 0}}</span>
+                        {% elif "/projects/" in  entry.url %} 
+                            <span>{{collections.project.length or 0}}</span>
+                        {% elif "/reading/" in  entry.url %} 
+                            <span>{{collections.reading.length or 0}}</span>
+                        {% endif %}
 
-                        <li><a 
-                        {% if("/reading/" in page.url)%} class="pg-is-active" {% endif %} href="/reading">
-                            {% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}
-                            reading <span>{{collections.reading.length or 0}}</span></a></li>
-
+                        </a></li>
+                        {%- endfor %}
                     </ul>
                 </nav>
 
@@ -271,7 +264,7 @@ jsFiles: []
             {% include "../../website-source/_shared/js/shared.js" %}
             {% endset %}
             <script>
-                {{js | jsmin | safe}}
+                {{js | safe}}
             </script>
         {% endif %}
 
