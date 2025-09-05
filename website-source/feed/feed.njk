@@ -20,19 +20,19 @@
   <subtitle>{{ metadata.description }}</subtitle>
   <link href="https://patrickgrey.co.uk/feed/feed.xml" rel="self" />
   <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
-  <updated>{{ collections.post | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <updated>{{ collections.note | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
   <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
   <author>
     <name>{{ metadata.author.name }}</name>
   </author>
-  {%- for post in collections.post | reverse %}
-  {%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.base) }}{% endset %}
+  {%- for note in collections.note | reverse %}
+  {%- set absolutePostUrl %}{{ note.url | htmlBaseUrl(metadata.base) }}{% endset %}
   <entry>
-    <title>{{ post.data.title }}</title>
+    <title>{{ note.data.title }}</title>
     <link href="{{ absolutePostUrl }}" />
-    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <updated>{{ note.date | dateToRfc3339 }}</updated>
     <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ post.content | renderTransforms(post.data.page, metadata.base) }}</content>
+    <content type="html">{{ note.content | renderTransforms(note.data.page, metadata.base) }}</content>
   </entry>
   {%- endfor %}
 </feed>
