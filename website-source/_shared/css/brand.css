@@ -604,9 +604,9 @@ svg:not([width]):not([height]) {
 header {
     position: sticky;
     z-index: 100;
-    top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 12rem) * -1);
+    top: calc((var(--pg-border-body-top) + var(--space-xl) + var(--space-s) + var(--font-size-5) + 12rem) * -1);
     padding-block-start: var(--space-s);
-    padding-block-end: var(--space-s);
+    padding-block-end: var(--space-2xs);
     border-start-start-radius: var(--space-m);
     border-start-end-radius: var(--space-m);
     border-block-end: 1px solid var(--pg-colour-blue);
@@ -652,6 +652,7 @@ header>h1+p {
     text-transform: uppercase;
     text-wrap: balance;
     margin-block-start: 0 !important;
+    margin-block-end: var(--space-m) !important;
     line-height: 1.2;
     /* margin-block-end: var(--space-m); */
 }
@@ -661,7 +662,7 @@ header>h1+p {
 @media screen and (min-width: 600px) {
 
     header {
-        top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 6rem) * -1);
+        top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 7rem) * -1);
     }
 
     header>h1,
@@ -674,7 +675,13 @@ header>h1+p {
 
 @media screen and (min-width: 850px) {
     header {
-        top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 2rem) * -1);
+        top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-s) + var(--font-size-5) + 7rem) * -1);
+    }
+}
+
+@media screen and (min-width: 923px) {
+    header {
+        top: calc((var(--pg-border-body-top) + var(--space-m) + var(--space-l) + var(--font-size-5) + 1rem) * -1);
     }
 }
 
@@ -789,9 +796,12 @@ header .pg-profile-container:hover>div.pg-profile-container-inner>div.pg-profile
 */
 
 header>nav {
+    width: fit-content;
     z-index: 100;
     background-color: var(--pg-colour-column-bg);
-    margin-block-start: var(--space-m) !important;
+    margin: 0 auto;
+    margin-block-start: 0 !important;
+    /* margin-block-start: var(--space-m) !important; */
 
 }
 
@@ -877,12 +887,14 @@ header>nav ul>li>a:hover>span {
 
 @media screen and (min-width: 850px) {
     header>nav {
-        margin-block-start: var(--space-l) !important;
+        /* margin-block-start: var(--space-l) !important; */
+        margin-block-start: 0 !important;
     }
 
     header>nav>ul {
         justify-content: start;
         margin-block-start: var(--space-m);
+        margin-block-start: var(--space-2xs);
     }
 }
 
@@ -899,6 +911,7 @@ header>nav ul>li>a:hover>span {
 
 .pg-contact {
     margin-block-start: var(--space-m);
+    margin-block-end: var(--space-m);
 }
 
 .pg-contact>ul {
