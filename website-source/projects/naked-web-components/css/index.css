@@ -9,7 +9,7 @@ table.pg-demo-table {
 
 table.pg-demo-table thead {
     position: sticky;
-    top: var(--space-2xl);
+    top: calc(var(--space-xl) + var(--space-2xs));
     background-color: var(--pg-colour-dark-grey);
     color: white;
     font-weight: bold;
