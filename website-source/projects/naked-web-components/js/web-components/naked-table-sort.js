@@ -279,7 +279,7 @@ export default class NakedTableSort extends HTMLElement {
     #createButton(text, _button = null) {
         const button = _button ? _button : document.createElement("button")
         button.textContent = text
-        button.setAttribute("aria-label", `Sort the ${text} column`)
+        // button.setAttribute("aria-label", `Sort the ${text} column`)
         if (this.sortOrder) {
             button.setAttribute("data-sort", this.sortOrder)
         } else {
