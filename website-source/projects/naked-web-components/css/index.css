@@ -43,3 +43,7 @@ naked-filter>div>input,
 naked-filter>div>select {
     font: revert !important;
 }
+
+button[data-clear-filters] {
+    margin-block-start: 1rem;
+}

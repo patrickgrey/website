@@ -10,18 +10,21 @@ summary: "Naked Web Components is a library of 'bare-bones' components that focu
 
 {# 
 TODO
-- Fix readme pngs
+- DONE Fix readme pngs
 - Remove aria label on sort buttons
 - Skip overflow buttons?
 - Live area for x of x count?
 - Live area for filtering?
 - Live area for sort action? No, aria-sort is set
 - Add sort icons to button to show direction
+- DONE Clear filters should be a reset button
+
+http://theadminbar.com/accessibility-weekly/accessible-search-and-filter/
  #}
 
 <img style="float:left;margin-inline-end: 1em;margin-block-start:1em; max-width:180px;" src="./images/skeleton.png" alt="Naked web components logo which is a cartoon skeleton.">
 
-<p>Naked Web Components is <a href="https://codeberg.org/patrickgrey/naked-web-components" target="_blank">a library</a> of '<strong>bare-bones</strong>' (hahahahahaha) components that focus on <strong>functionality</strong>. They are not pretty!</p>
+<p>Naked Web Components is <a href="https://codeberg.org/patrickgrey/naked-web-components" target="_blank">a library</a> of '<strong>bare-bones</strong>' (hahahahahaha) components that focus on <strong>functionality</strong> and <strong>simplicity</strong>. They are not pretty!</p>
 
 <p>Naked web components have <strong>no theming</strong> and the minimal amount of styling to get them working. They are a blank slate for you to add styles to. I try to make them <strong>HTML first</strong> where possible, and unobtrusive if javascript doesn't load.</p>
 
@@ -72,17 +75,19 @@ TODO
 
 <p>Showing: <naked-x-of-x data-item-selector=".pg-demo-table tbody > tr"></naked-x-of-x> rows.</p>
 
-<fieldset class="pg-filters">
-    <legend>Filters:</legend>
-    <naked-filter data-label="Names" data-items-selector="tbody>tr"
-        data-item-text-selector=":scope>td:nth-child(1)"></naked-filter>
-    <naked-filter data-label="Date of birth" data-items-selector="tbody>tr"
-        data-item-text-selector=":scope>td:nth-child(2)" ></naked-filter>
-    <naked-filter data-label="Computer" data-items-selector="tbody>tr"
-        data-item-text-selector=":scope>td:nth-child(3)>strong" data-filter-type="select"></naked-filter>
-</fieldset>
-
-<button data-clear-filters>Clear filters</button>
+<form>
+    <fieldset class="pg-filters">
+        <legend>Filters:</legend>
+        <naked-filter data-label="Names" data-items-selector="tbody>tr"
+            data-item-text-selector=":scope>td:nth-child(1)"></naked-filter>
+        <naked-filter data-label="Date of birth" data-items-selector="tbody>tr"
+            data-item-text-selector=":scope>td:nth-child(2)" ></naked-filter>
+        <naked-filter data-label="Computer" data-items-selector="tbody>tr"
+            data-item-text-selector=":scope>td:nth-child(3)>strong" data-filter-type="select"></naked-filter>
+    </fieldset>
+    
+    <button type="reset" data-clear-filters>Clear filters</button>
+</form>
 
 
 {% set rowCount =  250 %}

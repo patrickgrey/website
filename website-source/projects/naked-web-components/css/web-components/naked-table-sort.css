@@ -1,8 +1,4 @@
-th:has(button[data-sort]) {
-    position: relative;
-}
-
-button[data-sort] {
+th naked-table-sort button {
     position: relative;
     all: unset;
     cursor: pointer;
@@ -10,26 +6,38 @@ button[data-sort] {
     width: 100%;
     outline: none;
     border: 1px solid transparent;
+    color: inherit;
 }
 
-button[data-sort]:focus-visible {
-    border-color: yellow;
+th naked-table-sort button span {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 9l4 -4l4 4m-4 -4v14' /><path d='M21 15l-4 4l-4 -4m4 4v-14' /> </svg>") !important;
 }
 
-button[data-sort="a-z"]::after,
-button[data-sort="z-a"]::after,
-button[data-sort]:hover::after,
-button[data-sort]:focus::after {
-    content: url("data:image/svg+xml;utf8,<svg focusable='false' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='M15 10v-5c0 -1.38 .62 -2 2 -2s2 .62 2 2v5m0 -3h-4'></path><path d='M19 21h-4l4 -7h-4'></path><path d='M4 15l3 3l3 -3'></path><path d='M7 6v12'></path></svg>");
-    pointer-events: none;
-    width: 1rem;
-    height: 1rem;
-    position: absolute;
-    right: 3px;
+th naked-table-sort button:hover,
+th naked-table-sort button:focus-visible {
+    color: yellow !important;
+
 }
 
-button[data-sort="z-a"]::after,
-button[data-sort="z-a"]:hover::after,
-button[data-sort="z-a"]:focus::after {
-    content: url("data:image/svg+xml;utf8,<svg focusable='false' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='M15 21v-5c0 -1.38 .62 -2 2 -2s2 .62 2 2v5m0 -3h-4'></path><path d='M19 10h-4l4 -7h-4'></path><path d='M4 15l3 3l3 -3'></path><path d='M7 6v12'></path></svg>");
+th naked-table-sort button:hover span,
+th naked-table-sort button:focus-visible span {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='yellow' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 9l4 -4l4 4m-4 -4v14' /><path d='M21 15l-4 4l-4 -4m4 4v-14' /></svg>") !important;
+}
+
+th[aria-sort="ascending"] naked-table-sort button span {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 5m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M5 14m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M14 15l3 3l3 -3' /><path d='M17 18v-12' /></svg>") !important;
+}
+
+th[aria-sort="ascending"] naked-table-sort button:hover span,
+th[aria-sort="ascending"] naked-table-sort button:focus-visible span {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='yellow' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 5m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M5 14m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M14 15l3 3l3 -3' /><path d='M17 18v-12' /></svg>") !important;
+}
+
+th[aria-sort="descending"] naked-table-sort button span {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 9l3 -3l3 3' /><path d='M5 5m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M5 14m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M17 6v12' /></svg>") !important;
+}
+
+th[aria-sort="descending"] naked-table-sort button:hover span,
+th[aria-sort="descending"] naked-table-sort button:focus-visible span {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='yellow' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 9l3 -3l3 3' /><path d='M5 5m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M5 14m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /><path d='M17 6v12' /></svg>") !important;
 }

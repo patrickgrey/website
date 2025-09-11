@@ -31,13 +31,22 @@ toggle.addEventListener("click", (event) => {
     }
 })
 
+setTimeout(() => {
+    document.querySelectorAll(`naked-table-sort > button`).forEach(button => {
+        console.log("button: ", button);
+
+        button.dataset.sort = ""
+    })
+
+}, 50)
+
 const clear = document.querySelector(`button[data-clear-filters]`)
 clear.addEventListener("click", (event) => {
     document.querySelectorAll(`naked-filter`).forEach(nakedFilter => {
-        const input = nakedFilter.querySelector(`:scope >div> input`)
-        if (input) input.value = ""
-        const select = nakedFilter.querySelector(`:scope >div> select`)
-        if (select) select.value = "all"
+        //         const input = nakedFilter.querySelector(`:scope >div> input`)
+        //         if (input) input.value = ""
+        //         const select = nakedFilter.querySelector(`:scope >div> select`)
+        //         if (select) select.value = "all"
         nakedFilter.showAllItems()
     })
 })

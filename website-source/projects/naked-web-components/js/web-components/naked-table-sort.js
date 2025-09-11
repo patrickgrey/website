@@ -3,16 +3,13 @@
  * @classdesc This component converts the text of a table header into a button
  * that will sort the contents of its column. Hidden caption text is added
  * to the table to assist screen readers. The button will automatically
- * sort table cells with plain text. Data attributes can be added to the component
- * to alter the sorting.
+ * sort table cells with plain text. The data-text-find attribute can be added to the component to alter the sorting. Sorting is based around aria-sort. If you set aria-sort on the <th> element, it will be reflected in the button. Version 2.0.0 aims to greatly improve accessibility.
  * 
- * @version 1.0.0
+ * @version 2.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
- * @property {string} data-sort-order - indicate if the column is already sorted. Possible values: a-z or z-a.
- * @property {string}  data-text-find - If the text you want to sort is nested in the table cell, tell the component where to find the text using a selector e.g. " > div > span"
- * @property {string}  data-table - a selector to help find the current table. "table" is the default but that will only return the first table if there are multiple tables in the document. Example: "table#tableOne"
- * @property {number}  data-column-index - set the button to search another column. Example: "5" (nth-child(5))
+ * @property {string}  data-text-find - If the text you want to sort is nested in the table cell, tell the component where to find the text using a selector e.g. ":scope > div > span"
+ * @property {string}  data-is-announce - turn on live region announcing for screen readers. Default is off as many screen readers announce changes to aria-sort.
  * 
  * @author Patrick Grey
  * @example <th><naked-table-sort>Column title text</naked-table-sort></th>
@@ -22,15 +19,21 @@
  */
 export default class NakedTableSort extends HTMLElement {
 
-    #SORT_A_Z = "a-z"
-    #SORT_Z_A = "z-a"
-    #sortOrder = ""
-    #button = null
-    #th = null
-    #table = null
-    #columnIndex = null
+    #SORT_A_Z = "ascending"
+    #SORT_Z_A = "descending"
+    #NONE = "none"
     #textFind = ""
-    #conversion = null
+    #conversion
+    #th
+    #button
+    #buttonIconSortable
+    #buttonIconSortAscending
+    #buttonIconSortDescending
+    #columnIndex
+    #table
+    #liveRegion
+    #isAnnounce = "false"
+    #tbody
     #isReady = false
     #controller // An abort controller to allow multiple listeners to be removed at once
 
@@ -57,7 +60,23 @@ export default class NakedTableSort extends HTMLElement {
 
         // Dispatch the event
         return this.dispatchEvent(event);
+    }
 
+    /**
+     * @function setButtonState Toggle visibility of button icons
+     */
+    #setButtonState() {
+        this.#buttonIconSortable.style.display = "none"
+        this.#buttonIconSortAscending.style.display = "none"
+        this.#buttonIconSortDescending.style.display = "none"
+        const sort = this.#getSortOrder()
+        if (sort === this.#NONE) {
+            this.#buttonIconSortable.style.display = "inline-block"
+        } else if (sort === this.#SORT_A_Z) {
+            this.#buttonIconSortAscending.style.display = "inline-block"
+        } else if (sort === this.#SORT_Z_A) {
+            this.#buttonIconSortDescending.style.display = "inline-block"
+        }
     }
 
     /**
@@ -66,65 +85,44 @@ export default class NakedTableSort extends HTMLElement {
     #init() {
         this.#controller = new AbortController();
         this.#isReady = true
-        if (this.dataset.table) {
-            // this.#tableFind = this.dataset.table
-            this.#table = document.querySelector(this.dataset.table)
-        } else {
-            this.#table = this.closest("table")
-        }
-
-        if (!this.#table) {
-            return console.warn("A table could not be found.")
-        }
-
-        if (this.dataset.columnIndex) {
-            this.#columnIndex = this.dataset.columnIndex
-            this.#th = this.#table.querySelector(`th:nth-child(${this.#columnIndex})`)
-        } else {
-            this.#th = this.closest("th")
-        }
-
-        //If column index hasn't been provided, see if we can detect it 
-        if (!this.#columnIndex && this.#th) {
-            if (this.#th != -1) this.#columnIndex = this.#th.cellIndex + 1
-        }
-
-        if (!this.#th) {
-            return console.warn("A column to sort on could not be found.")
-        }
-
-
-        if (this.dataset.sortOrder) this.#sortOrder = this.dataset.sortOrder
-        if (this.#th && this.#sortOrder != "") {
-            const ariaSort = this.sortOrder === this.#SORT_A_Z ? "ascending" : "descending"
-            this.#th.setAttribute("aria-sort", ariaSort)
-        }
 
         if (this.dataset.textFind) this.#textFind = this.dataset.textFind
+        if (this.dataset.isAnnounce) this.#isAnnounce = this.dataset.isAnnounce
+
+        this.#th = this.closest("th")
+        if (!this.#th) return console.warn("A <th> element could not be found.")
+
+        this.#columnIndex = this.#th.cellIndex + 1
+
+        this.#table = this.closest("table")
+        if (!this.#table) return console.warn("A <table> element could not be found.")
+
+        this.#tbody = this.#table.querySelector("tbody")
+        if (!this.#tbody) return console.warn("A <tbody> element could not be found.")
 
         this.#emit('get-conversion');
 
+        // Look for existing button and use that if found
         if (this.querySelector(`button, a`)) {
-            const button = this.querySelector(`button, a`)
-            const originalText = button.textContent
-            this.#createButton(originalText, button)
+            const existingElement = this.querySelector(`button, a`)
+            this.#createButton(existingElement.textContent, existingElement)
         } else {
-            const originalText = this.textContent
-            this.textContent = ""
-            this.#createButton(originalText)
+            this.#createButton(this.textContent)
         }
 
         this.#addCaption()
+        if (this.#isAnnounce) this.#addLiveRegion()
         // Listen for other sort buttons and remove sort order attribute
         this.#table.addEventListener("naked-table-sort:sort-clicked", (event) => {
             if (event.target != this) {
-                this.sortOrder = "";
-                this.button.setAttribute("data-sort", this.sortOrder)
-                this.#th.removeAttribute("aria-sort")
+                this.#setSortOrder()
+                this.#setButtonState()
             }
         }, {
             signal: this.#controller.signal
         })
+
+        this.#setButtonState()
     }
 
     /**
@@ -169,29 +167,153 @@ export default class NakedTableSort extends HTMLElement {
     }
 
     /**
+    * @function decorateSpan Utility class to create button icon containers. Background image is used so that icons can be replaced with CSS
+    */
+    #decorateSpan(_span, _class, _svg) {
+        _span.classList.add(_class)
+        _span.setAttribute("focusable", "false")
+        _span.setAttribute("aria-hidden", "true")
+        _span.style.backgroundImage = `url("data:image/svg+xml;utf8,${_svg}")`
+        _span.style.backgroundRepeat = "no-repeat"
+        _span.style.display = "none"
+        _span.style.width = "1em"
+        _span.style.height = "1em"
+        _span.style.marginInlineStart = "0.5em"
+    }
+
+    /**
+     * @function Create a button with the original cell text.
+     * @param {String} text Text for the button.
+     * @param {element} _button a button to be passed or if empty, one will be created.
+     */
+    #createButton(text, _button = null) {
+        const button = _button ? _button : document.createElement("button")
+        button.textContent = text
+        button.style.fontSize = "initial"
+        button.style.fontWeight = "bold"
+        button.style.minHeight = "42px"
+
+        // Use high contrast colour in high contrast mode
+        let svgColour = "currentColor"
+        const h = matchMedia('(forced-colors: active)');
+        if (h.matches) {
+            svgColour = "ButtonText"
+        }
+
+        const spanCanSort = document.createElement("span")
+        this.#buttonIconSortable = spanCanSort
+        this.#decorateSpan(spanCanSort, "icon-can-sort", `<svg xmlns='http://www.w3.org/2000/svg'  viewBox='0 0 24 24' fill='none' stroke='${svgColour}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 9l4 -4l4 4m-4 -4v14' /><path d='M21 15l-4 4l-4 -4m4 4v-14' /> </svg>`)
+
+        const spanSortAscending = document.createElement("span")
+        this.#buttonIconSortAscending = spanSortAscending
+        this.#decorateSpan(spanSortAscending, "icon-sort-ascending", `<svg xmlns='http://www.w3.org/2000/svg'  viewBox='0 0 24 24' fill='none' stroke='${svgColour}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'             > <path d='M5 5m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /> <path d='M5 14m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /> <path d='M14 15l3 3l3 -3' /> <path d='M17 18v-12' /></svg > `)
+
+        const spanSortDescending = document.createElement("span")
+        this.#buttonIconSortDescending = spanSortDescending
+        this.#decorateSpan(spanSortDescending, "icon-sort-descending", `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${svgColour}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'    > <path d='M14 9l3 -3l3 3' /> <path d='M5 5m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /> <path d='M5 14m0 .5a.5 .5 0 0 1 .5 -.5h4a.5 .5 0 0 1 .5 .5v4a.5 .5 0 0 1 -.5 .5h-4a.5 .5 0 0 1 -.5 -.5z' /> <path d='M17 6v12' /></svg > `)
+
+
+        button.setAttribute("type", "button")
+        button.append(spanCanSort)
+        button.append(spanSortAscending)
+        button.append(spanSortDescending)
+
+        button.addEventListener("click", (event) => {
+            event.preventDefault()
+            this.#toggleSortOrder()
+            this.#setButtonState()
+            this.#sortTable()
+            if (this.#isAnnounce) this.#announceSort()
+            this.#emit('sort-clicked');
+        }, {
+            signal: this.#controller.signal
+        });
+
+        this.textContent = ""
+        this.append(button)
+        this.#button = button
+    }
+
+    /**
+    * @function announceSort Screen readers announce which way sorting went. May not be needed. Test your screen reader audience.
+    */
+    #announceSort() {
+        if (this.#getSortOrder() === this.#SORT_Z_A) {
+            this.#liveRegion.textContent = "sorted down";
+        } else if (this.#getSortOrder() === this.#SORT_A_Z) {
+            this.#liveRegion.textContent = "sorted up";
+        }
+
+        setTimeout(() => {
+            this.#liveRegion.textContent = "";
+        }, 1000)
+    }
+
+    /**
+    * @function getSortOrder Returns value of aria-sort or "none" if attribute not there.
+    */
+    #getSortOrder() {
+        return this.#th.hasAttribute("aria-sort") ? this.#th.getAttribute("aria-sort") : this.#NONE
+    }
+
+    /**
+    * @function setSortOrder Sets aria-sort.
+    * @param {String} order value for aria-sort.
+    */
+    #setSortOrder(order) {
+        order ? this.#th.setAttribute("aria-sort", order) : this.#th.removeAttribute("aria-sort")
+    }
+
+    /**
+    * @function toggleSortOrder Sets aria-sort to ascending if set to descending OR attribute isn't on local <th>.
+    */
+    #toggleSortOrder() {
+        if (this.#getSortOrder() === this.#NONE || this.#getSortOrder() === this.#SORT_Z_A) {
+            this.#setSortOrder(this.#SORT_A_Z)
+        } else {
+            this.#setSortOrder(this.#SORT_Z_A)
+        }
+    }
+
+    /**
+    * @function addLiveRegion If required.
+    */
+    #addLiveRegion() {
+        if (this.#table.querySelector("caption")) {
+            if (this.#table.querySelector("caption > span[data-live-region]")) {
+                this.#liveRegion = this.#table.querySelector("caption > span[data-live-region]")
+            } else {
+                const caption = this.#table.querySelector("caption")
+                this.#liveRegion = document.createElement("span")
+                this.#liveRegion.dataset.liveRegion = ""
+                caption.append(this.#liveRegion)
+            }
+            this.#liveRegion.setAttribute("aria-live", "polite")
+            this.#visuallyHideElement(this.#liveRegion)
+        }
+    }
+
+    /**
      * @function Add a hidden table caption with screen reader guidance to the table. If a caption already exists, add hidden text within that caption.
      */
     #addCaption() {
-        if (this.#table) {
-            // Check for an existing caption. If no caption, create a hidden one. If one exists, assume it could be visible so add hidden spans to it.
-            const captionText = "Use column header buttons to sort"
+        const captionText = "Use column header buttons to sort"
 
-            if (!this.#table.querySelector("caption")) {
-                const caption = document.createElement("caption")
-                this.#visuallyHideElement(caption)
-                caption.textContent = captionText
-                caption.setAttribute("data-sort-caption-added", "")
-                this.#table.prepend(caption)
-            } else {
-                const caption = this.#table.querySelector("caption")
-                // check if span has already been added
-                if (!caption.querySelector("span[data-sort-caption]") && !caption.hasAttribute("data-sort-caption-added")) {
-                    const span = document.createElement("span")
-                    span.setAttribute("data-sort-caption", "")
-                    this.#visuallyHideElement(span)
-                    span.textContent = captionText
-                    caption.append(span)
-                }
+        if (!this.#table.querySelector("caption")) {
+            const caption = document.createElement("caption")
+            this.#visuallyHideElement(caption)
+            caption.textContent = captionText
+            caption.setAttribute("data-sort-caption-added", "")
+            this.#table.prepend(caption)
+        } else {
+            const caption = this.#table.querySelector("caption")
+            // check if span has already been added
+            if (!caption.querySelector("span[data-sort-caption]") && !caption.hasAttribute("data-sort-caption-added")) {
+                const span = document.createElement("span")
+                span.setAttribute("data-sort-caption", "")
+                this.#visuallyHideElement(span)
+                span.textContent = captionText
+                caption.append(span)
             }
         }
     }
@@ -210,21 +332,15 @@ export default class NakedTableSort extends HTMLElement {
     /**
      * @function compare Compare function to sort an array of rows.
      *
-     * @param {object} _this passing class reference as arrow function didn't work.
-     * @param {number} cellIndex The nth child cell of the row.
-     * @param {string} query The query to target the text to sort in a cell.
-     * @param {string} sortOrder The order or sorting :-)
-     * @param {function} conversion A function applied to the sorted text
-     * @return {boolean} The result of the sort comparison.
      */
-    #compare(_this, cellIndex, sortOrder, query, conversion) {
+    #compare() {
         return function (rowA, rowB) {
 
-            let textA = rowA.querySelector(`td:nth-child(${cellIndex}) ${query}`)?.textContent || ""
-            let textB = rowB.querySelector(`td:nth-child(${cellIndex}) ${query}`)?.textContent || ""
+            let textA = rowA.querySelector(`td:nth-child(${this.#columnIndex}) ${this.#textFind}`)?.textContent || ""
+            let textB = rowB.querySelector(`td:nth-child(${this.#columnIndex}) ${this.#textFind}`)?.textContent || ""
 
-            if (conversion) {
-                const convertedText = conversion(textA, textB);
+            if (this.#conversion) {
+                const convertedText = this.#conversion(textA, textB);
                 textA = convertedText.newA
                 textB = convertedText.newB
             }
@@ -243,7 +359,7 @@ export default class NakedTableSort extends HTMLElement {
             //     return 1
             // }
 
-            if (sortOrder === _this.#SORT_A_Z) {
+            if (this.#getSortOrder() === this.#SORT_A_Z) {
                 return textA.localeCompare(textB);
             }
             else {
@@ -255,57 +371,14 @@ export default class NakedTableSort extends HTMLElement {
     /**
      * @function sortTable table rows on given cell target and sort order.
      *
-     * @param {HTMLTableElement} table The table element to sort.
-     * @param {number} columnIndex nth-child of <td>s to be sorted.
-     * @param {string} sortOrder The order of sorting.
-     * @param {string} query The query to target the text to sort in a cell.
-     * @param {function} [conversion] (optional) A function to adapt the sortable text before sorting.
-     * @return {HTMLTableElement} The table element with tbody element sorted.
      */
-    #sortTable(table, columnIndex, sortOrder, query = "", conversion = null) {
+    #sortTable() {
         const tbodyOriginal = this.#table.querySelector("tbody")
         const tbodyClone = document.createElement("tbody")
         const rows = Array.from(tbodyOriginal.rows)
-        rows.sort(this.#compare(this, columnIndex, sortOrder, query, conversion))
+        rows.sort(this.#compare().bind(this))
         tbodyClone.append(...rows)
-        table.replaceChild(tbodyClone, tbodyOriginal)
-    }
-
-    /**
-     * @function Create a button with the original cell text.
-     * @param {String} text Text for the button.
-     * @param {element} _button a button to be passed or if empty, one will be created.
-     */
-    #createButton(text, _button = null) {
-        const button = _button ? _button : document.createElement("button")
-        button.textContent = text
-        // button.setAttribute("aria-label", `Sort the ${text} column`)
-        if (this.sortOrder) {
-            button.setAttribute("data-sort", this.sortOrder)
-        } else {
-            button.setAttribute("data-sort", "")
-        }
-        button.addEventListener("click", (event) => {
-            event.preventDefault()
-            this.#toggleSortOrder()
-            this.#sortTable(this.#table, this.#columnIndex, this.#sortOrder, this.#textFind, this.#conversion)
-            this.#emit('sort-clicked');
-        }, {
-            signal: this.#controller.signal
-        });
-        this.append(button)
-        this.#button = button
-    }
-
-    /**
-     * @function toggleSortOrder Toggle the sort order property and button data attribute.
-     */
-    #toggleSortOrder() {
-        if (this.sortOrder === "") this.sortOrder = this.#SORT_Z_A;
-        this.sortOrder = this.sortOrder === this.#SORT_A_Z ? this.#SORT_Z_A : this.#SORT_A_Z
-        this.button.setAttribute("data-sort", this.sortOrder)
-        const ariaSort = this.sortOrder === this.#SORT_A_Z ? "ascending" : "descending"
-        this.#th.setAttribute("aria-sort", ariaSort)
+        this.#table.replaceChild(tbodyClone, tbodyOriginal)
     }
 
     /**
@@ -316,13 +389,6 @@ export default class NakedTableSort extends HTMLElement {
         return this.#button
     }
 
-    get sortOrder() {
-        return this.#sortOrder
-    }
-
-    set sortOrder(value) {
-        this.#sortOrder = value
-    }
 }
 
 NakedTableSort.register();
