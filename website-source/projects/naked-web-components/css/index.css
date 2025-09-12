@@ -41,7 +41,8 @@ fieldset.pg-filters {
 
 naked-filter>div>input,
 naked-filter>div>select {
-    font: revert !important;
+    /* font: revert !important; */
+    padding: 0.25em;
 }
 
 button[data-clear-filters] {

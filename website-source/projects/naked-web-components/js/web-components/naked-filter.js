@@ -1,8 +1,8 @@
 /**
  * @class NakedFilter
- * @classdesc Shows and hides things depending on your humans input. Works with other naked-filter components.
+ * @classdesc Shows and hides things depending on your humans input. Works with other naked-filter components. V2.0.0 Improves the default size of the elements and adds a liveregion for what has been filtered.
  * 
- * @version 1.0.0
+ * @version 2.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
  * @property {string} data-items-selector - A selector string to get all examples of the items you want to filter.
@@ -112,6 +112,32 @@ export default class NakedFilter extends HTMLElement {
         })
     }
 
+
+    /**
+    * @function addLiveRegion If required.
+    */
+    #addLiveRegion() {
+        if (!document.querySelector(`p[data-naked-filter-live]`)) {
+            const p = document.createElement("p")
+            p.setAttribute("data-naked-filter-live", "")
+            p.setAttribute("aria-live", "polite")
+            this.#visuallyHideElement(p)
+            document.body.append(p)
+        }
+    }
+
+    /**
+    * @function announceFilter Screen readers announce that filter occured.
+    */
+    #announceFilter() {
+        const live = document.querySelector(`p[data-naked-filter-live]`)
+        live.textContent = `${this.#labelText} filtered`
+
+        setTimeout(() => {
+            live.textContent = "";
+        }, 1000)
+    }
+
     /**
     * @function runFilter Loop over each item and check if should be hidden
     * @param  {String} searchTerm The term to er search for.
@@ -125,6 +151,8 @@ export default class NakedFilter extends HTMLElement {
                 if (fullText != "") itemObject.item.style.display = "none"
             }
         })
+
+        this.#announceFilter()
     }
 
     /**
@@ -159,9 +187,13 @@ export default class NakedFilter extends HTMLElement {
             if (this.dataset.filterType === this.#SELECT) this.#elementType = this.#SELECT
         }
 
+        this.#addLiveRegion()
+
         const dynamicID = window.crypto.randomUUID();
         this.#element = this.#addElemenet()
         this.#element.id = dynamicID
+        this.#element.style.fontSize = "inherit"
+        this.#element.style.minHeight = "42px"
 
         if (this.#labelText != "") {
             this.#label = this.#addLabel()
@@ -181,7 +213,7 @@ export default class NakedFilter extends HTMLElement {
             this.#buildSelect()
         }
 
-        this.#element.addEventListener("change", (event) => { this.#handleChange(event) })
+        this.#element.addEventListener("input", (event) => { this.#handleChange(event) })
         this.#element.addEventListener("keyup", (event) => { this.#handleChange(event) })
 
 
@@ -258,6 +290,20 @@ export default class NakedFilter extends HTMLElement {
 
         // Dispatch the event
         return this.dispatchEvent(event);
+    }
+
+    /**
+     * @function visuallyHideElement Decorate the styles of an element to make it visually hidden.
+     * @param  {element} element The element to be decorated
+     */
+    #visuallyHideElement(element) {
+        element.style.position = "absolute"
+        element.style.top = "auto"
+        element.style.overflow = "hidden"
+        element.style.clip = "rect(1px, 1px, 1px, 1px)"
+        element.style.width = "1px"
+        element.style.height = "1px"
+        element.style.whiteSpace = "nowrap"
     }
 
     /*

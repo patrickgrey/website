@@ -6,12 +6,12 @@ naked-filter>div>input,
 naked-filter>div>select {
     position: relative;
     padding: 0.5rem;
-    font-size: large !important;
+    font-size: inherit !important;
     border-radius: 3px;
 }
 
 naked-filter>div>input {
-    padding-inline-start: 2rem;
+    padding-inline-start: 2rem !important;
     border: 0;
 }
 
@@ -23,10 +23,12 @@ naked-filter select {
 naked-filter>div:has(input)::after {
     content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='lightgrey'  stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z'></path></svg>");
     pointer-events: none;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.25em;
+    height: 1.25em;
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     left: 3px;
-    margin-block-start: 4px;
+    /* margin-block-start: 4px; */
     z-index: 200;
 }
