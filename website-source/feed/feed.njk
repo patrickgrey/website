@@ -20,12 +20,12 @@
   <subtitle>{{ metadata.description }}</subtitle>
   <link href="https://patrickgrey.co.uk/feed/feed.xml" rel="self" />
   <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
-  <updated>{{ collections.note | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <updated>{{ collections.feedPosts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
   <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
   <author>
     <name>{{ metadata.author.name }}</name>
   </author>
-  {%- for note in collections.note | reverse %}
+  {%- for note in collections.feedPosts | reverse %}
   {%- set absolutePostUrl %}{{ note.url | htmlBaseUrl(metadata.base) }}{% endset %}
   <entry>
     <title>{{ note.data.title }}</title>

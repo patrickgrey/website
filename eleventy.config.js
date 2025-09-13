@@ -82,6 +82,13 @@ export default async function (eleventyConfig) {
     eleventyConfig.addCollection("tagsWithout", function (collectionApi) {
         return collectionApi.getFilteredByTags("post", "page");
     });
+
+    eleventyConfig.addCollection("feedPosts", function (collectionApi) {
+        return [
+            ...collectionApi.getFilteredByTag("note"),
+            ...collectionApi.getFilteredByTag("project")
+        ];
+    });
     // eleventyConfig.addCollection("pagesSorted", function (collectionApi) {
     //     const pages = collectionApi.getFilteredByTag("page");
     //     const sorted = pages.sort(function (a, b) {

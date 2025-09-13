@@ -28,6 +28,22 @@ table.pg-demo-table td {
     padding: var(--space-2xs) var(--space-3xs);
 }
 
+tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+tbody tr.naked-odd {
+    background-color: white !important;
+}
+
+tbody tr.naked-even {
+    background-color: #ddd !important;
+}
+
 div[data-scroll-container] {
     top: var(--space-3xl) !important;
 }

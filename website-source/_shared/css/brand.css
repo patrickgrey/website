@@ -1226,5 +1226,5 @@ footer {
     text-box-edge: cap alphabetic;
     margin-inline-start: auto;
     margin-inline-end: 0;
-    margin-block-end: var(--space-m);
+    /* margin-block-end: var(--space-m); */
 }
