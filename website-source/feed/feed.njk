@@ -14,7 +14,7 @@
 }
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="/feed/pretty-atom-feed.xsl" type="text/xsl"?>
+{# <?xml-stylesheet href="/feed/pretty-atom-feed.xsl" type="text/xsl"?> #}
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
   <title>{{ metadata.title }}</title>
   <subtitle>{{ metadata.description }}</subtitle>
@@ -30,7 +30,16 @@
   <entry>
     <title>{{ note.data.title }}</title>
     <link href="{{ absolutePostUrl }}" />
-    <updated>{{ note.date | dateToRfc3339 }}</updated>
+    {%- if note.data.publish %}
+    <published>{{ note.data.publish | dateToRfc3339 }}</published>
+    {% else %}
+    <published>{{ note.date | dateToRfc3339 }}</published>
+    {%- endif %}
+
+    {%- if note.data.update %}
+    <updated>{{ note.data.update | dateToRfc3339 }}</updated>
+    {%- endif %}
+
     <id>{{ absolutePostUrl }}</id>
     <content type="html">{{ note.content | renderTransforms(note.data.page, metadata.base) }}</content>
   </entry>

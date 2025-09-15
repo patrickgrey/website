@@ -1,8 +1,8 @@
 /**
  * @class NakedFilter
- * @classdesc Shows and hides things depending on your humans input. Works with other naked-filter components. V2.0.0 Improves the default size of the elements and adds a liveregion for what has been filtered.
+ * @classdesc Shows and hides things depending on your humans input. Works with other naked-filter components. V2.0.1 Select filters should use equals, not contains to compare.
  * 
- * @version 2.0.0
+ * @version 2.0.1
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
  * @property {string} data-items-selector - A selector string to get all examples of the items you want to filter.
@@ -144,11 +144,15 @@ export default class NakedFilter extends HTMLElement {
     */
     #runFilter(searchTerm) {
         this.#model.forEach(itemObject => {
+
             const fullText = this.#getItemText(itemObject.item).toLowerCase()
-            if (searchTerm != this.#EMPTY) {
-                if (!fullText.includes(searchTerm.toLowerCase())) itemObject.item.style.display = "none"
-            } else {
-                if (fullText != "") itemObject.item.style.display = "none"
+
+            if (searchTerm === this.#EMPTY && fullText != "") {
+                itemObject.item.style.display = "none"
+            } else if (this.#elementType === this.#INPUT && !fullText.includes(searchTerm.toLowerCase())) {
+                itemObject.item.style.display = "none"
+            } else if (this.#elementType === this.#SELECT && fullText != searchTerm.toLowerCase()) {
+                itemObject.item.style.display = "none"
             }
         })
 
