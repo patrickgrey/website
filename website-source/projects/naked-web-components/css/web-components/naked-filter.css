@@ -4,6 +4,7 @@ naked-filter>div {
 
 naked-filter>div>input,
 naked-filter>div>select {
+    width: 100%;
     position: relative;
     padding: 0.5rem;
     font-size: inherit !important;

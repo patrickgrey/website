@@ -11,7 +11,7 @@
  * @author Patrick Grey
  * @example <naked-table-stripe-sorter><table></table></naked-table-stripe-sorter>
  * 
- * 
+ * TODO: Need to trigger on table sort too!
  */
 
 export default class NakedTableStripeSorter extends HTMLElement {
