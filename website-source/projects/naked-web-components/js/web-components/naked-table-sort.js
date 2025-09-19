@@ -1,11 +1,8 @@
 /**
  * @class NakedTableSort
- * @classdesc This component converts the text of a table header into a button
- * that will sort the contents of its column. Hidden caption text is added
- * to the table to assist screen readers. The button will automatically
- * sort table cells with plain text. The data-text-find attribute can be added to the component to alter the sorting. Sorting is based around aria-sort. If you set aria-sort on the <th> element, it will be reflected in the button. Version 2.0.0 aims to greatly improve accessibility.
+ * @classdesc This component converts the text or an existing button in a table header cell into a button that will sort the contents of its column. Hidden caption text is added to the table to assist screen readers. The button will automatically sort table cells with plain text. The data-text-find attribute can be added to the component to alter the sorting. Sorting is based around aria-sort. If you set aria-sort on the <th> element, it will be reflected in the button. 
  * 
- * @version 2.0.0
+ * @version 3.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
  * @property {string}  data-text-find - If the text you want to sort is nested in the table cell, tell the component where to find the text using a selector e.g. ":scope > div > span"
@@ -15,6 +12,8 @@
  * @example <th><naked-table-sort>Column title text</naked-table-sort></th>
  * 
  * @see https://adrianroselli.com/2021/04/sortable-table-columns.html
+ * 
+ * TODO: allow pre-existing button with three icons
  * 
  */
 export default class NakedTableSort extends HTMLElement {
@@ -123,6 +122,8 @@ export default class NakedTableSort extends HTMLElement {
         })
 
         this.#setButtonState()
+
+        this.#emit('ready')
     }
 
     /**
@@ -348,8 +349,11 @@ export default class NakedTableSort extends HTMLElement {
             textA = textA.replaceAll(" ", "")
             textB = textB.replaceAll(" ", "")
 
-            if (!textA) textA = "ZZZZZZZZ";
-            if (!textB) textB = "ZZZZZZZZ";
+
+            if (textA === "" || textA === null) return 1;
+            if (textB === "" || textB === null) return -1;
+            // if (!textA) textA = "ZZZZZZZZ";
+            // if (!textB) textB = "ZZZZZZZZ";
 
             // sort null last
             // if (textA === "" && textB !== "") {

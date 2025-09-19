@@ -1,5 +1,5 @@
  naked-sticky-overflow [data-scroll-container] {
-     --naked-top-offset: var(--space-xl);
+     --naked-top-offset: 15rem;
      top: calc(50vh - var(--naked-top-offset)) !important;
  }
 
@@ -26,7 +26,7 @@
 
  naked-sticky-overflow [data-scroll-left]>svg,
  naked-sticky-overflow [data-scroll-right]>svg {
-     stroke: var(--pg-colour-pink);
+     stroke: #f1a8ff;
      width: 4rem;
      height: 4rem;
  }

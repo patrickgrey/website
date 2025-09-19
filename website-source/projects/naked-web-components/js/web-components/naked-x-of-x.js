@@ -1,15 +1,14 @@
 /**
  * @class NakedXOfX
- * @classdesc Provides a count of visible items in the format: "[visible count] of [total count]". Items are selected using a selector. If an item's display = "none", it is part of the total but not part of the count. So, a table with 10 rows and 4 rows are display: "none", the output will be "<span>6</span> of <span>10</span>".
+ * @classdesc Provides a count of visible items in the format: "[visible count] of [total count]". Items are selected using a selector. If an item's display = "none", it is part of the total but not part of the count. So, a table with 10 rows and 4 rows are display: "none", the output will be "<span data-x-count>6</span> of <span data-x-total>10</span>". If you want to use your own text, put text inside the component and use data attributes to place the numbers e.g.: "Showing <span data-x-count></span> of <span data-x-total></span> rows".
  * 
- * @version 1.0.0
+ * @version 3.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
  * @property {string} data-item-selector - the items to count.
- * @property {boolean} data-has-span - whether to wrap the numbers in <span>s for styling purposes. Defaults to true.
  * 
  * @author Patrick Grey
- * @example <th><naked-x-of-x>Column title text</naked-x-of-x></th>
+ * @example <p>Showing: <naked-x-of-x data-item-selector="table>tbody>tr"></naked-x-of-x> rows.</p>
  * 
  */
 
@@ -20,21 +19,15 @@ export default class NakedXOfX extends HTMLElement {
     #itemSelector
     #items
     #itemsTotal
-    #hasSpan = true
+    #hasText = true
+    #itemsText
+    #itemsTextTotal
     #observer
 
     static register(tagName) {
         if ("customElements" in window) {
             customElements.define(tagName || "naked-x-of-x", NakedXOfX)
         }
-    }
-
-    /**
-    * @function setText A public function to set component text.
-    * @param  {html} string A string of html
-    */
-    setText(html) {
-        this.innerHTML = html
     }
 
     /**
@@ -45,10 +38,11 @@ export default class NakedXOfX extends HTMLElement {
         this.#items.forEach(item => {
             if (item.style.display != "none") showingCount++
         })
-        if (this.#hasSpan) {
-            this.setText(`<span>${showingCount}</span> of <span>${this.#itemsTotal}</span>`)
+        if (this.#hasText) {
+            this.#itemsText.textContent = showingCount
+            this.#itemsTextTotal.textContent = this.#itemsTotal
         } else {
-            this.setText(`${showingCount} of ${this.#itemsTotal}`)
+            this.innerHTML = `<span data-x-count>${showingCount}</span> of <span data-x-total>${this.#itemsTotal}</span>`
         }
     }
 
@@ -66,26 +60,33 @@ export default class NakedXOfX extends HTMLElement {
         this.#controller = new AbortController()
         this.#isReady = true
 
+        // Validate setup
         if (!this.dataset.itemSelector) return console.warn("A data-item-selector attribute is required for the <naked-x-of-x> component.")
 
-        this.#itemSelector = this.dataset.itemSelector
-        if (this.dataset.hasSpan) this.#hasSpan = this.dataset.hasSpan
+        if (this.textContent != "" && (!this.querySelector(`[data-x-count]`) || !this.querySelector(`[data-x-total]`))) {
+            return console.warn("If you put text inside the <naked-x-of-x> component, it needs to have a <span> for each value: <span data-x-count> & <span data-x-total>.")
+        }
 
+        this.#itemSelector = this.dataset.itemSelector
         this.#items = Array.from(document.querySelectorAll(this.#itemSelector))
         this.#itemsTotal = this.#items.length
         if (this.#itemsTotal === 0) {
-            this.setText("No items found")
+            this.innerHTML = "No items found"
             return console.warn("<naked-x-of-x> component: no items were found.")
         }
 
-        this.#observer = new MutationObserver(this.#mutationCallback)
-        const config = { attributes: true }
+        if (this.textContent === "") this.#hasText = false
+        this.#itemsText = this.querySelector(`[data-x-count]`)
+        this.#itemsTextTotal = this.querySelector(`[data-x-total]`)
 
+        this.#observer = new MutationObserver(this.#mutationCallback)
         this.#items.forEach(item => {
             this.#observer.observe(item, { attributes: true });
         })
 
         this.#countVisible()
+
+        this.#emit('ready')
     }
 
     /**
@@ -128,6 +129,32 @@ export default class NakedXOfX extends HTMLElement {
 
     /*
     GETS END
+    */
+
+    /*
+    UTILS
+    */
+
+    /**
+     * @function emit Emit a custom event
+     * @param  {String} type   The event name suffix
+     * @param  {Object} detail Details to include with the event
+     */
+    #emit(type, detail = {}) {
+
+        // Create a new event
+        let event = new CustomEvent(`naked-x-of-x:${type}`, {
+            bubbles: true,
+            cancelable: true,
+            detail: detail
+        });
+
+        // Dispatch the event
+        return this.dispatchEvent(event);
+    }
+
+    /*
+    UTILS END
     */
 }
 

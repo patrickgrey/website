@@ -8,6 +8,7 @@ th naked-table-sort button {
     border: 1px solid transparent;
     color: inherit;
     font-size: inherit !important;
+    font-family: inherit !important;
 }
 
 th naked-table-sort button span {

@@ -33,8 +33,6 @@ toggle.addEventListener("click", (event) => {
 
 setTimeout(() => {
     document.querySelectorAll(`naked-table-sort > button`).forEach(button => {
-        console.log("button: ", button);
-
         button.dataset.sort = ""
     })
 

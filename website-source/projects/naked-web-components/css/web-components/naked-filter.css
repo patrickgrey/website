@@ -4,20 +4,22 @@ naked-filter>div {
 
 naked-filter>div>input,
 naked-filter>div>select {
-    width: 100%;
+    --naked-filter-icon-padding: 2em;
+    width: calc(100% - var(--naked-filter-icon-padding)) !important;
     position: relative;
-    padding: 0.5rem;
-    font-size: inherit !important;
+    padding-block: 0.25em;
+    font-size: inherit;
+    font-family: inherit;
     border-radius: 3px;
 }
 
 naked-filter>div>input {
-    padding-inline-start: 2rem !important;
+    padding-inline-start: var(--naked-filter-icon-padding);
     border: 0;
 }
 
-naked-filter select {
-    padding: calc(0.5rem - 2px);
+naked-filter>div>select {
+    padding-block: calc(0.4em + 1px);
     border: 0;
 }
 

@@ -51,14 +51,19 @@ div[data-scroll-container] {
 fieldset.pg-filters {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 2px;
+    /* justify-content: space-between; */
     padding: var(--space-2xs);
+}
+
+naked-filter {
+    flex: 1;
 }
 
 naked-filter>div>input,
 naked-filter>div>select {
     /* font: revert !important; */
-    padding: 0.25em;
+    /* padding: 0.25em; */
 }
 
 button[data-clear-filters] {

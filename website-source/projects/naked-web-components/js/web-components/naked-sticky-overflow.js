@@ -1,7 +1,7 @@
 /**
  * @class NakedStickyOverflow
  * @classdesc This web component makes elements or a group of elements horizontally scrollable on overflow while still allowing position: sticky elements to work. With thanks to https://dbushell.com/2025/08/01/anatomy-of-a-web-component/ and https://gomakethings.com/bulletproof-web-component-loading/ for making the component more robust.
- * @version 1.0.0
+ * @version 3.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  *  
  * @property {number} data-scroll-speed - the speed of scrolling (lower is slower) e.g. <naked-sticky-overflow data-scroll-speed="1">
@@ -170,10 +170,11 @@ export default class NakedStickyOverflow extends HTMLElement {
         this.#buttonRight.prepend(this.#buttonRightText)
         this.#buttonContainer.style.position = "sticky"
         this.#buttonContainer.style.top = "0"
-        this.#buttonContainer.style.zIndex = "1000"
+        this.#buttonContainer.style.zIndex = "2000"
         this.#buttonContainer.style.width = "100%"
         this.#buttonContainer.style.display = "flex"
         this.#buttonContainer.style.justifyContent = "space-between"
+        this.#buttonLeft.style.opacity = this.#buttonRight.style.opacity = 0.7
         this.#buttonLeft.style.display = this.#buttonRight.style.display = "flex"
         this.#buttonLeft.style.flexWrap = this.#buttonRight.style.flexWrap = "wrap"
         this.#buttonLeft.style.alignItems = this.#buttonRight.style.alignItems = "center"
@@ -245,6 +246,8 @@ export default class NakedStickyOverflow extends HTMLElement {
         this.#buttonRight.addEventListener("keyup", (event) => {
             if (event.key === "Enter") clearInterval(this.#handleRightDownInterval)
         }, signal)
+
+        this.#emit('ready')
     }
 
     /**
@@ -296,6 +299,24 @@ export default class NakedStickyOverflow extends HTMLElement {
         this.#currentTranslateX = 0
         this.#firstChild.style.transform = `translateX(0px)`
     }, 20);
+
+    /**
+     * @function emit Emit a custom event
+     * @param  {String} type   The event name suffix
+     * @param  {Object} detail Details to include with the event
+     */
+    #emit(type, detail = {}) {
+
+        // Create a new event
+        let event = new CustomEvent(`naked-sticky-overflow:${type}`, {
+            bubbles: true,
+            cancelable: true,
+            detail: detail
+        });
+
+        // Dispatch the event
+        return this.dispatchEvent(event);
+    }
 
 
 }

@@ -1,20 +1,24 @@
 /**
  * @class NakedFilter
- * @classdesc Shows and hides things depending on your humans input. Works with other naked-filter components. V2.0.1 Select filters should use equals, not contains to compare.
+ * @classdesc Shows and hides things depending on your humans input. You can work "HTML first" by wrapping the component around HTML e.g. a label and text input or a label and select element or a fieldset that contains radio inputs with labels. If you use [data-item-attribute-selector] (selects and radios only) but not [data-item-text-selector], the component will look for the existence of that attribute. In this case, the select or radio should have only values of true and false. If [data-item-text-selector] has a value, the component will look for that value on the attribute.
  * 
- * @version 2.0.1
+ * @version 3.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
- * @property {string} data-items-selector - A selector string to get all examples of the items you want to filter.
- * @property {string} data-item-text-selector - A selector string to get the text inside the items you want to filter.
- * @property {string} data-display-type - the style.display value when showing an item. Defaults to "table-row" as I think this component will be used most often on tables. Useful when filtering a table or inline elements.
- * @property {string} data-type - ["input", "select"] The type of UI element to filter with. Defaults to "input".
- * @property {string} data-label - Will be the text used for the filter element label. If left out, there will be no label and that isn't good for accessibility
+ * 
+* @property {string}   `data-type`: ["input", "select", "radio"] the filter UI type (default is input). If you are enhancing a select or radio input set, you must set the data-type.
+* @property {string}   `data-label`: Will be the text used for the filter element label. If a label already exists in the component, that will be used.
+* @property {string}   `data-items-selector`: A selector string. for the list of items you want to filter e.g.
+    `<naked-filter data-items-selector="tbody>tr">`
+* @property {string}   `data-item-text-selector`: where to find the text in the item to filter on. e.g.
+    `<naked-filter data-item-text-selector=":scope>td:nth-child(2)>span" >`
+ * @property {string} `data-item-attribute-selector` - If data-item-attribute-has-value doesn't exist, the filter will search for the existance of an attribute on the item instead of text. If data-item-attribute-has-value is used, the filter will search for the value of that attribute
+ * @property {string} `data-item-attribute-has-value` - Search for the value of an attribute on the item.
+ * @property {string} `data-display-type` - the style.display value when showing an item. Defaults to "table-row" as I think this component will be used most often on tables e.g. `<naked-filter data-display-type="block">` will result in style.display = "block", instead of the default style.display = "table-row".
  * 
  * @author Patrick Grey
- * @example <th><naked-filter data-items-selector="tbody>tr"  data-text-selector="tbody>tr>td:nth-child(2)>span" data-filter-type="select"></naked-filter></th>
+ * @example <div><naked-filter data-items-selector="tbody>tr" data-item-text-selector=":scope>td:nth-child(2)>span"></naked-filter></div>
  * 
- * @see Credits People who helped
  * 
  */
 
@@ -24,16 +28,22 @@ export default class NakedFilter extends HTMLElement {
     #controller // An abort controller to allow multiple listeners to be removed at once
     #items
     #textSelector = ""
+    #attributeSelector = ""
+    #attributeHasValue = false
+    #ATTRIBUTE_TEXT = "data-item-attribute-has-value"
     #model = []
     #displayType = "table-row"
     #elementType = "input"
     #element
+    #elementRadios = []
     #labelText = ""
-    #label
-    #EMPTY = "empty"
+    #label = undefined
+    #EMPTY = "EMPTY"
     #ALL = "all"
     #SELECT = "select"
     #INPUT = "input"
+    #RADIO = "radio"
+    #value = this.#ALL
 
     static register(tagName) {
         if ("customElements" in window) {
@@ -51,7 +61,7 @@ export default class NakedFilter extends HTMLElement {
     #handleChange(event) {
         //This works as only one component will run show all
         this.showAllItems()
-        this.#emit('change');
+        this.#emit('change')
     }
 
     /*
@@ -63,44 +73,70 @@ export default class NakedFilter extends HTMLElement {
     */
 
     /**
-    * @function addElemenet Create and return input element.
+    * @function addElemenet Check for existing elements. If none, create and return input element.
     */
-    #addElemenet() {
-        let element
+    #addElemenet(dynamicID) {
+        let element = undefined
         if (this.#elementType === this.#INPUT) {
             element = document.createElement("input")
             element.type = "text"
-        } else {
+        } else if (this.#elementType === this.#SELECT) {
             element = document.createElement("select")
+            this.#buildSelect(element)
+        } else if (this.#elementType === this.#RADIO) {
+            element = this.querySelector(`fieldset`)
         }
+
+        // this.#element = element
+
+        if (this.#elementType === this.#INPUT || this.#elementType === this.#SELECT) {
+            element.id = dynamicID
+            element.style.fontSize = "inherit"
+            element.style.minHeight = "42px"
+            if (this.#elementType === this.#SELECT) element.style.minHeight = "48px"
+        } else if (this.#elementType === this.#RADIO) {
+
+        }
+
         return element
     }
 
     /**
     * @function addLabel Create and return a label. Text is wrapped in a span for styling
     */
-    #addLabel() {
+    #addLabel(dynamicID) {
         const label = document.createElement("label")
         const span = document.createElement("span")
         span.textContent = this.#labelText
         label.append(span)
+        label.setAttribute("for", dynamicID)
         return label
     }
 
     /**
     * @function buildSelect Build unique select options based on text in items
     */
-    #buildSelect() {
+    #buildSelect(element) {
+        // * @function addLiveRegion If required.
+        const optionAll = document.createElement("option")
+        // #addLiveRegion() {
+        optionAll.text = "Show all"
+        optionAll.value = this.#ALL
+        element.append(optionAll)
         let tempArray = []
         this.#model.forEach(item => {
             tempArray.push(item.text)
         })
         const optionsArray = new Set(tempArray)
+        let emptyOption = null
         optionsArray.forEach(text => {
             const option = document.createElement("option")
             option.text = option.value = text === "" ? this.#EMPTY : text
-            this.#element.append(option)
+            if (option.value === this.#EMPTY) emptyOption = option
+            element.append(option)
         })
+
+        if (emptyOption) element.append(emptyOption)
     }
 
     /**
@@ -144,15 +180,31 @@ export default class NakedFilter extends HTMLElement {
     */
     #runFilter(searchTerm) {
         this.#model.forEach(itemObject => {
+            const fullText = itemObject.text.toLowerCase()
 
-            const fullText = this.#getItemText(itemObject.item).toLowerCase()
-
-            if (searchTerm === this.#EMPTY && fullText != "") {
+            if (this.#elementType === this.#INPUT && !fullText.includes(searchTerm.toLowerCase())) {
                 itemObject.item.style.display = "none"
-            } else if (this.#elementType === this.#INPUT && !fullText.includes(searchTerm.toLowerCase())) {
-                itemObject.item.style.display = "none"
-            } else if (this.#elementType === this.#SELECT && fullText != searchTerm.toLowerCase()) {
-                itemObject.item.style.display = "none"
+            } else if (this.#elementType === this.#SELECT || this.#elementType === this.#RADIO) {
+                if (this.#attributeSelector != "" && !this.#attributeHasValue) {
+                    if (searchTerm === "true") {
+                        if (!itemObject.item.hasAttribute(this.#attributeSelector)) itemObject.item.style.display = "none"
+                    } else {
+                        if (itemObject.item.hasAttribute(this.#attributeSelector)) itemObject.item.style.display = "none"
+                    }
+                } else if (this.#attributeSelector != "" && this.#attributeHasValue) {
+                    if (itemObject.item.hasAttribute(this.#attributeSelector)) {
+                        // Hide items with attribute but without matching value
+                        if (itemObject.item.getAttribute(this.#attributeSelector) != searchTerm) {
+                            itemObject.item.style.display = "none"
+                        }
+                    } else { //Hide items without attribute
+                        itemObject.item.style.display = "none"
+                    }
+                } else if (this.#textSelector != "" && fullText != searchTerm.toLowerCase() && searchTerm != this.#EMPTY) {
+                    itemObject.item.style.display = "none" // Search by text, not attribute
+                } else if (searchTerm === this.#EMPTY && fullText != "") {
+                    itemObject.item.style.display = "none" // Search for empty content of text selector
+                }
             }
         })
 
@@ -164,7 +216,24 @@ export default class NakedFilter extends HTMLElement {
     * @param  {Element} item The term to extract text from.
     */
     #getItemText(item) {
-        return this.#textSelector != "" ? item.querySelector(this.#textSelector).textContent.trim() : item.textContent.trim()
+        let text = ""
+        if (this.#textSelector != "") {
+            if (item.querySelector(this.#textSelector)) {
+                text = item.querySelector(this.#textSelector).textContent.trim()
+            }
+        } else {
+            text = item.textContent.trim()
+        }
+        return text
+    }
+
+    #addHandlers() {
+        if (this.#elementType === this.#INPUT) {
+            this.#element.addEventListener("input", (event) => { this.#handleChange(event) })
+            this.#element.addEventListener("keyup", (event) => { this.#handleChange(event) })
+        } else if (this.#elementType === this.#SELECT) {
+            this.#element.addEventListener("change", (event) => { this.#handleChange(event) })
+        }
     }
 
     /**
@@ -174,63 +243,96 @@ export default class NakedFilter extends HTMLElement {
         this.#controller = new AbortController()
         this.#isReady = true
 
+        if (this.dataset.filterType) this.#elementType = this.dataset.filterType
+
+        if (
+            this.#elementType != this.#INPUT &&
+            this.#elementType != this.#SELECT &&
+            this.#elementType != this.#RADIO
+        ) {
+            return console.warn(`data-filter-type ${this.dataset.filterType} not recognised.`)
+        }
+
+        let elementSelector = `input[type="text"]`
+        if (this.#elementType === this.#SELECT) {
+            elementSelector = `select`
+        } else if (this.#elementType === this.#RADIO) {
+            elementSelector = `input[type="radio"]`
+            if (this.querySelectorAll(elementSelector).length === 0) return console.warn(`.<naked-filter> with type "radio" needs existing radio inputs.`)
+        }
+
+        // Check that existing elements have the correct HTML elements
+        if (this.children.length !== 0 && (!this.querySelector(`label`) || !this.querySelector(elementSelector))) {
+            return console.warn(`<naked-filter> component has content but either a label or an element or both are missing.`)
+        }
+
         if (this.dataset.label) this.#labelText = this.dataset.label
         if (this.dataset.displayType) this.#displayType = this.dataset.displayType
         if (this.dataset.itemsSelector) this.#items = Array.from(document.querySelectorAll(this.dataset.itemsSelector))
         if (!this.#items) return console.warn("No filterable items were found.")
 
         this.#textSelector = (this.dataset.itemTextSelector) ? this.dataset.itemTextSelector : ""
+        this.#attributeSelector = (this.dataset.itemAttributeSelector) ? this.dataset.itemAttributeSelector : ""
+        this.#attributeHasValue = this.hasAttribute(this.#ATTRIBUTE_TEXT)
 
         this.#items.forEach(item => {
             const text = this.#getItemText(item)
             this.#model.push({ item, text })
         })
+
         // console.log("this.#model: ", this.#model);
 
-        if (this.dataset.filterType) {
-            if (this.dataset.filterType === this.#SELECT) this.#elementType = this.#SELECT
-        }
-
         this.#addLiveRegion()
-
-        const dynamicID = window.crypto.randomUUID();
-        this.#element = this.#addElemenet()
-        this.#element.id = dynamicID
-        this.#element.style.fontSize = "inherit"
-        this.#element.style.minHeight = "42px"
-
-        if (this.#labelText != "") {
-            this.#label = this.#addLabel()
-            this.#label.setAttribute("for", dynamicID)
+        const dynamicID = window.crypto.randomUUID()
+        // Use existing elements
+        if (this.children.length !== 0) {
+            if (this.#elementType === this.#INPUT || this.#elementType === this.#SELECT) {
+                this.#element = this.querySelector(elementSelector)
+                // init listener
+                this.#addHandlers()
+            } else if (this.#elementType === this.#RADIO) {
+                this.#element = this
+                this.querySelectorAll(elementSelector).forEach(radio => {
+                    this.#elementRadios.push(radio)
+                    radio.addEventListener("change", (event) => {
+                        if (radio.checked) {
+                            this.value = radio.value
+                            this.#handleChange(event)
+                        }
+                    })
+                })
+            }
+        } else { // Create new elements as none exist
+            this.#element = this.#addElemenet(dynamicID)
+            this.#label = this.#addLabel(dynamicID)
+            const div = document.createElement("div")
             this.append(this.#label)
+            div.append(this.#element)
+            this.append(div)
+            this.#addHandlers()
         }
-        const div = document.createElement("div")
-        div.append(this.#element)
-        this.append(div)
-
-
-        if (this.#elementType === this.#SELECT) {
-            const option = document.createElement("option")
-            option.text = "Show all"
-            option.value = this.#ALL
-            this.#element.append(option)
-            this.#buildSelect()
-        }
-
-        this.#element.addEventListener("input", (event) => { this.#handleChange(event) })
-        this.#element.addEventListener("keyup", (event) => { this.#handleChange(event) })
 
 
         document.addEventListener("naked-filter:change", (event) => {
             const searchTerm = this.#element.value
+            if (this.#elementType === this.#RADIO) {
+                console.log("searchTerm: ", searchTerm);
+
+                console.log("this.#elementType: ", this.#elementType);
+            }
+
             if (this.#elementType === this.#INPUT) {
                 if (searchTerm != "") this.#runFilter(searchTerm)
             } else if (this.#elementType === this.#SELECT) {
+                if (searchTerm != this.#ALL) this.#runFilter(searchTerm)
+            } else if (this.#elementType === this.#RADIO) {
                 if (searchTerm != this.#ALL) this.#runFilter(searchTerm)
             }
         }, {
             signal: this.#controller.signal
         })
+
+        this.#emit('ready')
     }
 
     /*
@@ -268,6 +370,14 @@ export default class NakedFilter extends HTMLElement {
     */
     get isReady() {
         return this.#isReady
+    }
+
+    get value() {
+        return this.#value
+    }
+
+    set value(_value) {
+        this.#value = _value
     }
 
     /*

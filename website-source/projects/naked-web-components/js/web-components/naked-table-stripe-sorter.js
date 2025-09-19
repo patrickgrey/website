@@ -2,7 +2,7 @@
  * @class NakedTableStripeSorter
  * @classdesc If a table has alternating table row colours, when it is filtered, the alternation can get messed up. As far as I know, we cannot fix this with CSS (yet) so this component listens for changes in the tbody trs and reapplies user specified classes to each visible row.
  * 
- * @version 1.0.0
+ * @version 3.0.0
  * @license https://patrickgrey.co.uk/projects/naked-web-components/LICENCE/
  * 
  * @property {string} data-class-odd - the class to be applied to odd rows.
@@ -11,7 +11,8 @@
  * @author Patrick Grey
  * @example <naked-table-stripe-sorter><table></table></naked-table-stripe-sorter>
  * 
- * TODO: Need to trigger on table sort too!
+ * 
+ *  * TODO: Need to trigger on table sort too!
  */
 
 export default class NakedTableStripeSorter extends HTMLElement {
@@ -21,6 +22,7 @@ export default class NakedTableStripeSorter extends HTMLElement {
     #observer
     #isStyling = false
     #tbody
+    #table
     #classOdd
     #classEven
 
@@ -47,20 +49,30 @@ export default class NakedTableStripeSorter extends HTMLElement {
     */
     setStyles() {
         let rowIndex = 1
+        this.#tbody = this.#table.querySelector(`tbody`)
+
         this.#tbody.querySelectorAll(`tr:not([style*="none"])`).forEach(tr => {
             tr.classList.remove(this.#classOdd)
             tr.classList.remove(this.#classEven)
             const isEven = (rowIndex % 2 === 0)
             rowIndex++
-            const classString = isEven ? this.#classOdd : this.#classEven
+            const classString = isEven ? this.#classEven : this.#classOdd
+
             tr.classList.add(classString)
         })
-        this.#observer.observe(this.#tbody, { subtree: true, attributes: true })
+        this.#setObservers()
     }
 
     /*
     PRIVATE FUNCTIONS
     */
+
+    #setObservers() {
+        this.#observer.observe(this.#table, { childList: true, subtree: true, attributes: true })
+        // this.#tbody.querySelectorAll(`tr`).forEach(tr => {
+        //     this.#observer.observe(tr, { attributes: true });
+        // })
+    }
 
     /**
     * @function mutationCallback React to observer changes.
@@ -79,14 +91,18 @@ export default class NakedTableStripeSorter extends HTMLElement {
 
         if (!this.dataset.classOdd || !this.dataset.classEven) return console.warn("The data-class-odd AND data-class-even attributes are required for the <naked-table-stripe-sorter> component.")
 
-        this.#tbody = this.querySelector(`tbody`)
+        this.#table = this.querySelector(`table`)
+        this.#tbody = this.#table.querySelector(`tbody`)
+
         if (!this.#tbody) return console.warn("A tbody element is required in your table (as is a table!)")
 
         this.#classOdd = this.dataset.classOdd
         this.#classEven = this.dataset.classEven
 
         this.#observer = new MutationObserver(this.#mutationCallback)
-        this.#observer.observe(this.#tbody, { subtree: true, attributes: true })
+        this.#setObservers()
+
+        this.#emit('ready')
     }
 
     /*
@@ -141,7 +157,7 @@ export default class NakedTableStripeSorter extends HTMLElement {
     #emit(type, detail = {}) {
 
         // Create a new event
-        let event = new CustomEvent(`naked-table-sort:${type}`, {
+        let event = new CustomEvent(`naked-table-stripe-sorter:${type}`, {
             bubbles: true,
             cancelable: true,
             detail: detail
