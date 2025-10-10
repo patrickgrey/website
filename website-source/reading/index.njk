@@ -1,7 +1,8 @@
 ---
 title: "Patrick Grey: reading list"
 layout: base
-cssFiles: ["./reading-list.css"]
+cssFiles: ["./naked-filter.css","./reading-list.css"]
+jsFiles: ["./naked-filter.js","./naked-x-of-x.js"]
 permalink: /reading/
 override:tags: []
 eleventyNavigation:
@@ -12,6 +13,52 @@ eleventyNavigation:
 <article  class="pg-flow">
   <h2>Reading</h2>
     <p>Here's a list of what I've been reading / watching / listening to / want to bookmark.</p>
+
+
+    <naked-filter id="filterMediaType" data-filter-type="radio" data-items-selector=".pg-card-reading"  data-item-attribute-selector="data-is-online">
+        <fieldset>
+            <legend>Filter list</legend>
+                  
+            <div>
+                <div>
+                    <span focusable="false" aria-hidden="true">{% include "../../website-source/_shared/images/icons/icon-video.svg" %}</span>
+                    <label for="filter1"><input type="radio" id="filter1" name="mediaType" value="web" />
+                        Web</label>
+                </div>
+
+                <div>
+                    <span focusable="false" aria-hidden="true">{% include "../../website-source/_shared/images/icons/icon-audio.svg" %}</span>
+                    <label for="filter2"><input type="radio" id="filter2" name="mediaType" value="audio" />
+
+                        Audio</label>
+                </div>
+
+                <div>
+                    <span focusable="false" aria-hidden="true">{% include "../../website-source/_shared/images/icons/icon-book-open.svg" %}</span>
+                    <label for="filter3"><input type="radio" id="filter3" name="mediaType" value="video" />
+
+                        Video</label>
+                </div>
+
+                <div>
+                    <label for="filterAll"><input type="radio" id="filterAll" name="mediaType" value="all"
+                            checked />
+
+                        All</label>
+                </div>
+
+                <p class="naked-count">
+                    <naked-x-of-x data-item-selector=".pg-card-reading">
+                        [Showing: <span data-x-count></span> of <span data-x-total></span> cards]
+                    </naked-x-of-x>
+                </p>
+
+
+            </div>
+        </fieldset>
+    </naked-filter>
+
+
     {% set readingList = collections.reading %}
     {% set excludeTags = ["reading"] %}
     {% set readingLimit = 999999 %}
