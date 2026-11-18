@@ -11,7 +11,12 @@
     "debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --dryrun",
     "build:11ty": "cross-env DEV_ENVIRONMENT=prod npx @11ty/eleventy",
     "build:server": "npx @11ty/eleventy-dev-server --dir=website-build",
-    "build": "run-s del build:11ty"
+    "build": "run-s del build:11ty",
+    "rsync": "C:\\cygwin64\\bin\\rsync.exe -e C:\\cygwin64\\bin\\ssh.exe -avz website-build/ patrickg@indus.uberspace.de:/var/www/virtual/patrickg/html",
+    "wsl": "wsl",
+    "rsync:wsl": "rsync -avrzv --rsync-path 'sudo rsync' -e 'ssh -i ~/location.pem' /directory/ ubuntu@ec0-00.us-west-1.compute.amazonaws.com:~/remotedir --progress",
+    "deploy": "run-s build rsync",
+    "deploy:wsl": "run-s build wsl rsync:wsl"
   },
   "keywords": [],
   "author": {

@@ -344,6 +344,26 @@ time {
     white-space: nowrap;
 }
 
+/*
+##     ## ########    ###    ########  ######## ########
+##     ## ##         ## ##   ##     ## ##       ##     ##
+##     ## ##        ##   ##  ##     ## ##       ##     ##
+######### ######   ##     ## ##     ## ######   ########
+##     ## ##       ######### ##     ## ##       ##   ##
+##     ## ##       ##     ## ##     ## ##       ##    ##
+##     ## ######## ##     ## ########  ######## ##     ##
+*/
+
+figcaption {
+    text-align: center;
+    padding-block: var(--space-3xs);
+    color: var(--pg-colour-dark-grey);
+    border: 1px solid var(--pg-colour-blue);
+    border-block-start: 0;
+    border-end-end-radius: var(--space-3xs);
+    border-end-start-radius: var(--space-3xs);
+}
+
 /* p>code,
 li>code {
     background-color: var(--pg-colour-mid);
