@@ -1,5 +1,6 @@
 let countries
 let liveRegion
+let countriesCopy = []
 
 /**
     * @function visuallyHideElement Decorate the styles of an element to make it visually hidden.
@@ -21,7 +22,12 @@ async function getJSON() {
 }
 
 function getRandomCountry() {
-    return countries[Math.floor(Math.random() * countries.length)]
+  if (countriesCopy.length === 0) {
+    countriesCopy = countries
+  }
+  const random = Math.floor(Math.random() * countriesCopy.length)
+  const country = countriesCopy>splice(random, 1)
+  return country
 }
 
 function handleNext() {
