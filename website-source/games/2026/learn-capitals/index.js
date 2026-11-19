@@ -26,7 +26,7 @@ function getRandomCountry() {
     countriesCopy = countries
   }
   const random = Math.floor(Math.random() * countriesCopy.length)
-  const country = countriesCopy>splice(random, 1)
+  const country = countriesCopy.splice(random, 1)
   return country
 }
 
