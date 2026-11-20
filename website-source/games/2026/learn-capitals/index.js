@@ -16,8 +16,8 @@ function visuallyHideElement(element) {
     element.style.whiteSpace = "nowrap"
 }
 
-async function getJSON() {
-    const response = await fetch(`./countries.json`)
+async function getJSON(url) {
+    const response = await fetch(url)
     return await response.json();
 }
 
@@ -35,12 +35,12 @@ function handleNext() {
     const capital = document.querySelector(`p[data-capital]`)
     const flag = document.querySelector(`img[data-flag]`)
     const randomCountry = getRandomCountry()
-    country.textContent = randomCountry.name
-    capital.textContent = randomCountry.capital
+    country.textContent = randomCountry.country
+    capital.textContent = (randomCountry.capital) ? randomCountry.capital : "Tricked ya! This country has no capital!"
     capital.style.display = "none"
-    flag.src = `./images/country-4x3/${randomCountry.code.toLowerCase()}.svg`
-    flag.alt = randomCountry.name
-    liveRegion.textContent = `What is the Capital of ${randomCountry.name}?`
+    flag.src = `./images/country-4x3/${randomCountry.code?.toLowerCase()}.svg`
+    flag.alt = randomCountry.country
+    liveRegion.textContent = `What is the Capital of ${randomCountry.country}?`
     console.log("randomCountry: ", randomCountry)
 }
 
@@ -86,9 +86,29 @@ function addLiveRegion() {
 }
 
 async function init() {
-    const json = await getJSON()
-    countries = json.countries
+    const countries = await getJSON(`./countryCapitalISOLetterCodes.json`)
+    // countries = json.countries
     countriesCopy = [...countries]
+
+    /*Build JSON from other files*/
+    // const jsonCapitals = await getJSON(`./country-by-capital-city.json`)
+    // const jsonISONumber = await getJSON(`./country-by-iso-numeric.json`)
+    // const jsonISOLetter = await getJSON(`./ISO-3166-ID-SHORT-NUM.json`)
+    // let jsonCapitalsArray = Array.from(jsonCapitals)
+    // let jsonISONumberArray = Array.from(jsonISONumber)
+    // jsonCapitalsArray.forEach(countryObject => {
+    //     const foundCountry = jsonISONumberArray.find(x => x.country === countryObject.country)
+    //     const isoNumber = foundCountry?.iso?.toString()
+    //     if (isoNumber) {
+    //         const padNumber = isoNumber.padStart(3, "0")
+    //         const isoCountry = jsonISOLetter[padNumber]
+    //         countryObject.code = isoCountry?.alpha2
+    //     }
+    // });
+
+    // console.log("jsonCapitalsArray: ", JSON.stringify(jsonCapitalsArray));
+    /*Build JSON from other files*/
+
     addLiveRegion()
     initUI()
     handleNext()
