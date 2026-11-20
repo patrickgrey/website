@@ -22,11 +22,11 @@ async function getJSON() {
 }
 
 function getRandomCountry() {
+    const random = Math.floor(Math.random() * countriesCopy.length)
+    const country = countriesCopy.splice(random, 1)[0]
     if (countriesCopy.length === 0) {
         countriesCopy = countries
     }
-    const random = Math.floor(Math.random() * countriesCopy.length)
-    const country = countriesCopy.splice(random, 1)[0]
     return country
 }
 
