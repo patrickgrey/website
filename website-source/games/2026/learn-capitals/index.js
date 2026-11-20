@@ -54,7 +54,6 @@ function showAnswer() {
 function initUI() {
     const next = document.querySelector(`button[data-next]`)
     const reveal = document.querySelector(`button[data-reveal]`)
-    const capital = document.querySelector(`p[data-capital]`)
 
     next.addEventListener("click", (event) => {
         handleNext()
@@ -66,9 +65,6 @@ function initUI() {
 }
 
 function initShortcuts() {
-    const next = document.querySelector(`button[data-next]`)
-    const reveal = document.querySelector(`button[data-reveal]`)
-    const capital = document.querySelector(`p[data-capital]`)
     document.addEventListener("keydown", function (event) {
         if (event.code === `KeyN`) {
             handleNext()
