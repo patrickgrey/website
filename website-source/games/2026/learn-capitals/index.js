@@ -92,6 +92,7 @@ function addLiveRegion() {
 async function init() {
     const json = await getJSON()
     countries = json.countries
+    countriesCopy = countries
     addLiveRegion()
     initUI()
     handleNext()
